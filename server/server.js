@@ -5,7 +5,7 @@ const express = require('express');
 const path = require('path'); 
 
 //db connection 
-// const db = require('./config/connection')
+ const db = require('./config/connection')
 
 // const { ApolloServer } = require('apollo-server-express'); 
 // const { typeDefs, resolvers} = require('./graphql')
