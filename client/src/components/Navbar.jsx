@@ -5,7 +5,7 @@ const Navbar = () => {
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
   return (
-    <div className="w-screen h-[100px] z-10 bg-indigo-500 fixed drop-shadow-md">
+    <div className="w-screen h-[100px] z-10 bg-indigo-500 sticky top-0 drop-shadow-md">
       <div className="px-2 flex justify-between items-center w-full h-full">
         <div
           className="text-slate-100 px-4"
