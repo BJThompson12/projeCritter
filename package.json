@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/BJThompson12/Project_3/issues"
   },
-  "homepage": "https://github.com/BJThompson12/Project_3#readme"
+  "homepage": "https://github.com/BJThompson12/Project_3#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.3.2"
+  }
 }
