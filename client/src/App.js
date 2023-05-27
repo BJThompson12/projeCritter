@@ -5,15 +5,11 @@ import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import Project from "./pages/Project";
 import Footer from "./components/Footer";
-import Login from "./components/Login";
-import SignUp from "./components/SignUp"
 
 function App() {
   return (
     <div className="App">
       <main>
-        <Login />
-        <SignUp />
         <Home />
         <Dashboard />
         <Project />
