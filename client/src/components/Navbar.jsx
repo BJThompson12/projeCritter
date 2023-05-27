@@ -36,6 +36,7 @@ const Navbar = () => {
             <div>
               {Auth.loggedIn ? (
                 <>
+                  <li>Dashboard</li>
                   <li>
                     <button className="px-4 py-2 bg-white text-indigo-500 ">
                       Sign Out
@@ -60,9 +61,32 @@ const Navbar = () => {
               <Bars3Icon className="w-6" />
             ) : (
               <XMarkIcon className="w-6" />
-            )}
+            )}   
           </div>
         </div>
+        <ul
+        className={
+          !nav ? "hidden" : "absolute bg-indigo-500  text-slate-100 w-full px-8 md:hidden"
+        }
+      >
+        <li>About</li>
+          {Auth.loggedIn ? (
+            <>
+    
+          <li>Dashboard</li>
+          <li><button>Sign Out</button></li>
+           </>
+          ) : (
+            <>
+            <div className="py-3">
+          <button className="px-4 py-2 bg-white text-indigo-500 ">
+            Sign up/Log in
+          </button>
+        </div>
+     
+            </>
+          )}
+        </ul>
       </div>
 
       {displayModal ? (
