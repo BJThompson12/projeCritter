@@ -1,17 +1,23 @@
 const mongoose = require("mongoose");
+const taskSchema = require('./task')
+
 const projectSchema = new mongoose.Schema(
-    {
-        projectName: {
+    {   
+        projectId: {
+          type: String, 
+          required: true,
+        },
+        title: {
             type: String,
             required: true,
           },
-        projectStatus: {
-            type: String,
-            required: true,
-            default: "active",
+        projectstatus: {
+            type: Number,
           },
+        tasks: [taskSchema],
     },
-    {timestamps: true}
+
 );
 
-module.exports = mongoose.model("project",projectSchema);
+
+module.exports = projectSchema; 
