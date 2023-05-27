@@ -1,4 +1,7 @@
+
+
 const Login = () => {
+
   return (
     <>
       <div className='relative flex flex-col justify-center min-h-screen overflow-hidden'>
@@ -44,8 +47,8 @@ const Login = () => {
           <p className='mt-8 text-xs font-light text-center text-gray-700'>
             {' '}
             Don't have an account?{' '}
-            <a href='#' className='font-medium text-indigo-500 hover:underline'>
-              Sign up here!
+            <a href='' className='font-medium text-indigo-500 hover:underline'>
+              Sign up Here!
             </a>
           </p>
         </div>
