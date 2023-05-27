@@ -13,8 +13,9 @@ const resolvers = {
           .select("-_V -password")
           .populate("projects");
         return currentUser;
-      }
+      } else {
       throw new AuthenticationError("mustbeloggedin");
+      }
     },
   },
 
@@ -25,12 +26,12 @@ const resolvers = {
       return { user, token };
     },
 
-    logIn: async (_, args) => {
-      const user = await User.findOne({ email: args.email });
+    login: async (_, { email, password } ) => {
+      const user = await User.findOne({ email });
       if (!user) {
         throw new AuthenticationError("incorrect email or password");
       }
-      const pass = await User.isCorrectPassword(args.password);
+      const pass = await User.isCorrectPassword(password);
       if (!pass) {
         throw new AuthenticationError("incorrect email or password");
       }
@@ -40,4 +41,4 @@ const resolvers = {
   },
 };
 
-module.export = resolvers;
+module.exports = resolvers;
