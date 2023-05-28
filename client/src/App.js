@@ -10,9 +10,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 function App() {
   return (
     <Router>
-      <div className='App'>
+      <div className='App h-screen w-full flex flex-col items-center'>
         <Navbar />
-        <main>
+        <main className="max-w-[1536px]">
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/dashboard' element={<Dashboard />} />
