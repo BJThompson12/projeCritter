@@ -9,13 +9,8 @@ const Auth = { loggedIn: false };
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const [displayModal, setDisplayModal] = useState(false);
-  const [chooseForm, setChooseForm] = useState(true);
 
   const handleClick = () => setNav((prevNav) => !prevNav);
-
-  const handleFormSwitch = () => {
-  chooseForm ? setChooseForm(false) : setChooseForm(true)
-  }
 
   return (
     <nav>
@@ -115,13 +110,8 @@ const Navbar = () => {
                       <br />
                       <br />
                       <br />
-                      <button
-                        className="bg-blue-100 text-indigo-500 rounded-md px-8 py-2 text-base font-medium hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        onClick={handleFormSwitch}
-                      >
-                        Switch
-                      </button>{" "}
-                      {/* { chooseForm ? (<SignUp />) : (<Login />)} <L */} <div className='display flex'> <Login />  <SignUp /> </div>
+                     
+                <div className='display flex'> <Login />  <SignUp /> </div>
                     </div>
                   </div>
                   {/*footer*/}
