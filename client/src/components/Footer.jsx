@@ -1,6 +1,7 @@
 const Footer = () => {
   return (
-    <> Hello World
+    <>
+     Footer
     </>
   )
 }
