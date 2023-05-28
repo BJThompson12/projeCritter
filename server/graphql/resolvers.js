@@ -38,6 +38,30 @@ const resolvers = {
       const token = writeToken(user);
       return { user, token };
     },
+
+    createProject: async (_, args, context) => {
+      if (!context._id) {
+        throw new AuthenticationError("err");
+      }
+
+      const addProjectToUser = await User.findByIdAndUpdate(
+        { _id: context._id },
+        { $addToSet: { savedProjects: args.input } },
+        { new: true }
+      );
+      return addProjectToUser;
+    },
+
+    delProject: async (_,  args , context) => {
+      if (!context) {
+        throw new AuthenticationError("Please log in first!");
+      }
+      const removeProjectFromUser = await User.findByIdAndUpdate(
+        { _id: context._id },
+        { $pull: { savedProjects: { projectId: args.projectId } } }
+      );
+      return removeProjectFromUser;
+    },
   },
 };
 
