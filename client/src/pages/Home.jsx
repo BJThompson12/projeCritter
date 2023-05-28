@@ -1,9 +1,8 @@
-import Navbar from '../components/Navbar';
+
 
 const Home = () => {
   return (
     <>
-      <Navbar />
       <section className='relative py-20'>
         <div className='items-center flex flex-wrap'>
           <div className='w-full md:w-5/12 ml-auto mr-auto px-4'>

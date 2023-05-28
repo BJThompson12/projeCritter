@@ -1,6 +1,7 @@
 const Project = () => {
   return (
-    <> Hello World
+    <>
+     Project Page
     </>
   )
 }
