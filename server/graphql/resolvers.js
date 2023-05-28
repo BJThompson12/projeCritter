@@ -46,7 +46,7 @@ const resolvers = {
 
       const addProjectToUser = await User.findByIdAndUpdate(
         { _id: context._id },
-        { $addToSet: { savedProjects: args.input } },
+        { $addToSet: { projects: args.input } },
         { new: true }
       );
       return addProjectToUser;
@@ -58,7 +58,7 @@ const resolvers = {
       }
       const removeProjectFromUser = await User.findByIdAndUpdate(
         { _id: context._id },
-        { $pull: { savedProjects: { projectId: args.projectId } } }
+        { $pull: { projects: { projectId: args.projectId } } }
       );
       return removeProjectFromUser;
     },

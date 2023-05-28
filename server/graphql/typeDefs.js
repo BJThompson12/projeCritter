@@ -6,18 +6,18 @@ const typeDefs = gql`
         _id: ID!
         username: String
         email: String
-        savedProjects: [Project]
+        projects: [Project]
     }
 
     type Project {
         _id: ID!
-        projectID: String
+        projectId: String
         title: String
         projectstatus: String
     }
 
     input InputProject{
-        projectID: String
+        projectId: String
         title: String
         projectstatus: String 
     }
