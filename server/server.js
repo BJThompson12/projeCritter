@@ -34,11 +34,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // serving distribution folder build
-app.use(express.static(path.join(__dirname, "../client/build")));
+// app.use(express.static(path.join(__dirname, "../client/build")));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/build/index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "../client/build/index.html"));
+// });
 
 //db connection once started express erver listen
 db.once("open", () => {
