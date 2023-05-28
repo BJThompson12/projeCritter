@@ -121,7 +121,7 @@ const Navbar = () => {
                       >
                         Switch
                       </button>{" "}
-                      { chooseForm ? (<SignUp />) : (<Login />)}
+                      {/* { chooseForm ? (<SignUp />) : (<Login />)} <L */} <div className='display flex'> <Login />  <SignUp /> </div>
                     </div>
                   </div>
                   {/*footer*/}
