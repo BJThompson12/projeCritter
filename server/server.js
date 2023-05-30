@@ -22,7 +22,7 @@ const app = express();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: withAuth,
+  //context: withAuth,
 });
 
 //start applo server then apply middleware app object.
@@ -36,7 +36,7 @@ app.use(express.json());
 // serving distribution folder build
 // app.use(express.static(path.join(__dirname, "../client/build")));
 
-// app.get("*", (req, res) => {
+// app.get("/", (req, res) => {
 //   res.sendFile(path.join(__dirname, "../client/build/index.html"));
 // });
 

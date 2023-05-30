@@ -31,7 +31,7 @@ const resolvers = {
       if (!user) {
         throw new AuthenticationError("incorrect email or password");
       }
-      const pass = await User.isCorrectPassword(password);
+      const pass = await user.isCorrectPassword(password);
       if (!pass) {
         throw new AuthenticationError("incorrect email or password");
       }
