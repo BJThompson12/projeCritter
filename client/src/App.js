@@ -6,9 +6,25 @@ import Dashboard from './pages/Dashboard';
 import Project from './pages/Project';
 import Footer from './components/Footer';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+
+//apollo client is initialized 
+const client = new ApolloClient({
+  //  end point of graphQL server
+  uri:"/graphql",
+  // Inmemory cache provides local cache for stroing graphQL data
+  cache: new InMemoryCache(),
+  //sers authorization header for apollo client requwsts it retrieves the jwt token from localstorage using bearer which is a type of authentication scheme
+  headers:{
+    authorization:localStorage.getItem('id_token') 
+    ? `Bearer${localStorage.getItem('id_token')}`
+    :null
+  }
+})
 
 function App() {
   return (
+    <ApolloProvider client={client}>
     <Router>
       <div className='App h-screen w-full flex flex-col items-center'>
         <Navbar />
@@ -22,6 +38,7 @@ function App() {
         <Footer />
       </div>
     </Router>
+    </ApolloProvider>
   );
 }
 
