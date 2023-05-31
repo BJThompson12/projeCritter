@@ -1,5 +1,3 @@
-//import logo from './logo.svg';
-import './App.css';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
@@ -25,19 +23,19 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-    <Router>
-      <div className='App h-screen w-full flex flex-col items-center'>
-        <Navbar />
-        <main className="max-w-[1536px]">
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/dashboard' element={<Dashboard />} />
-            <Route path='/project' element={<Project />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </Router>
+      <Router>
+        <div className="flex flex-col items-center w-full min-h-screen App">
+          <Navbar />
+          <main className="flex flex-col items-center w-full max-w-[1536px] p-8">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/project" element={<Project />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </Router>
     </ApolloProvider>
   );
 }
@@ -45,8 +43,8 @@ function App() {
 export default App;
 
 {
-  /* <div className="w-screen py-10 flex items-center justify-center">
-<button className="py-2 px-5 rounded  bg-blue-500 text-white">
+  /* <div className="flex items-center justify-center w-screen py-10">
+<button className="px-5 py-2 text-white bg-blue-500 rounded">
   Open Modal
 </button>
 </div> */
