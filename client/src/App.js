@@ -35,7 +35,7 @@ function App() {
               <Route path="/faq" element={<Faq />} />
             </Routes>
           </main>
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </Router>
     </ApolloProvider>
