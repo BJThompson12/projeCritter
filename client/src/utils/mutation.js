@@ -27,9 +27,6 @@ export const CREATE_USER = gql`
 //     }
 // }
 
-
-
-
 //------------------------------------------------------------------------------------------
 
 export const LOG_IN = gql`
@@ -37,35 +34,37 @@ export const LOG_IN = gql`
     login(email: $email, password: $password) {
       token
       user {
-      _id
-      username
+        _id
+        username
       }
     }
   }
 `;
 
-// export const CREATE_PROJECT = gql`
-//     mutation createProject($input: InputProject!){
-//         createProject( input: $input){
-//             {
-//                 _id
-//                 username
-//                 email
-//                 projects{
-//                     projectId
-//                     title
-//                     projectstatus
-//                     tasks{
-//                       taskstate
-//                       taskbody
-//                       difficulty
-//                       taskowner  
-//                     }
-//                 }
-//             } 
-//         }
-//     }
-// `;
+export const CREATE_PROJECT = gql`
+  mutation createProject($input: InputProject!) {
+    createProject(input: $input) {
+      _id
+      email
+      username
+      projects {
+        _id
+        projectId
+        projectstatus
+        title
+      }
+    }
+  }
+`;
+
+// tasks{
+//   taskstate
+//   taskbody
+//   difficulty
+//   taskowner
+// }
+
+// ---------------------------------------------------------------------
 
 // export const DEL_PROJECT = gql`
 //     mutation delProject($projectId: String!){
@@ -82,10 +81,10 @@ export const LOG_IN = gql`
 //                       taskstate
 //                       taskbody
 //                       difficulty
-//                       taskowner  
+//                       taskowner
 //                     }
 //                 }
-//             } 
+//             }
 //         }
 //         }
 // `;

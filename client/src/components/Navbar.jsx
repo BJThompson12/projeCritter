@@ -4,11 +4,8 @@ import Auth from "../utils/auth";
 
 import Login from "./Login";
 import SignUp from "./SignUp";
-import { logMissingFieldErrors } from "@apollo/client/core/ObservableQuery";
 
 const loggedIn = Auth.getToken();
-const authState = { state: loggedIn };
-console.log(authState.state);
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -46,7 +43,7 @@ const Navbar = () => {
                   About
                 </a>
               </li>
-              {authState.state ? (
+              {loggedIn ? (
                 <>
                   <li>
                     <a href="/dashboard" className={navLink}>
@@ -54,7 +51,9 @@ const Navbar = () => {
                     </a>
                   </li>
                   <li>
-                    <button className={navButton}>Log Out</button>
+                    <button className={navButton} onClick={() => Auth.logout()}>
+                      Log Out
+                    </button>
                   </li>
                 </>
               ) : (
@@ -93,7 +92,7 @@ const Navbar = () => {
               About
             </a>
           </li>
-          {authState.state ? (
+          {loggedIn ? (
             <>
               <li>
                 <a href="/dashboard" className={navLink}>
@@ -101,11 +100,18 @@ const Navbar = () => {
                 </a>
               </li>
               <li>
-                <button className={navButton}>Log Out</button>
+                <button className={navButton} onClick={() => Auth.logout()}>
+                  Log Out
+                </button>
               </li>
             </>
           ) : (
-            <button className={navButton}>Sign Up / Log In</button>
+            <button
+              onClick={() => setDisplayModal(displayModal ? false : true)}
+              className={navButton}
+            >
+              Sign Up / Log In
+            </button>
           )}
         </ul>
       </header>
