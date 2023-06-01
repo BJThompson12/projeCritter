@@ -32,15 +32,17 @@ export const CREATE_USER = gql`
 
 //------------------------------------------------------------------------------------------
 
-// export const LOG_IN = gql`
-//   mutation login($email: String!, $password: String!) {
-//     login(email: $email, password: $password) {
-//       token
-//       _id
-//       username
-//     }
-//   }
-// `;
+export const LOG_IN = gql`
+  mutation login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      token
+      user {
+      _id
+      username
+      }
+    }
+  }
+`;
 
 // export const CREATE_PROJECT = gql`
 //     mutation createProject($input: InputProject!){

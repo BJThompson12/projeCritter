@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import Auth from '../utils/auth';
 
 import Login from './Login';
 import SignUp from './SignUp';
+import { logMissingFieldErrors } from '@apollo/client/core/ObservableQuery';
 
-const Auth = { loggedIn: false };
+const loggedIn = Auth.getToken()
+const authState = {state: loggedIn}
+console.log(authState.state)
+
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -67,7 +72,7 @@ const Navbar = () => {
           }
         >
           <li>About</li>
-          {Auth.loggedIn ? (
+          {authState.state ? (
             <>
               <li>Dashboard</li>
               <li>

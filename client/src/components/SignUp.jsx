@@ -115,18 +115,10 @@ const SignUp = () => {
                 type='submit'
                 variant='success'
               >
-                Login
+                Sign Up
               </button>
             </div>
           </form>
-
-          <p className='mt-8 text-xs font-light text-center text-gray-700'>
-            {' '}
-            Already have an account?{' '}
-            <a href='#' className='font-medium text-indigo-500 hover:underline'>
-              Log in here!
-            </a>
-          </p>
         </div>
       </div>
     </>
