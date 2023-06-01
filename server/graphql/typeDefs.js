@@ -17,7 +17,6 @@ const typeDefs = gql`
     }
 
     input InputProject{
-        projectId: String
         title: String
         projectstatus: String 
     }

@@ -1,23 +1,23 @@
 import { gql } from "@apollo/client";
 
 export const RETURN_USER = gql`
-  query returnUser {
-    _id
-    username
-    email
+  {
+    returnUser {
+      _id
+      email
+      username
+      projects {
+        _id
+        projectstatus
+        title
+      }
+    }
   }
 `;
 
-
-
-// projects {
-//     projectId
-//     title
-//     projectstatus
-//     tasks {
-//       taskstate
-//       taskbody
-//       difficulty
-//       taskowner
-//     }
-//   }
+// tasks {
+//   taskstate
+//   taskbody
+//   difficulty
+//   taskowner
+// }

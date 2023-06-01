@@ -14,7 +14,7 @@ const resolvers = {
           .populate("projects");
         return currentUser;
       } else {
-      throw new AuthenticationError("mustbeloggedin");
+        throw new AuthenticationError("mustbeloggedin");
       }
     },
   },
@@ -26,7 +26,7 @@ const resolvers = {
       return { user, token };
     },
 
-    login: async (_, { email, password } ) => {
+    login: async (_, { email, password }) => {
       const user = await User.findOne({ email });
       if (!user) {
         throw new AuthenticationError("incorrect email or password");
@@ -52,7 +52,7 @@ const resolvers = {
       return addProjectToUser;
     },
 
-    delProject: async (_,  args , context) => {
+    delProject: async (_, args, context) => {
       if (!context) {
         throw new AuthenticationError("Please log in first!");
       }
@@ -63,30 +63,29 @@ const resolvers = {
       return removeProjectFromUser;
     },
 
-    createTask: async (_, { projectId, tasks }, context ) => {
+    createTask: async (_, { projectId, tasks }, context) => {
       if (!projectId) {
         throw new AuthenticationError("err");
       }
       const addTaskToProject = await User.findByIdAndUpdate(
-        { _id: context._id  },
-        { $addToSet: { tasks: tasks} },
+        { _id: context._id },
+        { $addToSet: { tasks: tasks } },
         { new: true }
       );
       return addTaskToProject;
     },
 
-    updateTask: async (_, { taskId, tasks }, context ) => {
+    updateTask: async (_, { taskId, tasks }, context) => {
       if (!taskId) {
         throw new AuthenticationError("err");
       }
       const updateTaskToProject = await User.findByIdAndUpdate(
         { _id: context._id },
-        { $addToSet: { tasks: tasks} },
+        { $addToSet: { tasks: tasks } },
         { new: true }
       );
       return updateTaskToProject;
     },
-
   },
 };
 
