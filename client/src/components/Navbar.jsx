@@ -39,8 +39,8 @@ const Navbar = () => {
           <nav>
             <ul className="hidden space-x-4 md:flex md:items-center">
               <li>
-                <a href="/about" className={navLink}>
-                  About
+                <a href="/faq" className={navLink}>
+                  FAQ
                 </a>
               </li>
               {loggedIn ? (
