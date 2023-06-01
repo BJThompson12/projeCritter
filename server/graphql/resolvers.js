@@ -3,7 +3,6 @@
 const { User } = require("../models");
 const { AuthenticationError } = require("apollo-server-express");
 const { writeToken } = require("../utils/auth");
-const { default: Project } = require("../../client/src/pages/Project");
 
 const resolvers = {
   //query resolvers
@@ -64,24 +63,24 @@ const resolvers = {
       return removeProjectFromUser;
     },
 
-    createTask: async (_, { projectId, tasks } ) => {
+    createTask: async (_, { projectId, tasks }, context ) => {
       if (!projectId) {
         throw new AuthenticationError("err");
       }
       const addTaskToProject = await User.findByIdAndUpdate(
-        { _id: projectId },
+        { _id: context._id  },
         { $addToSet: { tasks: tasks} },
         { new: true }
       );
       return addTaskToProject;
     },
 
-    updateTask: async (_, { taskId, tasks } ) => {
+    updateTask: async (_, { taskId, tasks }, context ) => {
       if (!taskId) {
         throw new AuthenticationError("err");
       }
       const updateTaskToProject = await User.findByIdAndUpdate(
-        { _id: taskId },
+        { _id: context._id },
         { $addToSet: { tasks: tasks} },
         { new: true }
       );
