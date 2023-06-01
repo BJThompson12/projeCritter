@@ -22,6 +22,24 @@ const typeDefs = gql`
         projectstatus: String 
     }
 
+    type Task{
+        _id: ID!
+        projectId: String
+        taskbody: String
+        taskstate: Int
+    }
+
+    input InputTask{
+        projectId: String
+        taskbody: String
+        taskstate: Int
+    }
+
+    input UpdateTask{
+        taskId: String
+        taskstate: Int
+    }
+
     type Auth {
         token: ID!
         user: User
@@ -36,6 +54,8 @@ const typeDefs = gql`
         login(email: String!, password: String!): Auth
         createProject(input: InputProject!): User
         delProject(projectId: String!): User
+        createTask(input: InputTask!): User
+        updateTask(input: UpdateTask!): User
     }
 `;
 
