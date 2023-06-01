@@ -5,8 +5,7 @@ const secret = "thesupersecret";
 const expiration = "4h";
 
 module.exports = {
-  withAuth: function ({req, res, next}) {
-    
+  withAuth: function ({ req }) {
     let token = req.query.token || req.headers.authorization;
 
     if (req.headers.authorization) {
@@ -14,18 +13,17 @@ module.exports = {
     }
 
     if (!token) {
-      return console.log('invalid token');
+      console.log("invalid token");
     }
 
     try {
       const { data } = jwt.verify(token, secret, { maxAge: expiration });
-      req.user = data
-      return data
+      req.user = data;
+      return data;
     } catch {
       console.log("Invalid token");
-    } 
-    next()
-     },
+    }
+  },
 
   writeToken: function ({ username, email, _id }) {
     const payload = { username, email, _id };

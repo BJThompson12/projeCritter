@@ -22,7 +22,7 @@ const app = express();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  //context: withAuth,
+  context: withAuth,
 });
 
 //start applo server then apply middleware app object.
