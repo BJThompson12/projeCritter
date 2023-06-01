@@ -2,6 +2,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import Project from './pages/Project';
+import Faq from './pages/Faq';
 import Footer from './components/Footer';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
@@ -31,6 +32,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/project" element={<Project />} />
+              <Route path="/faq" element={<Faq />} />
             </Routes>
           </main>
           <Footer />
