@@ -34,11 +34,11 @@ const Dashboard = () => {
           Current Projects:
         </h2>
         <CurrentProjects />
-        <h2 className="text-xl font-semibold text-center text-indigo-400">
+        {/* <h2 className="text-xl font-semibold text-center text-indigo-400">
           {" "}
           Completed Projects:
-        </h2>
-        <CompletedProjects />
+        </h2> */}
+        {/* <CompletedProjects /> */}
       </div>
 
       {displayModal ? (

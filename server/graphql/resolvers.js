@@ -52,16 +52,22 @@ const resolvers = {
       return addProjectToUser;
     },
 
+
+
+    
     delProject: async (_, args, context) => {
       if (!context) {
         throw new AuthenticationError("Please log in first!");
       }
       const removeProjectFromUser = await User.findByIdAndUpdate(
         { _id: context._id },
-        { $pull: { projects: { projectId: args.projectId } } }
+        { $pull: { projects: { _id: args._id } } }
       );
       return removeProjectFromUser;
     },
+
+
+
 
     createTask: async (_, { projectId, tasks }, context) => {
       if (!projectId) {
