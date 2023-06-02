@@ -8,7 +8,7 @@ const ProjectForm = () => {
 
   const [formData, setFormData] = useState({
     title: "",
-    projectstatus: 1,
+    projectstatus: "",
   });
 
   const handleInputChange = (event) => {
@@ -18,6 +18,8 @@ const ProjectForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    console.log(formData)
 
     try {
     
@@ -36,7 +38,7 @@ const ProjectForm = () => {
         title: "",
         projectstatus: "",
       });
-      window.location.href ='/dashboard'
+     // window.location.href ='/dashboard'
     }
   };
 
@@ -50,7 +52,7 @@ const ProjectForm = () => {
           <form onSubmit={handleSubmit} className="mt-6">
             <div className="mb-2">
               <label
-                for="title"
+                htmlFor="title"
                 className="block text-sm font-semibold text-indigo-500 text-center"
               >
                 Title

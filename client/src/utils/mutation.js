@@ -66,25 +66,12 @@ export const CREATE_PROJECT = gql`
 
 // ---------------------------------------------------------------------
 
-// export const DEL_PROJECT = gql`
-//     mutation delProject($projectId: String!){
-//         delProject(projectId: $projectId){
-//             {
-//                  _id
-//                 username
-//                 email
-//                 projects{
-//                     projectId
-//                     title
-//                     projectstatus
-//                     tasks{
-//                       taskstate
-//                       taskbody
-//                       difficulty
-//                       taskowner
-//                     }
-//                 }
-//             }
-//         }
-//         }
-// `;
+export const DEL_PROJECT = gql`
+  mutation delProject($projectId: String!) {
+    delProject(projectId: $projectId) {
+      projects {
+        title
+      }
+    }
+  }
+`;

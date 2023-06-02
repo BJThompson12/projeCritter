@@ -16,7 +16,7 @@ const CurrentProjects = () => {
   ];
 
   return (
-    <>
+    <> 
       <div className="flex justify-center pt-5 pb-5">
         <table className="w-2/3 h-full divide-y divide-indigo-500">
           <thead className="bg-indigo-50">
@@ -32,7 +32,7 @@ const CurrentProjects = () => {
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {projects.map((project) => (
-              <tr key={project.id}>
+              <tr key={project._id}>
                 <td className="bg-indigo-50 py-4 px-6">
                   {project.status === "Happy" ? (
                     <FaceSmileIcon className="h-6 w-6 text-indigo-500" />
@@ -41,7 +41,7 @@ const CurrentProjects = () => {
                   )}
                 </td>
                 <td className="py-4 px-6">
-                  <div className="text-indigo-500">{project.title}</div>
+                  <div className="text-indigo-500"><a> {project.title}</a></div>
                   <div className="text-indigo-500">
                     Status: {project.projectstatus}
                   </div>
