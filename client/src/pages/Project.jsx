@@ -1,14 +1,38 @@
 import CritterContainer from "../components/CritterContainer";
 import ProjectColumn from "../components/ProjectColumn";
+import { useQuery, useMutation } from "@apollo/client";
+
+import { RETURN_PROJECT } from "../utils/query";
+
 
 const Project = () => {
   // TODO: get project by projectId
   // for testing:
+
   const creationDate = new Date("June 1, 2023 23:15:30 UTC");
   const jsonDate = creationDate.toJSON();
+
+  const url = window.location.href;
+  const id = url.split("=").pop().trim();
+
+  console.log(id)
+
+  const { data, loading } = useQuery(RETURN_PROJECT, {
+    variables: { input: id },
+  });
+
+  if (loading) {
+    return <p>Loading...</p>; // Return a loading indicator while data is being fetched
+  }
+
+  if (!data) {
+    return <p>No data found.</p>; // Handle the case when no data is returned
+  }
+
+
   const project = {
-    id: 1,
-    name: "Project A",
+    id: data.returnProject._id,
+    name: data.returnProject.title,
     critterName: "Little Guy",
     createdAt: jsonDate,
   };
