@@ -67,8 +67,8 @@ export const CREATE_PROJECT = gql`
 // ---------------------------------------------------------------------
 
 export const DEL_PROJECT = gql`
-  mutation delProject($projectId: String!) {
-    delProject(projectId: $projectId) {
+  mutation delProject($input: String!) {
+    delProject(input: $input) {
       projects {
         title
       }
