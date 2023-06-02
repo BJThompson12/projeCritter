@@ -15,6 +15,16 @@ export const RETURN_USER = gql`
   }
 `;
 
+export const RETURN_PROJECT = gql`
+  query ReturnProject($input: String!) {
+    returnProject(input: $input) {
+        _id
+        projectstatus
+        title
+    }
+  }
+`;
+
 // tasks {
 //   taskstate
 //   taskbody

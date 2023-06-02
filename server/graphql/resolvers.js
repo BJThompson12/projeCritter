@@ -17,6 +17,20 @@ const resolvers = {
         throw new AuthenticationError("mustbeloggedin");
       }
     },
+
+    returnProject: async (_, args, context) => {
+      if (context) {
+        const currentUser = await User.findOne({ _id: context._id }).select(
+          "-__v -password"
+        );
+        const selectedProject = currentUser.projects.find(
+          (project) => project._id.toString() === args.input
+        );
+        return selectedProject;
+      } else {
+        throw new AuthenticationError("mustbeloggedin");
+      }
+    },
   },
 
   Mutation: {
@@ -52,9 +66,6 @@ const resolvers = {
       return addProjectToUser;
     },
 
-
-
-    
     delProject: async (_, args, context) => {
       if (!context) {
         throw new AuthenticationError("Please log in first!");
@@ -65,9 +76,6 @@ const resolvers = {
       );
       return removeProjectFromUser;
     },
-
-
-
 
     createTask: async (_, { projectId, tasks }, context) => {
       if (!projectId) {

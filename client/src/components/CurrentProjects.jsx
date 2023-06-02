@@ -61,7 +61,7 @@ const CurrentProjects = () => {
                 <td className="py-4 px-6">
                   <div className="text-indigo-500">
                     {" "}
-                    <a href={`/-${project._id}`}> {project.title}</a>
+                    <a href={`/project?=${project._id}`}> {project.title}</a>
                   </div>
                   <div className="text-indigo-500">
                     Status: {project.projectstatus}
@@ -86,11 +86,5 @@ const CurrentProjects = () => {
     </>
   );
 };
-
-// const getProjectIdFromUrl = () => {
-//   const url = window.location.href;
-//   const id = url.split('-').pop().trim();
-//   return id;
-// };
 
 export default CurrentProjects;
