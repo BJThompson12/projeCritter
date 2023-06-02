@@ -9,6 +9,13 @@ import { useQuery } from "@apollo/client";
 import { RETURN_USER } from "../utils/query";
 
 const CurrentProjects = () => {
+
+  const getProjectIdFromUrl = () => {
+    const url = window.location.href;
+    const id = url.split('-').pop().trim();
+    return id;
+  };
+
   const { loading, data } = useQuery(RETURN_USER);
 
   const projects = data?.returnUser.projects || [
@@ -41,7 +48,7 @@ const CurrentProjects = () => {
                   )}
                 </td>
                 <td className="py-4 px-6">
-                  <div className="text-indigo-500"><a> {project.title}</a></div>
+                  <div className="text-indigo-500"> <a href={`/-${project._id}`}> {project.title}</a></div>
                   <div className="text-indigo-500">
                     Status: {project.projectstatus}
                   </div>
@@ -50,7 +57,7 @@ const CurrentProjects = () => {
                 <td className="py-4 px-6">
                   <div className="flex">
                     <CheckIcon className="h-6 w-6 text-indigo-800 cursor-pointer" />
-                    <TrashIcon className="h-6 w-6 text-slate-500 cursor-pointer ml-4" />
+                    <TrashIcon  value={project._id} className="h-6 w-6 text-slate-500 cursor-pointer ml-4" />
                   </div>
                 </td>
               </tr>
