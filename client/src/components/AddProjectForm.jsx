@@ -38,7 +38,7 @@ const ProjectForm = () => {
         title: "",
         projectstatus: "",
       });
-     // window.location.href ='/dashboard'
+      window.location.href ='/dashboard'
     }
   };
 

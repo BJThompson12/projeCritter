@@ -61,7 +61,7 @@ const resolvers = {
       }
       const removeProjectFromUser = await User.findByIdAndUpdate(
         { _id: context._id },
-        { $pull: { projects: { _id: args._id } } }
+        { $pull: { projects: { _id: args.input } } }
       );
       return removeProjectFromUser;
     },
