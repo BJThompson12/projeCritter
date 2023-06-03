@@ -29,11 +29,11 @@ Our target audience are creative professionals,tech professionals,startup profes
 ## Screenshots
 
 ## Contributions
-- [Brandon Thompson] (https://github.com/BJThompson12)
-- [Michael Lito] (https://github.com/Micklitodev)
-- [Christina Boyt] (https://github.com/CKBoytGT)
-- [Valentina Arango] (https://github.com/Valentinaaranggo)
-- [Poonam Burris] (https://github.com/PoonamBurris)
+- [Brandon Thompson](https://github.com/BJThompson12)
+- [Michael Lito](https://github.com/Micklitodev)
+- [Christina Boyt](https://github.com/CKBoytGT)
+- [Valentina Arango](https://github.com/Valentinaaranggo)
+- [Poonam Burris](https://github.com/PoonamBurris)
 
      
 
