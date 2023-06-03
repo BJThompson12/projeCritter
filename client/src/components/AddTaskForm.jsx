@@ -7,22 +7,22 @@ const TaskForm = () => {
 
   const url = window.location.href;
   const id = url.split("=").pop().trim();
- 
 
   const [formData, setFormData] = useState({
     projectId: `${id}`,
-    taskbody: '',
-    taskstate: 0,
+    taskbody: "",
+    taskstate: 1,
   });
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData({ ...formData, [name]: name === "taskstate" ? parseInt(value) : value });
+    console.log(formData);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(formData)
+    console.log(formData);
 
     try {
       const { data } = await createTask({
@@ -30,7 +30,7 @@ const TaskForm = () => {
       });
       console.log(data);
       if (!data) {
-        throw new Error('something went wrong!');
+        throw new Error("something went wrong!");
       }
     } catch (err) {
       console.error(err);
@@ -38,8 +38,8 @@ const TaskForm = () => {
     } finally {
       setFormData({
         projectId: id,
-        taskbody: '',
-        taskstate: 0,
+        taskbody: "",
+        taskstate: 1,
       });
       //window.location.href =`/project/?=${id}`
     }
@@ -47,37 +47,49 @@ const TaskForm = () => {
 
   return (
     <>
- <div className='relative flex flex-col justify-center overflow-hidden'>
-        <div className='w-full p-6 m-auto bg-white rounded-md lg:max-w-xl'>
-          <h1 className='text-3xl font-semibold text-center text-indigo-500'>
+      <div className="relative flex flex-col justify-center overflow-hidden">
+        <div className="w-full p-6 m-auto bg-white rounded-md lg:max-w-xl">
+          <h1 className="text-3xl font-semibold text-center text-indigo-500">
             New Task
           </h1>
-          <form onSubmit={handleSubmit} className='mt-6'>
-            <div className='mb-2'>
+          <form onSubmit={handleSubmit} className="mt-6">
+            <div className="mb-2">
               <label
-                for='taskbody'
-                className='block text-sm font-semibold text-indigo-500 text-center'
+                for="taskbody"
+                className="block text-sm font-semibold text-center text-indigo-500"
               >
                 Task Description
               </label>
               <input
-                placeholder='Build the login routes...'
-                name='taskbody'
+                placeholder="Build the login routes..."
+                name="taskbody"
                 onChange={handleInputChange}
                 value={formData.taskbody}
                 required
-                type='text'
-                className='block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40'
+                type="text"
+                className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
               />
             </div>
-            <div className='mt-6'>
+            <div className="mb-2">
+              <label for="taskstate" className="block text-sm font-semibold text-center text-indigo-500">Task Category</label>
+              <select
+                name="taskstate"
+                onChange={handleInputChange}
+                value={formData.taskstate}
+                className="block w-full px-4 py-2 mt-2 bg-white border rounded-md focus:text-purple-700 focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+              >
+                <option value={1}>Backlog</option>
+                <option value={2}>Ready</option>
+                <option value={3}>In Progress</option>
+                <option value={4}>Done</option>
+              </select>
+            </div>
+            <div className="mt-6">
               <button
-                className='w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-indigo-500 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600'
-                disabled={
-                  !(formData.taskbody)
-                }
-                type='submit'
-                variant='success'
+                className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-indigo-500 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600"
+                disabled={!formData.taskbody}
+                type="submit"
+                variant="success"
               >
                 Add Task
               </button>

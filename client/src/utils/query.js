@@ -21,6 +21,8 @@ export const RETURN_PROJECT = gql`
         _id
         projectstatus
         title
+        critterName
+        createdAt
     }
   }
 `;
