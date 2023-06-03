@@ -49,7 +49,6 @@ export const CREATE_PROJECT = gql`
       username
       projects {
         _id
-        projectId
         projectstatus
         title
       }
@@ -71,6 +70,24 @@ export const DEL_PROJECT = gql`
     delProject(input: $input) {
       projects {
         title
+      }
+    }
+  }
+`;
+
+export const CREATE_TASK = gql`
+  mutation createTask($input: InputTask!) {
+    createTask(input: $input) {
+      projects {
+        _id
+        projectstatus
+        title
+        tasks {
+          _id
+          projectId
+          taskbody
+          taskstate
+        }
       }
     }
   }

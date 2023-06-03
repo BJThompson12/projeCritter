@@ -11,9 +11,9 @@ const typeDefs = gql`
 
     type Project {
         _id: ID!
-        projectId: String
         title: String
         projectstatus: String
+        tasks: [Task]
     }
 
     input InputProject{

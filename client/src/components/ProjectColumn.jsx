@@ -6,9 +6,18 @@ import {
   PencilIcon,
 } from "@heroicons/react/24/solid";
 
+import { useMutation, useQuery} from "@apollo/client";
+import { CREATE_TASK } from "../utils/mutation";
+
 const ProjectColumn = ({ title, colNum, projId }) => {
   // TODO: get all tasks where projectId = projId and taskstate = colNum
   // for testing:
+
+  const [createTask] = useMutation(CREATE_TASK)
+
+  
+
+
   let tasks = [];
   if (colNum === 2) {
     tasks = [{ id: 1, taskbody: "Do a thing" }];

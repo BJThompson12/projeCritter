@@ -13,14 +13,6 @@ const taskSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  difficulty: {
-    type: Number,
-    required: true,
-  },
-  taskowner: {
-    type: String,
-    required: true,
-  },
 });
 
 module.exports = taskSchema;

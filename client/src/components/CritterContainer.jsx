@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon, ChevronUpIcon, ChevronDownIcon, PencilIcon } from "@heroicons/react/24/solid";
 import { RiAddLine } from "react-icons/ri";
+import TaskForm from './AddTaskForm';
 
 const CritterContainer = ({ name, born, moodVal }) => {
+  const [displayModal, setDisplayModal] = useState(false);
   // collapse/expand state
   const [open, setOpen] = useState(true);
   const toggle = () => {
@@ -85,12 +87,47 @@ const CritterContainer = ({ name, born, moodVal }) => {
           </div>
         )}
       </div>
-      <button className="text-xl md:text-base w-full px-4 py-2 mt-4 text-white bg-indigo-500 rounded hover:bg-indigo-400 active:bg-indigo-800 min-h-[42px] min-w-[42px] md:min-w-fit md:min-h-fit">
+      <button 
+      onClick={() => setDisplayModal(true)}
+      className="text-xl md:text-base w-full px-4 py-2 mt-4 text-white bg-indigo-500 rounded hover:bg-indigo-400 active:bg-indigo-800 min-h-[42px] min-w-[42px] md:min-w-fit md:min-h-fit">
         <RiAddLine className="inline-block text-white" />
         <span className="inline md:hidden"> Add Task</span>
         {/* hide text and only show + when the column is collapsed on desktop */}
         <span className="hidden md:inline">{open && " Add Task"}</span>
       </button>
+      {displayModal ? (
+        <modal>
+          <div>
+            <div className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
+              <div className="relative w-auto max-w-3xl mx-auto my-6">
+                {/*content*/}
+                <div className="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
+                  {/*body*/}
+
+                  <div className="p-10 ">
+                    <div>
+                      <div className="flex flex-wrap justify-center gap-1 px-2 display">
+                        <TaskForm />
+                      </div>
+                    </div>
+                  </div>
+                  {/*footer*/}
+                  <div className="flex items-center justify-center p-2 border-t border-solid rounded-b border-slate-200">
+                    <button
+                      className="px-6 py-2 mb-1 mr-1 text-sm font-bold text-red-500 uppercase transition-all duration-150 ease-linear outline-none background-transparent focus:outline-none"
+                      type="button"
+                      onClick={() => setDisplayModal(false)}
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="fixed inset-0 z-40 bg-black opacity-25"></div>
+          </div>
+        </modal>
+      ) : null}
     </div>
   );
 };
