@@ -8,17 +8,34 @@ import ProjectForm from "../components/AddProjectForm";
 import { useState } from "react";
 
 import Auth from "../utils/auth";
+import { RETURN_USER } from "../utils/query";
+import { useQuery, useMutation } from "@apollo/client";
 
 const loggedIn = Auth.getToken();
 
 const Dashboard = () => {
   const [displayModal, setDisplayModal] = useState(false);
+
+  const url = window.location.href;
+  const id = url.split("=").pop().trim();
+
+  const { data, loading } = useQuery(RETURN_USER, {
+    variables: { input: id },
+  });
+
+  if (loading) {
+    return <p>Loading...</p>; // Return a loading indicator while data is being fetched
+  }
+
+  if (!data) {
+    return <p>No data found.</p>; // Handle the case when no data is returned
+  }
   return (
     <>
     
     {loggedIn ? (<div className="w-full h-full md:h-[80vh]">
       <h1 className="text-4xl font-semibold text-indigo-500 text-center">
-        Welcome User!
+      Welcome {data.returnUser.username}
       </h1>
       <div className="flex justify-center">
         <button
