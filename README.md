@@ -7,7 +7,7 @@ Our target audience are creative professionals,tech professionals,startup profes
 ## Table of contents
 
 - [ Link ](#Links)
-- [ Technologies ](#Technologies Used)
+- [ Technologies](#Technologies)
 - [ Installation ](#Installation)
 - [ Screenshot ](#Screenshots)
 - [ Contributions ](#Contributions)
@@ -15,7 +15,7 @@ Our target audience are creative professionals,tech professionals,startup profes
 
 ## Links
 
-## Technologies Used
+## Technologies
 - HTML
 - JavaScript
 - Tailwind CSS
