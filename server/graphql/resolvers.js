@@ -77,29 +77,46 @@ const resolvers = {
       return removeProjectFromUser;
     },
 
-    createTask: async (_, { projectId, tasks }, context) => {
-      if (!projectId) {
+    createTask: async (_, args, context) => {
+      if (!context) {
         throw new AuthenticationError("err");
       }
-      const addTaskToProject = await User.findByIdAndUpdate(
-        { _id: context._id },
-        { $addToSet: { tasks: tasks } },
-        { new: true }
+
+      const userId = context._id;
+      const projectId = args.input.projectId;
+      const task = args.input;
+
+      const user = await User.findById(userId);
+      if (!user) {
+        throw new Error("User not found");
+      }
+
+      const projectIndex = user.projects.findIndex(
+        (project) => project._id.toString() === projectId
       );
-      return addTaskToProject;
+
+      if (projectIndex === -1) {
+        throw new Error("Project not found");
+      }
+
+      user.projects[projectIndex].tasks.push(task);
+
+      const updatedUser = await user.save();
+
+      return updatedUser;
     },
 
-    updateTask: async (_, { taskId, tasks }, context) => {
-      if (!taskId) {
-        throw new AuthenticationError("err");
-      }
-      const updateTaskToProject = await User.findByIdAndUpdate(
-        { _id: context._id },
-        { $addToSet: { tasks: tasks } },
-        { new: true }
-      );
-      return updateTaskToProject;
-    },
+    // updateTask: async (_, { taskId, tasks }, context) => {
+    //   if (!taskId) {
+    //     throw new AuthenticationError("err");
+    //   }
+    //   const updateTaskToProject = await User.findByIdAndUpdate(
+    //     { _id: context._id },
+    //     { $addToSet: { task: tasks } },
+    //     { new: true }
+    //   );
+    //   return updateTaskToProject;
+    // },
   },
 };
 
