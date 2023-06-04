@@ -20,34 +20,17 @@ const ProjectColumn = ({ title, colNum, projId }) => {
   });
 
   if (loading) {
-    return "loading";
+    return (
+      <div className="flex flex-col md:w-[276px] md:min-w-[276px] border-4 border-indigo-500 rounded-xl md:overflow-hidden">
+        <h3 className="px-1 pb-0.5 text-2xl font-semibold text-indigo-500 border-b-4 border-indigo-500">
+          {title}
+        </h3>
+        <div className="overflow-y-auto"><p className="p-2 italic">Loading tasks...</p></div>
+      </div>
+    );
   } 
 
-const task = data.returnTasks
-console.log(task)
-
-  // let tasks = []
-  // if (colNum === 2) {
-  //   tasks = [{ id: 1, taskbody: "Do a thing" }];
-  // } else if (colNum === 3) {
-  //   tasks = [
-  //     { id: 1, taskbody: "Do another thing" },
-  //     { id: 2, taskbody: "Do a different thing" },
-  //     {
-  //       id: 3,
-  //       taskbody:
-  //         "Do a third thing and also the taskbody text is really really really really really long",
-  //     },
-  //   ];
-  // } else if (colNum === 4) {
-  //   tasks = [
-  //     { id: 2, taskbody: "Thing that got did" },
-  //     {
-  //       id: 2,
-  //       taskbody: "Another thing that got did",
-  //     },
-  //   ];
-  // }
+const task = data.returnTasks.filter(t => t.taskstate === colNum);
 
   return (
     <div className="flex flex-col md:w-[276px] md:min-w-[276px] border-4 border-indigo-500 rounded-xl md:overflow-hidden">

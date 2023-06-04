@@ -41,7 +41,7 @@ const TaskForm = () => {
         taskbody: "",
         taskstate: 1,
       });
-      //window.location.href =`/project/?=${id}`
+      window.location.href =`/project/?=${id}`
     }
   };
 
