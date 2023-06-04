@@ -1,6 +1,6 @@
 import CritterContainer from "../components/CritterContainer";
 import ProjectColumn from "../components/ProjectColumn";
-import { useQuery, useMutation } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { useState } from "react";
 import { RiAddLine } from "react-icons/ri";
 import {
@@ -27,11 +27,11 @@ const Project = () => {
   });
 
   if (loading) {
-    return <p>Loading...</p>; // Return a loading indicator while data is being fetched
+    return <p className="italic">Loading...</p>; // Return a loading indicator while data is being fetched
   }
 
   if (!data) {
-    return <p>No data found.</p>; // Handle the case when no data is returned
+    return <p className="italic">No data found.</p>; // Handle the case when no data is returned
   }
 
   // TODO: calculate creature mood from tasks
