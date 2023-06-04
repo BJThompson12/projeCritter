@@ -31,6 +31,27 @@ const resolvers = {
         throw new AuthenticationError("mustbeloggedin");
       }
     },
+
+    returnTasks: async (_, args, context) => {
+      if (context) {
+        const currentUser = await User.findOne({
+          _id: context._id,
+        }).select("-__v -password");
+        const projectIndex = await currentUser.projects.findIndex(
+          (project) => project._id.toString() === args.input
+        );
+
+        if (projectIndex === -1) {
+          throw new Error("Project not found");
+        }
+
+        const tasks = await currentUser.projects[projectIndex].tasks;
+
+        return tasks;
+      } else {
+        throw new AuthenticationError("mustbeloggedin");
+      }
+    },
   },
 
   Mutation: {

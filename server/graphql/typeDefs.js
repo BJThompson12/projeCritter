@@ -52,6 +52,7 @@ const typeDefs = gql`
   type Query {
     returnUser: User
     returnProject(input: String!): Project
+    returnTasks(input: String!): [Task]
   }
 
   type Mutation {

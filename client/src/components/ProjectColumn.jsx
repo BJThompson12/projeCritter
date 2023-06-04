@@ -6,41 +6,48 @@ import {
   PencilIcon,
 } from "@heroicons/react/24/solid";
 
-import { useMutation, useQuery} from "@apollo/client";
-import { CREATE_TASK } from "../utils/mutation";
+import { useQuery } from "@apollo/client";
+import { RETURN_TASKS } from "../utils/query";
 
 const ProjectColumn = ({ title, colNum, projId }) => {
   // TODO: get all tasks where projectId = projId and taskstate = colNum
   // for testing:
+  const url = window.location.href;
+  const id = url.split("=").pop().trim();
 
-  const [createTask] = useMutation(CREATE_TASK)
+  const { data, loading } = useQuery(RETURN_TASKS, {
+    variables: { input: id },
+  });
 
-  
+  if (loading) {
+    return "loading";
+  } 
 
+const task = data.returnTasks
+console.log(task)
 
-  let tasks = [];
-  if (colNum === 2) {
-    tasks = [{ id: 1, taskbody: "Do a thing" }];
-  } else if (colNum === 3) {
-    tasks = [
-      { id: 1, taskbody: "Do another thing" },
-      { id: 2, taskbody: "Do a different thing" },
-      {
-        id: 3,
-        taskbody:
-          "Do a third thing and also the taskbody text is really really really really really long",
-      },
-    ];
-  } else if (colNum === 4) {
-    tasks = [
-      { id: 2, taskbody: "Thing that got did" },
-      {
-        id: 2,
-        taskbody:
-          "Another thing that got did",
-      },
-    ];
-  }
+  // let tasks = []
+  // if (colNum === 2) {
+  //   tasks = [{ id: 1, taskbody: "Do a thing" }];
+  // } else if (colNum === 3) {
+  //   tasks = [
+  //     { id: 1, taskbody: "Do another thing" },
+  //     { id: 2, taskbody: "Do a different thing" },
+  //     {
+  //       id: 3,
+  //       taskbody:
+  //         "Do a third thing and also the taskbody text is really really really really really long",
+  //     },
+  //   ];
+  // } else if (colNum === 4) {
+  //   tasks = [
+  //     { id: 2, taskbody: "Thing that got did" },
+  //     {
+  //       id: 2,
+  //       taskbody: "Another thing that got did",
+  //     },
+  //   ];
+  // }
 
   return (
     <div className="flex flex-col md:w-[276px] md:min-w-[276px] border-4 border-indigo-500 rounded-xl md:overflow-hidden">
@@ -53,9 +60,9 @@ const ProjectColumn = ({ title, colNum, projId }) => {
           {/* render tasks as list items */}
           {/* TODO: pencil edits taskbody (modal should have a delete option) */}
           {/* TODO: left and right arrows decrease or increase taskstate */}
-          {tasks.length ? (
+          {task.length ? (
             <>
-              {tasks.map((task) => (
+              {task.map((task) => (
                 <li className="p-2">
                   <div className="flex items-center justify-between p-1 bg-indigo-200 text-md min-h-[42px] rounded">
                     <p>{task.taskbody}</p>
