@@ -6,14 +6,33 @@ import {
   PencilIcon,
 } from "@heroicons/react/24/solid";
 
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { RETURN_TASKS } from "../utils/query";
+import { UPDATE_TASK } from "../utils/mutation";
 
 const ProjectColumn = ({ title, colNum, projId }) => {
   // TODO: get all tasks where projectId = projId and taskstate = colNum
   // for testing:
+
   const url = window.location.href;
   const id = url.split("=").pop().trim();
+
+  const [updateTask] = useMutation(UPDATE_TASK);
+
+  const handleTaskStateChange = async (taskId, action) => {
+    const inputObj = { taskId: taskId, taskstate: action, projectId: id };
+
+    try {
+      const { data } = await updateTask({
+        variables: { input: inputObj },
+      });
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      window.location.href = `/project/?=${id}`;
+    }
+  };
 
   const { data, loading } = useQuery(RETURN_TASKS, {
     variables: { input: id },
@@ -25,12 +44,14 @@ const ProjectColumn = ({ title, colNum, projId }) => {
         <h3 className="px-1 pb-0.5 text-2xl font-semibold text-indigo-500 border-b-4 border-indigo-500">
           {title}
         </h3>
-        <div className="overflow-y-auto"><p className="p-2 italic">Loading tasks...</p></div>
+        <div className="overflow-y-auto">
+          <p className="p-2 italic">Loading tasks...</p>
+        </div>
       </div>
     );
-  } 
+  }
 
-const task = data.returnTasks.filter(t => t.taskstate === colNum);
+  const task = data.returnTasks.filter((t) => t.taskstate === colNum);
 
   return (
     <div className="flex flex-col md:w-[276px] md:min-w-[276px] border-4 border-indigo-500 rounded-xl md:overflow-hidden">
@@ -54,13 +75,17 @@ const task = data.returnTasks.filter(t => t.taskstate === colNum);
                         <PencilIcon className="w-5 text-indigo-600 min-h-[42px] min-w-[42px] md:min-h-fit md:min-w-fit hover:text-indigo-400 active:text-indigo-800" />
                       </button>
                       {colNum > 1 && (
-                        <button>
+                        <button
+                          onClick={() => handleTaskStateChange(task._id, -1)}
+                        >
                           <ChevronUpIcon className="block w-6 text-indigo-500 md:hidden min-h-[42px] min-w-[42px] hover:text-indigo-400 active:text-indigo-800" />
                           <ChevronLeftIcon className="hidden w-6 text-indigo-500 md:block hover:text-indigo-400 active:text-indigo-800" />
                         </button>
                       )}
                       {colNum < 4 && (
-                        <button>
+                        <button
+                          onClick={() => handleTaskStateChange(task._id, +1)}
+                        >
                           <ChevronDownIcon className="block w-6 text-indigo-500 md:hidden min-h-[42px] min-w-[42px] hover:text-indigo-400 active:text-indigo-800" />
                           <ChevronRightIcon className="hidden w-6 text-indigo-500 md:block hover:text-indigo-400 active:text-indigo-800" />
                         </button>

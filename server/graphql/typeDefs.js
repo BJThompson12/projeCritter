@@ -41,6 +41,7 @@ const typeDefs = gql`
 
   input UpdateTask {
     taskId: String
+    projectId: String
     taskstate: Int
   }
 

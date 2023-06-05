@@ -92,3 +92,16 @@ export const CREATE_TASK = gql`
     }
   }
 `;
+
+export const UPDATE_TASK = gql`
+mutation updateTask($input: UpdateTask!) {
+  updateTask(input: $input) {
+    projects {
+      tasks {
+        taskbody
+        taskstate
+      }
+    }
+  }
+}
+`

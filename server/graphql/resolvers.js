@@ -127,17 +127,47 @@ const resolvers = {
       return updatedUser;
     },
 
-    // updateTask: async (_, { taskId, tasks }, context) => {
-    //   if (!taskId) {
-    //     throw new AuthenticationError("err");
-    //   }
-    //   const updateTaskToProject = await User.findByIdAndUpdate(
-    //     { _id: context._id },
-    //     { $addToSet: { task: tasks } },
-    //     { new: true }
-    //   );
-    //   return updateTaskToProject;
-    // },
+    updateTask: async (_, args, context) => {
+      console.log(args.input);
+      const action = args.input.taskstate;
+      const taskId = args.input.taskId;
+      const projectId = args.input.projectId;
+
+      if (!context) {
+        throw new AuthenticationError("err");
+      }
+      const currentUser = await User.findByIdAndUpdate({ _id: context._id });
+
+      const projectIndex = currentUser.projects.findIndex(
+        (project) => project._id.toString() === projectId
+      );
+
+      if (projectIndex === -1) {
+        throw new Error("Project not found");
+      }
+
+      const taskIndex = currentUser.projects[projectIndex].tasks.findIndex(
+        (task) => task._id.toString() === taskId
+      );
+
+      if (taskIndex === -1) {
+        throw new Error("task not found");
+      }
+
+      if (action === -1) {
+        currentUser.projects[projectIndex].tasks[taskIndex].taskstate--;
+      } else if (action === 1) {
+        currentUser.projects[projectIndex].tasks[taskIndex].taskstate++;
+      } else {
+        throw new Error("action cannot be null. errno500");
+      }
+
+      const updatedUser = await currentUser.save();
+
+      console.log(updatedUser);
+
+      return updatedUser;
+    },
   },
 };
 
