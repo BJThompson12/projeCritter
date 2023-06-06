@@ -14,17 +14,17 @@ const CritterContainer = ({ name, born, moodVal }) => {
 
   // get status from moodVal
   let status;
-  if (moodVal >= 90) {
+  if (moodVal <= 0) {
     status = "Happy";
-  } else if (moodVal >= 75) {
+  } else if (moodVal <= 10) {
     status = "Chipper";
-  } else if (moodVal >= 50) {
+  } else if (moodVal <= 15) {
     status = "Content";
-  } else if (moodVal >= 40) {
+  } else if (moodVal <= 20) {
     status = "Nervous";
-  } else if (moodVal >= 25) {
+  } else if (moodVal <= 25) {
     status = "Stressed";
-  } else if (moodVal >= 10) {
+  } else if (moodVal <= 30) {
     status = "Panicking";
   } else {
     status = "Wiped Out";
