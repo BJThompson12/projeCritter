@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { UPDATE_CRITTER_NAME } from "../utils/mutation";
 
-
 const CritterNameForm = () => {
   const url = window.location.href;
   const id = url.split("=").pop().trim();
@@ -12,7 +11,7 @@ const CritterNameForm = () => {
     projectId: id,
   });
 
-  const [updateCritterName] = useMutation(UPDATE_CRITTER_NAME)
+  const [updateCritterName] = useMutation(UPDATE_CRITTER_NAME);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -21,17 +20,16 @@ const CritterNameForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-   
-    console.log(formData)
+
+    console.log(formData);
 
     try {
-    
       const { data } = await updateCritterName({
         variables: { input: formData },
       });
       console.log(data);
       if (!data) {
-        throw new Error('something went wrong!');
+        throw new Error("something went wrong!");
       }
     } catch (err) {
       console.error(err);
@@ -39,10 +37,10 @@ const CritterNameForm = () => {
     } finally {
       setFormData({
         critterName: "",
-        projectId: id, 
+        projectId: id,
       });
+      window.location.href = `/project?=${id}`;
     }
-
   };
 
   return (
@@ -73,7 +71,7 @@ const CritterNameForm = () => {
             <div className="mt-6">
               <button
                 className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-indigo-500 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600"
-                disabled={!(formData.critterName)}
+                disabled={!formData.critterName}
                 type="submit"
                 variant="success"
               >

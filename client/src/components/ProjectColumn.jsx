@@ -4,6 +4,7 @@ import {
   ChevronUpIcon,
   ChevronDownIcon,
   PencilIcon,
+  TrashIcon
 } from "@heroicons/react/24/solid";
 
 import { useQuery, useMutation } from "@apollo/client";
@@ -72,7 +73,7 @@ const ProjectColumn = ({ title, colNum, projId }) => {
                     <p>{task.taskbody}</p>
                     <div className="flex items-center ml-2">
                       <button>
-                        <PencilIcon className="w-5 text-indigo-600 min-h-[42px] min-w-[42px] md:min-h-fit md:min-w-fit hover:text-indigo-400 active:text-indigo-800" />
+                        <TrashIcon className="w-5 text-indigo-600 min-h-[42px] min-w-[42px] md:min-h-fit md:min-w-fit hover:text-indigo-400 active:text-indigo-800" />
                       </button>
                       {colNum > 1 && (
                         <button
