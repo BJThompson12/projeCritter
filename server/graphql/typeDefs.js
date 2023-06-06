@@ -50,6 +50,11 @@ const typeDefs = gql`
     taskstate: Int
   }
 
+  input delTask {
+    projectId: String!
+    taskId: String!
+  }
+
   type Auth {
     token: ID!
     user: User
@@ -69,6 +74,7 @@ const typeDefs = gql`
     createTask(input: InputTask!): User
     updateTask(input: UpdateTask!): User
     updateCritterName(input: CritterName!): User
+    delTask(input: delTask!): User
   }
 `;
 

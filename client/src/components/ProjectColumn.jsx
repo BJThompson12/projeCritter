@@ -4,12 +4,12 @@ import {
   ChevronUpIcon,
   ChevronDownIcon,
   PencilIcon,
-  TrashIcon
+  TrashIcon,
 } from "@heroicons/react/24/solid";
 
 import { useQuery, useMutation } from "@apollo/client";
 import { RETURN_TASKS } from "../utils/query";
-import { UPDATE_TASK } from "../utils/mutation";
+import { DEL_TASK, UPDATE_TASK } from "../utils/mutation";
 
 const ProjectColumn = ({ title, colNum, projId }) => {
   // TODO: get all tasks where projectId = projId and taskstate = colNum
@@ -19,6 +19,7 @@ const ProjectColumn = ({ title, colNum, projId }) => {
   const id = url.split("=").pop().trim();
 
   const [updateTask] = useMutation(UPDATE_TASK);
+  const [delTask] = useMutation(DEL_TASK);
 
   const handleTaskStateChange = async (taskId, action) => {
     const inputObj = { taskId: taskId, taskstate: action, projectId: id };
@@ -32,6 +33,26 @@ const ProjectColumn = ({ title, colNum, projId }) => {
       console.log(err);
     } finally {
       window.location.href = `/project/?=${id}`;
+    }
+  };
+
+  const handleDelTask = async (taskId) => {
+    const confirm = window.confirm("Are you sure you want to delete the task?");
+
+    if (confirm) {
+      const multiInput = { taskId: taskId, projectId: id };
+      try {
+        const { data } = await delTask({
+          variables: { input: multiInput },
+        });
+        console.log(data);
+      } catch (err) {
+        console.log(err);
+      } finally {
+        window.location.href = `/project/?=${id}`;
+      }
+    } else {
+      console.log("Task not deleted.");
     }
   };
 
@@ -73,7 +94,10 @@ const ProjectColumn = ({ title, colNum, projId }) => {
                     <p>{task.taskbody}</p>
                     <div className="flex items-center ml-2">
                       <button>
-                        <TrashIcon className="w-5 text-indigo-600 min-h-[42px] min-w-[42px] md:min-h-fit md:min-w-fit hover:text-indigo-400 active:text-indigo-800" />
+                        <TrashIcon
+                          className="w-5 text-indigo-600 min-h-[42px] min-w-[42px] md:min-h-fit md:min-w-fit hover:text-indigo-400 active:text-indigo-800"
+                          onClick={() => handleDelTask(task._id)}
+                        />
                       </button>
                       {colNum > 1 && (
                         <button

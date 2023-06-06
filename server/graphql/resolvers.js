@@ -165,8 +165,11 @@ const resolvers = {
 
       return updatedUser;
     },
-    
+
     updateCritterName: async (_, args, context) => {
+      if (!context) {
+        throw new Error("context is undef.. ");
+      }
       const currentUser = await User.findOne({ _id: context._id }).select(
         "-__v -password"
       );
@@ -176,6 +179,31 @@ const resolvers = {
       selectedProject.critterName = args.input.critterName;
       console.log(selectedProject.critterName);
       const updatedUser = currentUser.save();
+      return updatedUser;
+    },
+
+    delTask: async (_, args, context) => {
+      if (!context) {
+        throw new AuthenticationError("Please log in first!");
+      }
+      const currentUser = await User.findByIdAndUpdate({
+        _id: context._id,
+      });
+
+      const projectIndex = currentUser.projects.findIndex(
+        (project) => project._id.toString() === args.input.projectId
+      );
+
+      const taskIndex = currentUser.projects[projectIndex].tasks.findIndex(
+        (task) => task._id.toString() === args.input.taskId
+      );
+
+      if (taskIndex !== -1) {
+        currentUser.projects[projectIndex].tasks.splice(taskIndex, 1);
+      }
+
+      const updatedUser = await currentUser.save();
+
       return updatedUser;
     },
   },
