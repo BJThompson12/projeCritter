@@ -116,3 +116,16 @@ export const UPDATE_CRITTER_NAME = gql`
     }
   }
 `;
+
+export const DEL_TASK = gql`
+mutation delTask($input: delTask!) {
+  delTask(input: $input) {
+    projects {
+      tasks {
+        _id
+        taskbody
+      }
+    }
+  }
+}
+`
