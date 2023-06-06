@@ -9,20 +9,41 @@ import {
   ChevronUpIcon,
   ChevronDownIcon,
 } from "@heroicons/react/24/solid";
-import { RETURN_PROJECT } from "../utils/query";
+import { RETURN_PROJECT, RETURN_TASKS } from "../utils/query";
 import TaskForm from "../components/AddTaskForm";
 
+
 const Project = () => {
+  
+  const url = window.location.href;
+  const id = url.split("=").pop().trim();
+ 
+  const { data: data1, loading: loading1} = useQuery(RETURN_TASKS, {
+    variables: {input: id} })
+    console.log(data1)
+
+    const tasks = data1.returnTasks
+    console.log(tasks)
+    const moodValues = tasks.map((task) => task.taskstate)
+    console.log(moodValues)
+    const moodSum = moodValues.reduce((sum, val) => sum + val);
+    console.log(moodSum)
+    const moodVal1 = moodSum / moodValues.length;
+  console.log(moodVal1)
+
+console.log(moodValues)
+ 
+
+
   const [displayModal, setDisplayModal] = useState(false);
   // collapse/expand state
   const [open, setOpen] = useState(true);
   const toggle = () => {
     setOpen(!open);
   };
-  const url = window.location.href;
-  const id = url.split("=").pop().trim();
 
-  const { data, loading } = useQuery(RETURN_PROJECT, {
+
+ const { data, loading } = useQuery(RETURN_PROJECT, {
     variables: { input: id },
   });
 
@@ -36,7 +57,7 @@ const Project = () => {
 
   // TODO: calculate creature mood from tasks
   // for testing:
-  const moodVal = 40;
+  const moodVal = moodVal1;
 
   return (
     <section className="flex flex-wrap md:flex-nowrap flex-col items-center justify-start w-full h-full md:h-[80vh] 3xl:h-[70vh]">
