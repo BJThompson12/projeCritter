@@ -21,7 +21,7 @@ const Project = () => {
   const { data: data1, loading: loading1 } = useQuery(RETURN_TASKS, {
     variables: { input: id },
   });
-  console.log(data1);
+
   if (loading1) {
     console.log("loading");
   } else {
@@ -77,7 +77,7 @@ const Project = () => {
             {/* collapse/expand button */}
             <button
               onClick={toggle}
-              className="self-end text-white bg-indigo-500 hover:bg-indigo-400 active:bg-indigo-800 rounded min-h-[42px] min-w-[42px] md:min-w-fit md:min-h-fit md:max-h-fit md:p-0.5 shrink"
+              className={`self-end ${!open && "md:self-center"} text-white bg-indigo-500 hover:bg-indigo-400 active:bg-indigo-800 rounded min-h-[42px] min-w-[42px] md:min-w-fit md:min-h-fit md:max-h-fit md:p-0.5 shrink`}
             >
               {/* up/down for mobile */}
               {open ? (
