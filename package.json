@@ -4,7 +4,8 @@
   "description": "",
   "main": "server/server.js",
   "scripts": {
-    "start": "node server/server.js"
+    "start": "node server/server.js",
+    "install-deps": "cd server && npm i"
   },
   "repository": {
     "type": "git",
