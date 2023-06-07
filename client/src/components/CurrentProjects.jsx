@@ -63,9 +63,9 @@ const CurrentProjects = () => {
                     {" "}
                     <a href={`/project?=${project._id}`}> {project.title}</a>
                   </div>
-                  <div className="text-indigo-500">
+                  {/* <div className="text-indigo-500">
                     Status: {project.projectstatus}
-                  </div>
+                  </div> */}
                 </td>
 
                 <td className="py-4 px-6">

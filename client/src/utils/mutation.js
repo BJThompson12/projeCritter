@@ -94,12 +94,36 @@ export const CREATE_TASK = gql`
 `;
 
 export const UPDATE_TASK = gql`
-mutation updateTask($input: UpdateTask!) {
-  updateTask(input: $input) {
+  mutation updateTask($input: UpdateTask!) {
+    updateTask(input: $input) {
+      projects {
+        tasks {
+          taskbody
+          taskstate
+        }
+      }
+    }
+  }
+`;
+
+export const UPDATE_CRITTER_NAME = gql`
+  mutation updateCritterName($input: CritterName!) {
+    updateCritterName(input: $input) {
+      projects {
+        _id
+        critterName
+      }
+    }
+  }
+`;
+
+export const DEL_TASK = gql`
+mutation delTask($input: delTask!) {
+  delTask(input: $input) {
     projects {
       tasks {
+        _id
         taskbody
-        taskstate
       }
     }
   }

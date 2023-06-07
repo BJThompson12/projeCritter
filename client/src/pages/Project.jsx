@@ -12,28 +12,33 @@ import {
 import { RETURN_PROJECT, RETURN_TASKS } from "../utils/query";
 import TaskForm from "../components/AddTaskForm";
 
-
 const Project = () => {
-  
+  let moodVal = 0;
+
   const url = window.location.href;
   const id = url.split("=").pop().trim();
- 
-  const { data: data1, loading: loading1} = useQuery(RETURN_TASKS, {
-    variables: {input: id} })
-    console.log(data1)
 
-    const tasks = data1.returnTasks
-    console.log(tasks)
-    const moodValues = tasks.map((task) => task.taskstate)
-    console.log(moodValues)
-    const moodSum = moodValues.reduce((sum, val) => sum + val);
-    console.log(moodSum)
-    const moodVal1 = moodSum / moodValues.length;
-  console.log(moodVal1)
+  const { data: data1, loading: loading1 } = useQuery(RETURN_TASKS, {
+    variables: { input: id },
+  });
+  console.log(data1);
+  if (loading1) {
+    console.log("loading");
+  } else {
+    const tasks = data1?.returnTasks || {};
+    const moodValues = tasks.reduce((accum, task) => {
+      accum[task.taskstate] = (accum[task.taskstate] || 0) + 1;
+      return accum;
+    }, {});
 
-console.log(moodValues)
- 
+    const backlogSum = moodValues[1] || 0;
+    const readySum = moodValues[2] || 0;
+    const inProgressSum = moodValues[3] || 0;
+    const backlogMultiplier = backlogSum * 0.5;
+    const moodSum = backlogMultiplier + readySum + inProgressSum;
 
+    moodVal = moodSum;
+  }
 
   const [displayModal, setDisplayModal] = useState(false);
   // collapse/expand state
@@ -42,22 +47,17 @@ console.log(moodValues)
     setOpen(!open);
   };
 
-
- const { data, loading } = useQuery(RETURN_PROJECT, {
+  const { data, loading } = useQuery(RETURN_PROJECT, {
     variables: { input: id },
   });
 
   if (loading) {
-    return <p className="italic">Loading...</p>; // Return a loading indicator while data is being fetched
+    return <p className="italic">Loading...</p>;
   }
 
   if (!data) {
-    return <p className="italic">No data found.</p>; // Handle the case when no data is returned
+    return <p className="italic">No data found.</p>;
   }
-
-  // TODO: calculate creature mood from tasks
-  // for testing:
-  const moodVal = moodVal1;
 
   return (
     <section className="flex flex-wrap md:flex-nowrap flex-col items-center justify-start w-full h-full md:h-[80vh] 3xl:h-[70vh]">

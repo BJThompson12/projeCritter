@@ -39,10 +39,20 @@ const typeDefs = gql`
     taskstate: Int
   }
 
+  input CritterName {
+    critterName: String!
+    projectId: String!
+  }
+
   input UpdateTask {
     taskId: String
     projectId: String
     taskstate: Int
+  }
+
+  input delTask {
+    projectId: String!
+    taskId: String!
   }
 
   type Auth {
@@ -63,6 +73,8 @@ const typeDefs = gql`
     delProject(input: String!): User
     createTask(input: InputTask!): User
     updateTask(input: UpdateTask!): User
+    updateCritterName(input: CritterName!): User
+    delTask(input: delTask!): User
   }
 `;
 
