@@ -1,1 +1,0 @@
-server: npm run install-deps && npm start

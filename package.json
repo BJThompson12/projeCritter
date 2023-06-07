@@ -5,7 +5,8 @@
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",
-    "install-deps": "cd server && npm i"
+    "install": "cd server && npm i && cd ../client && npm i",
+    "startbuild": "cd client && npm run build"
   },
   "repository": {
     "type": "git",
