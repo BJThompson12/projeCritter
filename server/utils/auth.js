@@ -6,13 +6,13 @@ const expiration = "4h";
 
 module.exports = {
   withAuth: function ({ req }) {
-    let token = req.query.token || req.headers.authorization || req.body.token
-    
+    let token = req.query.token || req.headers.authorization || req.body.token;
+
     if (req.headers.authorization) {
       token = token.split(" ").pop().trim();
     }
-   
-    console.log(token)
+
+    console.log(token);
     if (!token) {
       console.log("invalid token");
     }
