@@ -13,41 +13,21 @@ import { RETURN_PROJECT, RETURN_TASKS } from "../utils/query";
 import TaskForm from "../components/AddTaskForm";
 
 const Project = () => {
-  let moodVal = 0;
-
-  const url = window.location.href;
-  const id = url.split("=").pop().trim();
-
-  const { data: data1, loading: loading1 } = useQuery(RETURN_TASKS, {
-    variables: { input: id },
-  });
-
-  if (loading1) {
-    console.log("loading");
-  } else {
-    const tasks = data1?.returnTasks || {};
-    const moodValues = tasks.reduce((accum, task) => {
-      accum[task.taskstate] = (accum[task.taskstate] || 0) + 1;
-      return accum;
-    }, {});
-
-    const backlogSum = moodValues[1] || 0;
-    const readySum = moodValues[2] || 0;
-    const inProgressSum = moodValues[3] || 0;
-    const backlogMultiplier = backlogSum * 0.5;
-    const moodSum = backlogMultiplier + readySum + inProgressSum;
-
-    moodVal = moodSum;
-  }
-
   const [displayModal, setDisplayModal] = useState(false);
-  // collapse/expand state
+  // collapse/expand column state
   const [open, setOpen] = useState(true);
   const toggle = () => {
     setOpen(!open);
   };
 
+  const url = window.location.href;
+  const id = url.split("=").pop().trim();
+
   const { data, loading } = useQuery(RETURN_PROJECT, {
+    variables: { input: id },
+  });
+
+  const { data: tasksData, loading: tasksLoading } = useQuery(RETURN_TASKS, {
     variables: { input: id },
   });
 
@@ -57,6 +37,21 @@ const Project = () => {
 
   if (!data) {
     return <p className="italic">No data found.</p>;
+  }
+
+  let moodVal = 0;
+  if (tasksLoading) {
+    return <p className="p-2 italic">Loading...</p>;
+  } else {
+    const tasks = tasksData?.returnTasks || {};
+
+    const filterTasks = (num) => {
+      return tasks.filter((t) => t.taskstate === num);
+    };
+    moodVal =
+      filterTasks(1).length * 0.05 +
+      filterTasks(2).length * 0.2 +
+      filterTasks(3).length;
   }
 
   return (
@@ -77,7 +72,9 @@ const Project = () => {
             {/* collapse/expand button */}
             <button
               onClick={toggle}
-              className={`self-end ${!open && "md:self-center"} text-white bg-indigo-500 hover:bg-indigo-400 active:bg-indigo-800 rounded min-h-[42px] min-w-[42px] md:min-w-fit md:min-h-fit md:max-h-fit md:p-0.5 shrink`}
+              className={`self-end ${
+                !open && "md:self-center"
+              } text-white bg-indigo-500 hover:bg-indigo-400 active:bg-indigo-800 rounded min-h-[42px] min-w-[42px] md:min-w-fit md:min-h-fit md:max-h-fit md:p-0.5 shrink`}
             >
               {/* up/down for mobile */}
               {open ? (
@@ -115,26 +112,10 @@ const Project = () => {
 
         {/* project columns container*/}
         <div className="flex flex-col items-stretch w-full h-full space-y-4 md:pb-1 2xl:pb-0 md:space-y-0 md:space-x-4 md:overflow-x-auto md:flex-row">
-          <ProjectColumn
-            title="Backlog"
-            colNum={1}
-            projId={data.returnProject._id}
-          />
-          <ProjectColumn
-            title="Ready"
-            colNum={2}
-            projId={data.returnProject._id}
-          />
-          <ProjectColumn
-            title="In Progress"
-            colNum={3}
-            projId={data.returnProject._id}
-          />
-          <ProjectColumn
-            title="Done"
-            colNum={4}
-            projId={data.returnProject._id}
-          />
+          <ProjectColumn title="Backlog" colNum={1} />
+          <ProjectColumn title="Ready" colNum={2} />
+          <ProjectColumn title="In Progress" colNum={3} />
+          <ProjectColumn title="Done" colNum={4} />
         </div>
       </div>
       {displayModal ? (
@@ -145,7 +126,6 @@ const Project = () => {
                 {/*content*/}
                 <div className="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
                   {/*body*/}
-
                   <div className="p-10 ">
                     <div>
                       <div className="flex flex-wrap justify-center gap-1 px-2 display">

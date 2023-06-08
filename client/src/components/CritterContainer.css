@@ -1,0 +1,407 @@
+.transformable {
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+/* -------- WAVE --------*/
+
+.wave {
+    animation: wave 0.5s ease infinite !important;
+    transform-origin: 20% 20%;
+    transform: rotate(-50deg);
+}
+
+@keyframes wave {
+    50% {
+        transform: rotate(-75deg);
+    }
+}
+
+/* -------- BLINK --------*/
+
+.blink #eyes-and-shine {
+    animation: 5s infinite blinkone;
+}
+
+@keyframes blinkone {
+    0% {
+        transform: scale(1, 0);
+    }
+    2% {
+        transform: scale(1, 1);
+    }
+}
+
+/* -------- HIDE DEFAULT MOUTH -------- */
+
+.Happy #mouth,
+.Nervous #mouth,
+.Stressed #mouth,
+.Panicking #mouth,
+.Wiped-Out #mouth {
+    display: none;
+}
+
+/* -------- HAPPY --------*/
+
+.Happy #eyes-and-shine {
+    animation: none;
+}
+
+.Happy #eyeshine {
+    display: none;
+}
+
+.Happy #eyelids {
+    display: inline;
+    transform: scale(1, 0.8) translate(0, 20%);
+}
+
+.Happy #eye-left,
+.Happy #eye-right {
+    fill: #fff !important;
+}
+
+.Happy #mouth-open {
+    display: inline;
+    transform: rotate(180deg) translate(0, -40%);
+}
+
+.Happy #arm-left {
+    transform-origin: 80% 20%;
+    animation: armdance-l ease 1s 0.5s infinite;
+}
+
+.Happy #arm-right {
+    transform-origin: 20% 20%;
+    animation: armdance-r ease 1s infinite;
+}
+
+@keyframes armdance-l {
+    50% {
+        transform: rotate(40deg);
+    }
+}
+
+@keyframes armdance-r {
+    50% {
+        transform: rotate(-40deg);
+    }
+}
+
+.Happy #head {
+    animation: headdance ease 0.5s infinite;
+}
+
+@keyframes headdance {
+    50% {
+        transform: translate(0, 2%);
+    }
+}
+
+.Happy #body {
+    animation: bodydance ease 0.5s infinite;
+}
+
+@keyframes bodydance {
+    50% {
+        transform: translate(0, 0.75%);
+    }
+}
+
+/* -------- BREATHING -------- */
+
+.Chipper #head, .Content #head {
+    animation: headbreathe 2s ease infinite;
+}
+
+@keyframes headbreathe {
+    50% {
+        transform: translate(0, 2%);
+    }
+}
+
+.Chipper #body, .Content #body {
+    animation: bodybreathe 2s ease infinite;
+}
+
+@keyframes bodybreathe {
+    50% {
+        transform: translate(0, 0.75%);
+    }
+}
+
+.Chipper #arms, .Content #arms {
+    animation: armbreathe 2s ease infinite;
+}
+
+@keyframes armbreathe {
+    50% {
+        transform: translate(0, 6%);
+    }
+}
+
+/* -------- CHIPPER --------*/
+
+.Chipper #mouth {
+    transform: rotate(180deg);
+}
+
+/* -------- HEAD DOWN -------- */
+
+.Nervous #face, .Stressed #face {
+    transform: translate(0, 4%);
+}
+
+/* -------- NERVOUS --------*/
+
+.Nervous #head {
+    animation: headbreathe-n 1s ease infinite;
+}
+
+@keyframes headbreathe-n {
+    50% {
+        transform: translate(0, 1%);
+    }
+}
+
+.Nervous #body, .Stressed #body {
+    animation: bodybreathe-n 1s ease infinite;
+}
+
+@keyframes bodybreathe-n {
+    50% {
+        transform: translate(0, 0.6%);
+    }
+}
+
+.Nervous #arms {
+    animation: armbreathe-n 1s ease infinite;
+}
+
+@keyframes armbreathe-n {
+    50% {
+        transform: translate(0, 5%);
+    }
+}
+
+.Nervous #eyes-and-shine {
+    animation: 1s infinite shifty;
+}
+
+.Nervous #eyeshine,
+.Stressed #eyeshine {
+    transform: translate(0, 60%)
+}
+
+.Nervous #eyelids {
+    display: inline;
+    animation: 1s infinite shifty;
+}
+
+.Nervous #eyelid-right {
+    transform: rotate(32deg) scale(2, 0.5) translate(0, -80%);
+}
+
+.Nervous #eyelid-left {
+    transform: rotate(-32deg) scale(2, 0.5) translate(0, -80%);
+}
+
+@keyframes shifty {
+    25% {
+        transform: translate(-2%, 0)
+    }
+    50% {
+        transform: translate(0, 0)
+    }
+    75% {
+        transform: translate(2%, 0)
+    }
+}
+
+.Nervous #mouth-sad {
+    display: inline;
+}
+
+/* -------- STRESSED --------*/
+
+.Stressed #head {
+    transform: translate(0, 2%);
+    animation: headbreathe-s 1s ease infinite;
+}
+
+@keyframes headbreathe-s {
+    50% {
+        transform: translate(0, 3%);
+    }
+}
+
+.Stressed #arms {
+    transform: translate(0, 10%);
+    animation: armbreathe-s 1s ease infinite;
+}
+
+@keyframes armbreathe-s {
+    50% {
+        transform: translate(0, 15%);
+    }
+}
+
+.Stressed #mouth-open {
+    display: inline;
+    transform: scale(0.8, 1);
+    animation: sigh 8s ease infinite;
+}
+
+@keyframes sigh {
+    8% {
+        transform: scale(1.25, 1);
+    }
+    16% {
+        transform: scale(0.75, 1);
+    }
+}
+
+.Stressed #eyelids {
+    display: inline;
+}
+
+.Stressed #eyelid-right {
+    transform: scale(2, 0.5) translate(6%, -80%);
+}
+
+.Stressed #eyelid-left {
+    transform: scale(2, 0.5) translate(-6%, -80%);
+}
+
+/* -------- PANICKING --------*/
+
+.Panicking #head {
+    animation: headshake ease 1s infinite;
+}
+
+@keyframes headshake {
+    50% {
+        transform: translate(0, 5%);
+    }
+}
+
+.Panicking #body {
+    animation: bodyshake ease 1s infinite;
+}
+
+@keyframes bodyshake {
+    50% {
+        transform: translate(0, 1%);
+    }
+}
+
+.Panicking #arm-left {
+    transform-origin: 80% 20%;
+    animation: armshake-l ease 1s infinite;
+}
+
+.Panicking #arm-right {
+    transform-origin: 20% 20%;
+    animation: armshake-r ease 1s infinite;
+}
+
+@keyframes armshake-l {
+    50% {
+        transform: rotate(5deg);
+    }
+}
+
+@keyframes armshake-r {
+    50% {
+        transform: rotate(-5deg);
+    }
+}
+
+.Panicking #mouth-open {
+    display: inline;
+    animation: heavybreathe ease 1s infinite;
+}
+
+@keyframes heavybreathe {
+    50% {
+        transform: scale(1.5, 1);
+    }
+}
+
+.Panicking #eyeshine {
+    transform: translate(3.75%, 15%);
+}
+
+.Panicking #eyeshine-left,
+.Panicking #eyeshine-right {
+    transform: scale(4.75);
+}
+
+.Panicking #eye-left,
+.Panicking #eye-right {
+    transform: scale(1.75,1.75);
+}
+
+.Panicking #eyes-and-shine {
+    animation: shake 0.5s infinite !important;
+}
+
+@keyframes shake {
+  12.5%, 62.5% {
+    transform: translate(-1%, 0);
+  }
+
+  25%, 75% {
+    transform: translate(1%, 2%);
+  }
+
+  37.5%, 87.5% {
+    transform: translate(-1%, 0);
+  }
+
+  50%, 100% {
+    transform: translate(1%, -2%);
+  }
+}
+
+/* -------- WIPED OUT --------*/
+
+.Wiped-Out #head {
+    transform: translate(0, 5%);
+}
+
+.Wiped-Out #ears {
+    transform: translate(0, 15%);
+}
+
+.Wiped-Out #face {
+    transform: translate(0, 10%) scale(1, 0.8);
+}
+
+.Wiped-Out #arms {
+    transform: translate(0, 10%);
+}
+
+.Wiped-Out #arm-left {
+    transform-origin: 80% 20%;
+    transform: rotate(-10deg);
+}
+
+.Wiped-Out #arm-right {
+    transform-origin: 20% 20%;
+    transform: rotate(10deg);
+}
+
+.Wiped-Out #eyes-and-shine {
+    display: none;
+}
+
+.Wiped-Out #eyes-ded {
+    display: inline;
+}
+
+.Wiped-Out #mouth-open {
+    display: inline;
+    transform: translate(0, 50%)
+}
