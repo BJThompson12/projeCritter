@@ -177,7 +177,6 @@ const resolvers = {
         (project) => project._id.toString() === args.input.projectId
       );
       selectedProject.critterName = args.input.critterName;
-      console.log(selectedProject.critterName);
       const updatedUser = currentUser.save();
       return updatedUser;
     },
