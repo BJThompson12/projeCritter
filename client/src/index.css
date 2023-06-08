@@ -47,4 +47,8 @@ code {
     monospace;
 }
 
+.btn1:hover {
+		transform: translateY(0.3rem);
+		box-shadow: 0 0.2rem 0 0 #000;
+}
 
