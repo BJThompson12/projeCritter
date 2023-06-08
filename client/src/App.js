@@ -25,9 +25,9 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="flex flex-col items-center w-full min-h-screen App">
+        <div className="bg-indigo-200 flex flex-col items-center w-full min-h-screen App">
           <Navbar />
-          <main className="flex flex-col items-center w-full max-w-[1536px] p-8">
+          <main className=" flex flex-col items-center w-full max-w-[1536px] p-8">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/dashboard" element={<Dashboard />} />
@@ -35,7 +35,7 @@ function App() {
               <Route path="/faq" element={<Faq />} />
             </Routes>
           </main>
-          {/* <Footer /> */}
+          <Footer />
         </div>
       </Router>
     </ApolloProvider>

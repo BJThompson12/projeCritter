@@ -14,12 +14,12 @@ const Navbar = () => {
   const handleClick = () => setNav((prevNav) => !prevNav);
 
   // styles
-  const navLink = "text-xl text-white hover:underline";
+
   const navButton =
-    "px-4 py-2 text-lg font-medium text-indigo-500 rounded-md bg-white hover:bg-indigo-200";
+    "bg-indigo-400 text-white mt-4 rounded px-5 py-2 font-medium border border-b-4 border-r-4 border-black rounded-lg shadow-lg hover:translate-y-1 hover:shadow-md";
 
   return (
-    <div className="sticky top-0 z-10 w-full ">
+    <div className="sticky top-0 z-10 w-full border border-black border-4 ">
       <header className="w-full h-20 bg-indigo-500 drop-shadow-md">
         <div className="flex items-center justify-between w-full h-full px-2">
           {/* site name container */}
@@ -39,16 +39,20 @@ const Navbar = () => {
           <nav>
             <ul className="hidden space-x-4 md:flex md:items-center">
               <li>
-                <a href="/faq" className={navLink}>
+              <button className={navButton}>
+                <a href="/faq" >
                   FAQ
                 </a>
+                </button>
               </li>
               {loggedIn ? (
                 <>
                   <li>
-                    <a href="/dashboard" className={navLink}>
+                    <button className={navButton}>
+                    <a href="/dashboard">
                       Dashboard
                     </a>
+                    </button>
                   </li>
                   <li>
                     <button className={navButton} onClick={() => Auth.logout()}>
@@ -88,22 +92,26 @@ const Navbar = () => {
           }
         >
           <li>
-            <a href="/about" className={navLink}>
-              About
-            </a>
+              <button className={navButton}>
+                <a href="/faq" >
+                  FAQ
+                </a>
+                </button>
           </li>
           {loggedIn ? (
             <>
               <li>
-                <a href="/dashboard" className={navLink}>
-                  Dashboard
-                </a>
-              </li>
-              <li>
-                <button className={navButton} onClick={() => Auth.logout()}>
-                  Log Out
-                </button>
-              </li>
+                    <button className={navButton}>
+                    <a href="/dashboard">
+                      Dashboard
+                    </a>
+                    </button>
+                  </li>
+                  <li>
+                    <button className={navButton} onClick={() => Auth.logout()}>
+                      Log Out
+                    </button>
+                  </li>
             </>
           ) : (
             <button
@@ -119,11 +127,10 @@ const Navbar = () => {
       {/* login modal */}
       {displayModal ? (
         <modal>
-          <div>
-            <div className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
-              <div className="relative w-auto max-w-3xl mx-auto my-6">
+          <div className=" flex items-center justify-center md:fixed inset-0">
+              <div className="relative mx-auto ">
                 {/*content*/}
-                <div className="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
+                <div className="flex justify-center items-center flex-col bg-indigo-300 rounded-2xl border-4 border-b-8 border-r-8 border-black shadow-md">
                   {/*body*/}
 
                   <div className="p-10 ">
@@ -137,7 +144,7 @@ const Navbar = () => {
                   {/*footer*/}
                   <div className="flex items-center justify-center p-2 border-t border-solid rounded-b border-slate-200">
                     <button
-                      className="px-6 py-2 mb-1 mr-1 text-sm font-bold text-red-500 uppercase transition-all duration-150 ease-linear outline-none background-transparent focus:outline-none"
+                      className={navButton}
                       type="button"
                       onClick={() => setDisplayModal(false)}
                     >
@@ -147,8 +154,7 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
-            <div className="fixed inset-0 z-40 bg-black opacity-25"></div>
-          </div>
+            <div className=" z-40 bg-black opacity-25"></div>
         </modal>
       ) : null}
     </div>
