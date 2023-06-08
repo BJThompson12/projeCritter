@@ -2,9 +2,11 @@
   "name": "project_3",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server/server.js",
   "scripts": {
-    "start": "node server/server.js"
+    "start": "node server/server.js",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "startbuild": "cd client && npm run build"
   },
   "repository": {
     "type": "git",
