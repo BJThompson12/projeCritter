@@ -8,14 +8,10 @@ const Home = () => {
         />
         <div className="w-full mt-8 text-left md:w-6/12 md:pl-10">
           <h3 className="text-3xl font-semibold text-indigo-500">
-            LOREM IPSUM
+            projeCritter
           </h3>
-          <p className="mt-4 text-lg leading-relaxed text-blueGray-500">
-            Autem. Natus consequuntur, yet id. Molestiae aspernatur, but
-            consectetur, but suscipit vel, for tempora sequi. Adipisci
-            doloremque commodi odit vitae autem. Accusantium magni, so vitae,
-            but commodi. Odit lorem fugit, but ipsa aliquam. Laudantium autem,
-            or consequuntur et, or consequat.
+          <p className="mt-4 text-xl leading-relaxed text-blueGray-500">
+          Tired of feeling overwhelmed with your tasks? Let our project task tracker tool be your personal assistant and help you conquer your to-do list!
           </p>
         </div>
     </section>
