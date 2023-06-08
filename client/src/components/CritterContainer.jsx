@@ -1,35 +1,24 @@
 import { PencilIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import CritterNameForm from "./CritterNameForm";
-
-const critterLight = "#ffffff";
-const critterMed = "#6366f1";
-const critterDark = "#000000";
-
-const styles = {
-  st0: { fill: critterLight },
-  st1: {
-    clipPath: "url(#SVGID_00000085970704884784107660000012943753626997557398_)",
-  },
-  st2: { fill: critterMed },
-  st3: {
-    fill: "none",
-    stroke: critterDark,
-    strokeWidth: 12,
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    strokeMiterlimit: "10",
-  },
-};
+import "./CritterContainer.css"
 
 const CritterContainer = ({ name, born, moodVal }) => {
   const [displayModal, setDisplayModal] = useState(false);
+
+  // hover detection for wave animation
+  const [hover, setHover] = useState(false);
+  const handleMouseEnter = () => {
+    setHover(true);
+  };
+  const handleMouseLeave = () => {
+    setHover(false);
+  };
   
-  // convert json date/timestamp to Date
+  // birth date calculations
   born = new Date(born);
-  // get how many days ago critter was born
   const current = new Date();
-  const daysAgo = Math.ceil(
+  const daysAgo = Math.floor(
     (current.getTime() - born.getTime()) / (1000 * 60 * 60 * 24)
   );
 
@@ -37,19 +26,35 @@ const CritterContainer = ({ name, born, moodVal }) => {
   let status;
   if (moodVal <= 0) {
     status = "Happy";
-  } else if (moodVal <= 10) {
+  } else if (moodVal <= 2.5) {
     status = "Chipper";
-  } else if (moodVal <= 15) {
+  } else if (moodVal <= 5) {
     status = "Content";
-  } else if (moodVal <= 20) {
+  } else if (moodVal <= 7.5) {
     status = "Nervous";
-  } else if (moodVal <= 25) {
+  } else if (moodVal <= 8.75) {
     status = "Stressed";
-  } else if (moodVal <= 30) {
+  } else if (moodVal <= 10) {
     status = "Panicking";
   } else {
-    status = "Wiped Out";
+    status = "Wiped-Out";
   }
+
+  // critter styling
+  const critterLight = "#ffffff";
+  const critterEyes = "#6366f1";
+  const critterDark = "#000000";
+  const critterMouth = "#FFCCCC";
+  const styles = {
+    mouthline: {
+      fill: "none",
+      stroke: critterDark,
+      strokeWidth: 12,
+      strokeLinecap: "round",
+      strokeLinejoin: "round",
+      strokeMiterlimit: "10",
+    },
+  };
 
   return (
     <>
@@ -60,41 +65,51 @@ const CritterContainer = ({ name, born, moodVal }) => {
             id="critter"
             viewBox="0 0 810 1080"
             preserveAspectRatio="xMinYMin meet"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            className={"blink " + status}
           >
             <g id="critter">
-              <g id="leg-left">
+              <g id="leg-left" className="transformable">
                 <path
                   fill={critterDark}
                   d="M339.99,806.34c5.07,50.46,5.81,103.41,1.8,153.98c-2.51,31.63-16.6,119.68-49.26,119.68s-46.75-88.05-49.26-119.68
 			c-4.01-50.57-4.44-103.72,1.8-153.98C257.73,704.61,329.77,704.61,339.99,806.34z"
                 />
               </g>
-              <g id="leg-right">
+              <g id="leg-right" className="transformable">
                 <path
                   fill={critterDark}
                   d="M565.31,806.34c5.07,50.46,5.81,103.41,1.8,153.98c-2.51,31.63-16.6,119.68-49.26,119.68s-46.75-88.05-49.26-119.68
 			c-4.01-50.57-4.44-103.72,1.8-153.98C483.05,704.61,555.09,704.61,565.31,806.34z"
                 />
               </g>
-              <g id="arm-left">
-                <path
-                  fill={critterDark}
-                  d="M335.05,683.15c-16.42,38.81-37.62,77.26-61.96,111.64c-15.22,21.5-63.78,77.81-92.1,61.56
-			c-28.33-16.25-4.23-86.59,6.65-110.59c17.39-38.37,38.93-76.81,65.09-109.85C305.66,569.06,368.15,604.9,335.05,683.15z"
-                />
+              <g id="arms" className="transformable">
+                <g id="arm-left" className="transformable">
+                  <path
+                    fill={critterDark}
+                    d="M335.05,683.15c-16.42,38.81-37.62,77.26-61.96,111.64c-15.22,21.5-63.78,77.81-92.1,61.56
+                      c-28.33-16.25-4.23-86.59,6.65-110.59c17.39-38.37,38.93-76.81,65.09-109.85C305.66,569.06,368.15,604.9,335.05,683.15z"
+                  />
+                </g>
+                <g
+                  id="arm-right"
+                  className={`transformable ${
+                    hover && status !== "Wiped-Out" ? "wave" : undefined
+                  }`}
+                >
+                  <path
+                    fill={critterDark}
+                    d="M474.95,683.15c16.42,38.81,37.62,77.26,61.96,111.64c15.22,21.5,63.78,77.81,92.1,61.56
+                      c28.33-16.25,4.23-86.59-6.65-110.59c-17.39-38.37-38.93-76.81-65.09-109.85C504.34,569.06,441.85,604.9,474.95,683.15z"
+                  />
+                </g>
               </g>
-              <g id="arm-right">
-                <path
-                  fill={critterDark}
-                  d="M474.95,683.15c16.42,38.81,37.62,77.26,61.96,111.64c15.22,21.5,63.78,77.81,92.1,61.56
-			c28.33-16.25,4.23-86.59-6.65-110.59c-17.39-38.37-38.93-76.81-65.09-109.85C504.34,569.06,441.85,604.9,474.95,683.15z"
-                />
-              </g>
-              <g id="body_00000058576057189205665850000012282463850058405524_">
-                <g id="body-main">
+              <g id="body">
+                <g id="body-main" className="transformable">
                   <g>
                     <path
-                      style={styles.st0}
+                      fill={critterLight}
                       d="M405,981.96c-31.55,0-63.73-11.05-90.62-31.12c-26.83-20.03-46.54-47.63-55.49-77.73
 					c-9.22-31.02-10.16-65.38-2.8-102.13c6.11-30.5,18.14-63.52,35.75-98.17c20.96-41.22,57.6-90.37,113.15-90.37
 					c55.55,0,92.19,49.14,113.15,90.37c17.61,34.65,29.64,67.68,35.75,98.17c7.37,36.75,6.43,71.11-2.8,102.13
@@ -111,48 +126,22 @@ const CritterContainer = ({ name, born, moodVal }) => {
                     />
                   </g>
                 </g>
-                <g id="body-stripe">
-                  <defs>
-                    <path
-                      id="SVGID_1_"
-                      d="M405,987.96c67.97,0,132.62-48.45,151.86-113.14c20.63-69.37-1.7-142.44-33.36-204.73
-					c-23.51-46.25-61.93-93.65-118.5-93.65c-56.57,0-94.99,47.4-118.5,93.65c-31.66,62.29-53.98,135.36-33.36,204.73
-					C272.38,939.5,337.03,987.96,405,987.96z"
-                    />
-                  </defs>
-                  <clipPath id="SVGID_00000148629406594531382080000006918781423160844674_">
-                    <use
-                      xlinkHref="#SVGID_1_"
-                      style={{ overflow: "visible" }}
-                    />
-                  </clipPath>
-                  <path
-                    style={{
-                      clipPath:
-                        "url(#SVGID_00000148629406594531382080000006918781423160844674_)",
-                    }}
-                    fill={critterDark}
-                    d="M583.69,792.66
-				c0-67.95-357.39-67.95-357.39,0V576.44h357.39V792.66z"
-                  />
-                </g>
+                <path
+                  id="body-stripe"
+                  fill={critterDark}
+                  d="M286.5,670.08c-15.11,29.73-28.1,61.93-35.3,95c65.5-31.18,242.09-31.18,307.59,0
+			c-7.2-33.07-20.18-65.27-35.3-95c-23.51-46.25-61.93-93.65-118.5-93.65C348.43,576.44,310.01,623.84,286.5,670.08z"
+                />
               </g>
-              <g id="head">
-                <g id="ears">
+              <g id="head" className="transformable">
+                <g id="ears" className="transformable">
                   <g id="ear-left">
                     <circle
                       fill={critterDark}
-                      id="ear-outer_00000081622286091492008420000000508452463774563983_"
+                      id="ear-outer"
                       cx="135"
                       cy="135"
                       r="135"
-                    />
-                    <circle
-                      id="ear-inner_00000029757599373092372630000015881264801056575404_"
-                      style={styles.st0}
-                      cx="135"
-                      cy="135"
-                      r="67.5"
                     />
                   </g>
                   <g id="ear-right">
@@ -163,19 +152,12 @@ const CritterContainer = ({ name, born, moodVal }) => {
                       cy="135"
                       r="135"
                     />
-                    <circle
-                      id="ear-inner"
-                      style={styles.st0}
-                      cx="675"
-                      cy="135"
-                      r="67.5"
-                    />
                   </g>
                 </g>
                 <g id="head-main">
                   <g>
                     <path
-                      style={styles.st0}
+                      fill={critterLight}
                       d="M405,650.69c-19.71,0-39.66-0.94-59.28-2.8c-99.79-9.45-183.1-35.65-240.93-75.78
 					C39.24,526.61,6,464.1,6,386.31c0-101.87,40.05-197,112.77-267.87C192.97,46.13,294.62,6.31,405,6.31
 					c110.38,0,212.03,39.82,286.23,112.13C763.95,189.3,804,284.44,804,386.31c0,77.79-33.24,140.3-98.79,185.8
@@ -194,7 +176,7 @@ const CritterContainer = ({ name, born, moodVal }) => {
                     />
                   </g>
                 </g>
-                <g id="face">
+                <g id="face" className="transformable">
                   <g id="eyespots">
                     <ellipse
                       id="eyespot-left"
@@ -216,37 +198,115 @@ const CritterContainer = ({ name, born, moodVal }) => {
                       ry="125.74"
                     />
                   </g>
-                  <g id="eyes">
+                  <g id="eyes-and-shine" className="transformable">
+                    <g id="eyes">
+                      <circle
+                        id="eye-left"
+                        className="transformable"
+                        fill={critterEyes}
+                        cx="246.12"
+                        cy="439.14"
+                        r="33.75"
+                      />
+                      <circle
+                        id="eye-right"
+                        className="transformable"
+                        fill={critterEyes}
+                        cx="563.88"
+                        cy="439.14"
+                        r="33.75"
+                      />
+                    </g>
+                    <g id="eyeshine" class="transformable">
+                      <circle
+                        id="eyeshine-left"
+                        class="transformable"
+                        fill={critterLight}
+                        cx="231.18"
+                        cy="425.97"
+                        r="9.57"
+                      />
+                      <circle
+                        id="eyeshine-right"
+                        class="transformable"
+                        fill={critterLight}
+                        cx="550"
+                        cy="425.97"
+                        r="9.57"
+                      />
+                    </g>
+                  </g>
+                  <g id="eyelids" className="hidden transformable">
                     <circle
-                      id="eye-left"
-                      style={styles.st2}
+                      id="eyelid-left"
+                      className="transformable"
+                      fill={critterDark}
+                      stroke={critterDark}
+                      strokeWidth="2px"
                       cx="246.12"
                       cy="439.14"
                       r="33.75"
                     />
                     <circle
-                      id="eye-right"
-                      style={styles.st2}
+                      id="eyelid-right"
+                      className="transformable"
+                      fill={critterDark}
+                      stroke={critterDark}
+                      strokeWidth="2px"
                       cx="563.88"
                       cy="439.14"
                       r="33.75"
                     />
                   </g>
-                  <g id="eyeshine">
-                    <circle
-                      id="eyeshine-left"
-                      style={styles.st0}
-                      cx="231.18"
-                      cy="425.97"
-                      r="9.57"
-                    />
-                    <circle
-                      id="eyeshine-right"
-                      style={styles.st0}
-                      cx="550"
-                      cy="425.97"
-                      r="9.57"
-                    />
+                  <g id="eyes-ded" className="hidden">
+                    <g id="eyes-ded-left">
+                      <line
+                        stroke={critterLight}
+                        strokeWidth="12"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeMiterlimit="10"
+                        x1="269.98"
+                        y1="415.28"
+                        x2="222.25"
+                        y2="463.01"
+                      />
+                      <line
+                        stroke={critterLight}
+                        strokeWidth="12"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeMiterlimit="10"
+                        x1="269.98"
+                        y1="463.01"
+                        x2="222.25"
+                        y2="415.28"
+                      />
+                    </g>
+                    <g id="eyes-ded-right">
+                      <line
+                        stroke={critterLight}
+                        strokeWidth="12"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeMiterlimit="10"
+                        x1="587.75"
+                        y1="415.28"
+                        x2="540.02"
+                        y2="463.01"
+                      />
+                      <line
+                        stroke={critterLight}
+                        strokeWidth="12"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeMiterlimit="10"
+                        x1="587.75"
+                        y1="463.01"
+                        x2="540.02"
+                        y2="415.28"
+                      />
+                    </g>
                   </g>
                   <ellipse
                     id="nose"
@@ -257,9 +317,28 @@ const CritterContainer = ({ name, born, moodVal }) => {
                     ry="21.33"
                   />
                   <polyline
+                    id="mouth-sad"
+                    style={styles.mouthline}
+                    className="hidden"
+                    points="366.64,611.87 405,585.14 443.36,611.87"
+                  />
+                  <polygon
+                    id="mouth-open"
+                    className="hidden transformable"
+                    fill={critterMouth}
+                    stroke={critterDark}
+                    strokeWidth="12"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeMiterlimit="10"
+                    points="472.5,611.87 405,576.44 
+				337.5,611.87 			"
+                  />
+                  <polyline
                     id="mouth"
-                    style={styles.st3}
-                    points="337.5,611.87 405,585.14 472.5,611.87 			"
+                    style={styles.mouthline}
+                    className="transformable"
+                    points="337.5,611.87 405,585.14 472.5,611.87"
                   />
                 </g>
               </g>
@@ -285,7 +364,8 @@ const CritterContainer = ({ name, born, moodVal }) => {
             } ago)`}
           </li>
           <li>
-            <strong className="text-indigo-600">Status:</strong> {status}
+            <strong className="text-indigo-600">Status:</strong>{" "}
+            {status.replace("-", " ")}
           </li>
         </ul>
       </div>
@@ -297,7 +377,6 @@ const CritterContainer = ({ name, born, moodVal }) => {
                 {/*content*/}
                 <div className="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
                   {/*body*/}
-
                   <div className="p-10 ">
                     <div>
                       <div className="flex flex-wrap justify-center gap-1 px-2 display">
