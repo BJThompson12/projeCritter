@@ -2,7 +2,7 @@
 const jwt = require("jsonwebtoken");
 
 const secret = "thesupersecret";
-const expiration = "4h";
+const expiration = "1h";
 
 module.exports = {
   withAuth: function ({ req }) {

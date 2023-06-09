@@ -11,8 +11,11 @@ import {
 } from "@heroicons/react/24/solid";
 import { RETURN_PROJECT, RETURN_TASKS } from "../utils/query";
 import TaskForm from "../components/AddTaskForm";
+import Auth from "../utils/auth";
 
 const Project = () => {
+  const token = localStorage.getItem('id_token');
+  Auth.isTokenExpired(token)
   const [displayModal, setDisplayModal] = useState(false);
   // collapse/expand column state
   const [open, setOpen] = useState(true);
