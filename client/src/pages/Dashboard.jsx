@@ -14,6 +14,8 @@ import { useQuery, useMutation } from "@apollo/client";
 const loggedIn = Auth.getToken();
 
 const Dashboard = () => {
+  const token = localStorage.getItem('id_token');
+  Auth.isTokenExpired(token)
   const [displayModal, setDisplayModal] = useState(false);
 
   const url = window.location.href;
