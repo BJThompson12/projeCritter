@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { UPDATE_CRITTER_NAME } from "../utils/mutation";
+import Button from "./Button";
 
 const CritterNameForm = () => {
   const url = window.location.href;
@@ -45,8 +46,8 @@ const CritterNameForm = () => {
 
   return (
     <>
-      <div className="relative flex flex-col overflow-hidden">
-        <div className="w-full p-6 m-auto bg-white rounded-md lg:max-w-xl mt-0">
+      <div className="relative flex flex-col">
+        <div className="w-full m-auto mt-0 bg-white rounded-md lg:max-w-xl">
           <h1 className="text-3xl font-semibold text-center text-indigo-500">
             Name Project Critter
           </h1>
@@ -54,7 +55,7 @@ const CritterNameForm = () => {
             <div className="mb-2">
               <label
                 htmlFor="critterName"
-                className="block text-sm font-semibold text-indigo-500 text-center"
+                className="block text-sm font-semibold text-center text-indigo-500"
               >
                 Name
               </label>
@@ -69,14 +70,13 @@ const CritterNameForm = () => {
               />
             </div>
             <div className="mt-6">
-              <button
-                className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-indigo-500 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600"
+              <Button
                 disabled={!formData.critterName}
                 type="submit"
                 variant="success"
               >
-                Submit Name
-              </button>
+                Change Name
+              </Button>
             </div>
           </form>
         </div>

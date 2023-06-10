@@ -1,5 +1,6 @@
 import CritterContainer from "../components/CritterContainer";
 import ProjectColumn from "../components/ProjectColumn";
+import Button from "../components/Button";
 import Modal from "../components/Modal";
 import { useQuery } from "@apollo/client";
 import { useState } from "react";
@@ -74,13 +75,7 @@ const Project = () => {
               open ? `md:min-w-[277px] md:basis-1/4` : `md:min-w-fit md:basis-0`
             }`}
           >
-            {/* collapse/expand button */}
-            <button
-              onClick={toggle}
-              className={`self-end ${
-                !open && "md:self-center"
-              } text-white bg-indigo-500 hover:bg-indigo-400 active:bg-indigo-800 rounded min-h-[42px] min-w-[42px] md:min-w-fit md:min-h-fit md:max-h-fit md:p-0.5 shrink`}
-            >
+            <Button onClick={toggle} width="w-fit" align={`self-end ${!open && "md:self-center"}`} padding="md:p-0">
               {/* up/down for mobile */}
               {open ? (
                 <ChevronUpIcon className="block w-6 mx-auto md:hidden" />
@@ -93,7 +88,7 @@ const Project = () => {
               ) : (
                 <ChevronRightIcon className="hidden w-6 mx-auto md:block" />
               )}
-            </button>
+            </Button>
             {open ? (
               <CritterContainer
                 name={data.returnProject.critterName}
@@ -104,15 +99,11 @@ const Project = () => {
               ""
             )}
           </div>
-          <button
-            onClick={() => setDisplayModal(true)}
-            className="text-xl md:text-base w-full px-4 py-2 mt-4 text-white bg-indigo-500 rounded hover:bg-indigo-400 active:bg-indigo-800 min-h-[42px] min-w-[42px] md:min-w-fit md:min-h-fit"
-          >
+          <Button onClick={() => setDisplayModal(true)}>
             <RiAddLine className="inline-block text-white" />
             <span className="inline md:hidden"> Add Task</span>
-            {/* hide text and only show + when the column is collapsed on desktop */}
             <span className="hidden md:inline">{open && " Add Task"}</span>
-          </button>
+          </Button>
         </div>
         {/* project columns container*/}
         <div className="flex flex-col items-stretch w-full h-full space-y-4 md:pb-1 2xl:pb-0 md:space-y-0 md:space-x-4 md:overflow-x-auto md:flex-row">
@@ -125,7 +116,7 @@ const Project = () => {
 
       {/* add task modal */}
       <Modal displayModal={displayModal} setDisplayModal={setDisplayModal}>
-        <TaskForm />
+        <TaskForm setDisplayModal={setDisplayModal} />
       </Modal>
     </section>
   );

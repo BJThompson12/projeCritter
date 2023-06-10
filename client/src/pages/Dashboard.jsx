@@ -1,5 +1,6 @@
 import React from "react";
 import CurrentProjects from "../components/CurrentProjects";
+import Button from "../components/Button";
 import Modal from "../components/Modal";
 import { RiAddLine } from "react-icons/ri";
 
@@ -36,22 +37,19 @@ const Dashboard = () => {
     <>
       {loggedIn ? (
         <div className="w-full h-full">
-          <h1 className="text-4xl font-semibold text-center text-indigo-500">
+          <h1 className="mb-4 text-4xl font-semibold text-center text-indigo-500">
             <div className="inline-block p-4 bg-indigo-300 border border-b-4 border-r-4 border-black rounded-xl ">
-              Welcome {data.returnUser.username}!
+              Welcome, {data.returnUser.username}!
             </div>
           </h1>
           <div className="flex justify-center">
-            <button
-              onClick={() => setDisplayModal(true)}
-              className="px-5 py-2 mt-4 font-medium text-white bg-indigo-400 border border-b-4 border-r-4 border-black rounded-lg shadow-lg hover:translate-y-1 hover:shadow-md"
-            >
+            <Button onClick={() => setDisplayModal(true)} width="w-fit">
               <RiAddLine className="inline-block mr-2" />
               Add Project
-            </button>
+            </Button>
           </div>
           <div className="pt-2">
-            <h2 className="text-xl font-semibold text-center text-indigo-400">
+            <h2 className="mt-4 text-xl font-semibold text-center text-indigo-400">
               Current Projects:
             </h2>
             <CurrentProjects />

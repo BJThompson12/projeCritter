@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { CREATE_TASK } from "../utils/mutation";
+import Button from "./Button";
 
-const TaskForm = () => {
+const TaskForm = ({ setDisplayModal }) => {
   const [createTask] = useMutation(CREATE_TASK);
 
   const url = window.location.href;
@@ -41,13 +42,14 @@ const TaskForm = () => {
         taskbody: "",
         taskstate: 1,
       });
+      setDisplayModal(false);
       window.location.href =`/project/?=${id}`
     }
   };
 
   return (
     <>
-      <div className="relative flex flex-col justify-center overflow-hidden">
+      <div className="relative flex flex-col justify-center">
         <div className="w-full m-auto bg-white rounded-md lg:max-w-xl">
           <h1 className="text-3xl font-semibold text-center text-indigo-500">
             New Task
@@ -71,7 +73,12 @@ const TaskForm = () => {
               />
             </div>
             <div className="mb-2">
-              <label for="taskstate" className="block text-sm font-semibold text-center text-indigo-500">Task Category</label>
+              <label
+                for="taskstate"
+                className="block text-sm font-semibold text-center text-indigo-500"
+              >
+                Task Category
+              </label>
               <select
                 name="taskstate"
                 onChange={handleInputChange}
@@ -85,14 +92,13 @@ const TaskForm = () => {
               </select>
             </div>
             <div className="mt-6">
-              <button
-                className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-indigo-500 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600"
+              <Button
                 disabled={!formData.taskbody}
                 type="submit"
                 variant="success"
               >
-                Add Task
-              </button>
+                Create New Task
+              </Button>
             </div>
           </form>
         </div>
