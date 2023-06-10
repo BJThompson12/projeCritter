@@ -1,5 +1,6 @@
 import { PencilIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
+import Modal from "./Modal";
 import CritterNameForm from "./CritterNameForm";
 import "./CritterContainer.css"
 
@@ -58,8 +59,8 @@ const CritterContainer = ({ name, born, moodVal }) => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center w-full h-full min-w-0 min-h-0 space-y-4 shrink">
-        <figure className="flex flex-col items-center justify-center w-full h-full min-h-0 text-indigo-500 max-h-80">
+      <div className="flex flex-col items-center justify-center w-full h-full min-w-0 min-h-0 mt-4 shrink">
+        <figure className="flex flex-col items-center justify-center w-full h-full min-h-0 mb-4 text-indigo-500 max-h-80">
           <svg
             version="1.1"
             id="critter"
@@ -369,38 +370,9 @@ const CritterContainer = ({ name, born, moodVal }) => {
           </li>
         </ul>
       </div>
-      {displayModal ? (
-        <modal>
-          <div>
-            <div className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
-              <div className="relative w-auto max-w-3xl mx-auto my-6">
-                {/*content*/}
-                <div className="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
-                  {/*body*/}
-                  <div className="p-10 ">
-                    <div>
-                      <div className="flex flex-wrap justify-center gap-1 px-2 display">
-                        <CritterNameForm />
-                      </div>
-                    </div>
-                  </div>
-                  {/*footer*/}
-                  <div className="flex items-center justify-center p-2 border-t border-solid rounded-b border-slate-200">
-                    <button
-                      className="px-6 py-2 mb-1 mr-1 text-sm font-bold text-red-500 uppercase transition-all duration-150 ease-linear outline-none background-transparent focus:outline-none"
-                      type="button"
-                      onClick={() => setDisplayModal(false)}
-                    >
-                      Close
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="fixed inset-0 z-40 bg-black opacity-25"></div>
-          </div>
-        </modal>
-      ) : null}
+      <Modal displayModal={displayModal} setDisplayModal={setDisplayModal}>
+        <CritterNameForm setDisplayModal={setDisplayModal} />
+      </Modal>
     </>
   );
 };
