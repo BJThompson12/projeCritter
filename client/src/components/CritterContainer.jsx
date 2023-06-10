@@ -217,10 +217,10 @@ const CritterContainer = ({ name, born, moodVal }) => {
                         r="33.75"
                       />
                     </g>
-                    <g id="eyeshine" class="transformable">
+                    <g id="eyeshine" className="transformable">
                       <circle
                         id="eyeshine-left"
-                        class="transformable"
+                        className="transformable"
                         fill={critterLight}
                         cx="231.18"
                         cy="425.97"
@@ -228,7 +228,7 @@ const CritterContainer = ({ name, born, moodVal }) => {
                       />
                       <circle
                         id="eyeshine-right"
-                        class="transformable"
+                        className="transformable"
                         fill={critterLight}
                         cx="550"
                         cy="425.97"
