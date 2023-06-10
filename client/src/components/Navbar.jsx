@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import Auth from "../utils/auth";
 
+import Modal from "../components/Modal";
 import Login from "./Login";
 import SignUp from "./SignUp";
 
@@ -19,7 +20,7 @@ const Navbar = () => {
     "bg-indigo-400 text-white mt-4 rounded px-5 py-2 font-medium border border-b-4 border-r-4 border-black rounded-lg shadow-lg hover:translate-y-1 hover:shadow-md";
 
   return (
-    <div className="sticky top-0 z-10 w-full border border-black border-4 ">
+    <div className="sticky top-0 z-10 w-full border-4 border-black ">
       <header className="w-full h-20 bg-indigo-500 drop-shadow-md">
         <div className="flex items-center justify-between w-full h-full px-2">
           {/* site name container */}
@@ -39,19 +40,15 @@ const Navbar = () => {
           <nav>
             <ul className="hidden space-x-4 md:flex md:items-center">
               <li>
-              <button className={navButton}>
-                <a href="/faq" >
-                  FAQ
-                </a>
+                <button className={navButton}>
+                  <a href="/faq">FAQ</a>
                 </button>
               </li>
               {loggedIn ? (
                 <>
                   <li>
                     <button className={navButton}>
-                    <a href="/dashboard">
-                      Dashboard
-                    </a>
+                      <a href="/dashboard">Dashboard</a>
                     </button>
                   </li>
                   <li>
@@ -92,26 +89,22 @@ const Navbar = () => {
           }
         >
           <li>
-              <button className={navButton}>
-                <a href="/faq" >
-                  FAQ
-                </a>
-                </button>
+            <button className={navButton}>
+              <a href="/faq">FAQ</a>
+            </button>
           </li>
           {loggedIn ? (
             <>
               <li>
-                    <button className={navButton}>
-                    <a href="/dashboard">
-                      Dashboard
-                    </a>
-                    </button>
-                  </li>
-                  <li>
-                    <button className={navButton} onClick={() => Auth.logout()}>
-                      Log Out
-                    </button>
-                  </li>
+                <button className={navButton}>
+                  <a href="/dashboard">Dashboard</a>
+                </button>
+              </li>
+              <li>
+                <button className={navButton} onClick={() => Auth.logout()}>
+                  Log Out
+                </button>
+              </li>
             </>
           ) : (
             <button
@@ -125,38 +118,13 @@ const Navbar = () => {
       </header>
 
       {/* login modal */}
-      {displayModal ? (
-        <modal>
-          <div className=" flex items-center justify-center md:fixed inset-0">
-              <div className="relative mx-auto ">
-                {/*content*/}
-                <div className="flex justify-center items-center flex-col bg-indigo-300 rounded-2xl border-4 border-b-8 border-r-8 border-black shadow-md">
-                  {/*body*/}
+      <Modal displayModal={displayModal} setDisplayModal={setDisplayModal}>
+        <div className="flex flex-wrap items-center justify-center gap-8 md:flex-nowrap md:min-w-[32vw]">
+          <Login />
+          <SignUp />
+        </div>
+      </Modal>
 
-                  <div className="p-10 ">
-                    <div>
-                      <div className="flex flex-wrap justify-center gap-1 px-2 display">
-                        {" "}
-                        <SignUp /> <Login />{" "}
-                      </div>
-                    </div>
-                  </div>
-                  {/*footer*/}
-                  <div className="flex items-center justify-center p-2 border-t border-solid rounded-b border-slate-200">
-                    <button
-                      className={navButton}
-                      type="button"
-                      onClick={() => setDisplayModal(false)}
-                    >
-                      Close
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className=" z-40 bg-black opacity-25"></div>
-        </modal>
-      ) : null}
     </div>
   );
 };

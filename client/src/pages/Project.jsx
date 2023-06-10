@@ -1,5 +1,6 @@
 import CritterContainer from "../components/CritterContainer";
 import ProjectColumn from "../components/ProjectColumn";
+import Modal from "../components/Modal";
 import { useQuery } from "@apollo/client";
 import { useState } from "react";
 import { RiAddLine } from "react-icons/ri";
@@ -63,6 +64,7 @@ const Project = () => {
       <h2 className="self-start mb-4 text-3xl font-semibold text-indigo-500">
         {data.returnProject.title}
       </h2>
+
       {/* project container */}
       <div className="flex flex-col items-stretch w-full h-full min-h-0 space-y-4 md:space-y-0 md:flex-row md:space-x-4">
         {/* critter column */}
@@ -112,7 +114,6 @@ const Project = () => {
             <span className="hidden md:inline">{open && " Add Task"}</span>
           </button>
         </div>
-
         {/* project columns container*/}
         <div className="flex flex-col items-stretch w-full h-full space-y-4 md:pb-1 2xl:pb-0 md:space-y-0 md:space-x-4 md:overflow-x-auto md:flex-row">
           <ProjectColumn title="Backlog" colNum={1} />
@@ -121,38 +122,11 @@ const Project = () => {
           <ProjectColumn title="Done" colNum={4} />
         </div>
       </div>
-      {displayModal ? (
-        <modal>
-          <div>
-            <div className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
-              <div className="relative w-auto max-w-3xl mx-auto my-6">
-                {/*content*/}
-                <div className="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
-                  {/*body*/}
-                  <div className="p-10 ">
-                    <div>
-                      <div className="flex flex-wrap justify-center gap-1 px-2 display">
-                        <TaskForm />
-                      </div>
-                    </div>
-                  </div>
-                  {/*footer*/}
-                  <div className="flex items-center justify-center p-2 border-t border-solid rounded-b border-slate-200">
-                    <button
-                      className="px-6 py-2 mb-1 mr-1 text-sm font-bold text-red-500 uppercase transition-all duration-150 ease-linear outline-none background-transparent focus:outline-none"
-                      type="button"
-                      onClick={() => setDisplayModal(false)}
-                    >
-                      Close
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="fixed inset-0 z-40 bg-black opacity-25"></div>
-          </div>
-        </modal>
-      ) : null}
+
+      {/* add task modal */}
+      <Modal displayModal={displayModal} setDisplayModal={setDisplayModal}>
+        <TaskForm />
+      </Modal>
     </section>
   );
 };

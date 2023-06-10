@@ -47,19 +47,18 @@ const SignUp = () => {
     }
   };
   const SignUpButton =
-  "w-full bg-indigo-400 text-white mt-4 rounded px-5 py-2 font-medium border border-b-4 border-r-4 border-black rounded-lg shadow-lg hover:translate-y-1 hover:shadow-md";
+  "w-full bg-indigo-400 text-white mt-4 mb-1 rounded px-5 py-2 font-medium border border-b-4 border-r-4 border-black rounded-lg shadow-lg hover:translate-y-1 hover:shadow-md";
   return (
     <>
-      <div className='relative flex flex-col justify-center overflow-hidden'>
-        <div className='w-full p-6 m-auto bg-indigo-300 rounded-md lg:max-w-xl'>
+        <div className='w-full'>
           <h1 className='text-3xl font-semibold text-center text-black'>
             Sign Up
           </h1>
           <form onSubmit={handleSubmit} className='mt-6'>
             <div className='mb-2'>
               <label
-                for='username'
-                className='block text-sm font-semibold text-black text-center'
+                htmlFor='username'
+                className='block text-sm font-semibold text-center text-black'
               >
                 Username
               </label>
@@ -70,13 +69,13 @@ const SignUp = () => {
                 value={formData.username}
                 required
                 type='username'
-                className='block w-full px-4 py-2 mt-2 bg-white text-purple-700 border-2 border-black rounded-xl focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40'
+                className='block w-full px-4 py-2 mt-2 text-purple-700 bg-white border-2 border-black rounded-xl focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40'
               />
             </div>
             <div className='mb-2'>
               <label
-                for='email'
-                className='block text-sm font-semibold text-black text-center'
+                htmlFor='email'
+                className='block text-sm font-semibold text-center text-black'
               >
                 Email
               </label>
@@ -87,13 +86,13 @@ const SignUp = () => {
                 onChange={handleInputChange}
                 value={formData.email}
                 required
-                className='block w-full px-4 py-2 mt-2 text-purple-700 bg-white border border-2 border-black rounded-xl focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40'
+                className='block w-full px-4 py-2 mt-2 text-purple-700 bg-white border-2 border-black rounded-xl focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40'
               />
             </div>
             <div className='mb-2'>
               <label
-                for='password'
-                className='block text-sm font-semibold text-black text-center'
+                htmlFor='password'
+                className='block text-sm font-semibold text-center text-black'
               >
                 Password
               </label>
@@ -104,7 +103,7 @@ const SignUp = () => {
                 value={formData.password}
                 required
                 type='password'
-                className='block w-full px-4 py-2 mt-2 text-purple-700 bg-white border border-2 border-black rounded-xl focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40'
+                className='block w-full px-4 py-2 mt-2 text-purple-700 bg-white border-2 border-black rounded-xl focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40'
               />
             </div>
             <div className='mt-6'>
@@ -121,7 +120,6 @@ const SignUp = () => {
             </div>
           </form>
         </div>
-      </div>
     </>
   );
 };
