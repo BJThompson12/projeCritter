@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import Auth from "../utils/auth";
 
+import Button from "../components/Button";
 import Modal from "../components/Modal";
 import Login from "./Login";
 import SignUp from "./SignUp";
@@ -14,11 +15,8 @@ const Navbar = () => {
 
   const handleClick = () => setNav((prevNav) => !prevNav);
 
-  // styles
-
-  const navButton =
-    "bg-indigo-400 text-white mt-4 rounded px-5 py-2 font-medium border border-b-4 border-r-4 border-black rounded-lg shadow-lg hover:translate-y-1 hover:shadow-md";
-
+  const navLink = "text-xl text-white hover:text-indigo-200";
+  
   return (
     <div className="sticky top-0 z-10 w-full border-4 border-black ">
       <header className="w-full h-20 bg-indigo-500 drop-shadow-md">
@@ -40,31 +38,31 @@ const Navbar = () => {
           <nav>
             <ul className="hidden space-x-4 md:flex md:items-center">
               <li>
-                <button className={navButton}>
-                  <a href="/faq">FAQ</a>
-                </button>
+                <a href="/faq" className={navLink}>
+                  FAQ
+                </a>
               </li>
               {loggedIn ? (
                 <>
                   <li>
-                    <button className={navButton}>
-                      <a href="/dashboard">Dashboard</a>
-                    </button>
+                    <a href="/dashboard" className={navLink}>
+                      Dashboard
+                    </a>
                   </li>
                   <li>
-                    <button className={navButton} onClick={() => Auth.logout()}>
+                    <Button width="w-fit" onClick={() => Auth.logout()}>
                       Log Out
-                    </button>
+                    </Button>
                   </li>
                 </>
               ) : (
                 <li>
-                  <button
-                    className={navButton}
+                  <Button
+                    width="w-fit"
                     onClick={() => setDisplayModal(displayModal ? false : true)}
                   >
-                    Sign Up / Log In
-                  </button>
+                    Log In or Sign Up
+                  </Button>
                 </li>
               )}
             </ul>
@@ -89,30 +87,30 @@ const Navbar = () => {
           }
         >
           <li>
-            <button className={navButton}>
-              <a href="/faq">FAQ</a>
-            </button>
+            <a href="/faq" className={navLink}>
+              FAQ
+            </a>
           </li>
           {loggedIn ? (
             <>
               <li>
-                <button className={navButton}>
-                  <a href="/dashboard">Dashboard</a>
-                </button>
+                <a href="/dashboard" className={navLink}>
+                  Dashboard
+                </a>
               </li>
               <li>
-                <button className={navButton} onClick={() => Auth.logout()}>
+                <Button width="w-fit" onClick={() => Auth.logout()}>
                   Log Out
-                </button>
+                </Button>
               </li>
             </>
           ) : (
-            <button
+            <Button
+              width="w-fit"
               onClick={() => setDisplayModal(displayModal ? false : true)}
-              className={navButton}
             >
-              Sign Up / Log In
-            </button>
+              Log In or Sign Up
+            </Button>
           )}
         </ul>
       </header>
@@ -124,7 +122,6 @@ const Navbar = () => {
           <SignUp />
         </div>
       </Modal>
-
     </div>
   );
 };

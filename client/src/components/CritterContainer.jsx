@@ -45,7 +45,7 @@ const CritterContainer = ({ name, born, moodVal }) => {
   const critterEyes = "#6366f1";
   const critterDark = "#000000";
   const critterMouth = "#FFCCCC";
-  const styles = {
+  const critterStyles = {
     mouthline: {
       fill: "none",
       stroke: critterDark,
@@ -318,7 +318,7 @@ const CritterContainer = ({ name, born, moodVal }) => {
                   />
                   <polyline
                     id="mouth-sad"
-                    style={styles.mouthline}
+                    style={critterStyles.mouthline}
                     className="hidden"
                     points="366.64,611.87 405,585.14 443.36,611.87"
                   />
@@ -336,7 +336,7 @@ const CritterContainer = ({ name, born, moodVal }) => {
                   />
                   <polyline
                     id="mouth"
-                    style={styles.mouthline}
+                    style={critterStyles.mouthline}
                     className="transformable"
                     points="337.5,611.87 405,585.14 472.5,611.87"
                   />

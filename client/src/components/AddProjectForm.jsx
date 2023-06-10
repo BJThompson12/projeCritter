@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { CREATE_PROJECT } from "../utils/mutation";
+import Button from "../components/Button";
 
 const ProjectForm = ({ setDisplayModal }) => {
   const [createProject] = useMutation(CREATE_PROJECT);
@@ -40,7 +41,7 @@ const ProjectForm = ({ setDisplayModal }) => {
   };
 
   return (
-    <div className="relative flex flex-col overflow-hidden">
+    <div className="relative flex flex-col">
       <div className="w-full m-auto mt-0 rounded-md lg:max-w-xl">
         <h3 id="modal-title" className="text-3xl font-semibold text-center text-black">
           New Project
@@ -64,14 +65,7 @@ const ProjectForm = ({ setDisplayModal }) => {
             />
           </div>
           <div className="mt-6">
-            <button
-              className="w-full px-5 py-2 mt-4 mb-1 font-medium text-white bg-indigo-400 border border-b-4 border-r-4 border-black rounded-lg shadow-lg hover:translate-y-1 hover:shadow-md"
-              disabled={!formData.title}
-              type="submit"
-              variant="success"
-            >
-              Create New Project
-            </button>
+            <Button disabled={!formData.title} type="submit" variant="success">Create New Project</Button>
           </div>
         </form>
       </div>
