@@ -71,8 +71,8 @@ const Project = () => {
         {/* critter column */}
         <div className="flex flex-col">
           <div
-            className={`flex flex-col justify-between w-full min-h-0 p-2 space-y-4 bg-indigo-200 grow shrink-0 basis-full rounded-xl ${
-              open ? `md:min-w-[277px] md:basis-1/4` : `md:min-w-fit md:basis-0`
+            className={`flex flex-col justify-between w-full min-h-0 p-2 space-y-4 bg-indigo-100 border-black border-4 grow shrink-0 basis-full rounded-xl ${
+              open ? `md:min-w-[277px] md:basis-1/4` : `border-indigo-100 md:min-w-fit md:basis-0`
             }`}
           >
             <Button onClick={toggle} width="w-fit" align={`self-end ${!open && "md:self-center"}`} padding="md:p-0">
@@ -99,11 +99,13 @@ const Project = () => {
               ""
             )}
           </div>
+          <div className="pt-2">
           <Button onClick={() => setDisplayModal(true)}>
-            <RiAddLine className="inline-block text-white" />
+            <RiAddLine className="inline-block text-black" />
             <span className="inline md:hidden"> Add Task</span>
             <span className="hidden md:inline">{open && " Add Task"}</span>
           </Button>
+          </div>
         </div>
         {/* project columns container*/}
         <div className="flex flex-col items-stretch w-full h-full space-y-4 md:pb-1 2xl:pb-0 md:space-y-0 md:space-x-4 md:overflow-x-auto md:flex-row">

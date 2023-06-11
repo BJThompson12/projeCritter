@@ -15,7 +15,7 @@ const Navbar = () => {
 
   const handleClick = () => setNav((prevNav) => !prevNav);
 
-  const navLink = "text-xl text-white hover:text-indigo-200";
+  const navLink = "text-xl text-black hover:text-indigo-200";
   
   return (
     <div className="sticky top-0 z-10 w-full border-4 border-black ">
@@ -24,7 +24,7 @@ const Navbar = () => {
           {/* site name container */}
           <a
             href="/"
-            className="px-4 text-slate-100 hover:text-indigo-200"
+            className="px-4 text-black hover:text-indigo-200"
             style={{
               fontFamily: "Sniglet, cursive",
               fontWeight: 800,

@@ -5,14 +5,14 @@ const Faq = () => {
     <section className=''>
         <div className='px-6 py-12 mx-auto'>
         <h1 className='text-2xl font-semibold text-gray-800 lg:text-3xl text-center '>
-        <div className="inline-block bg-indigo-300 p-4 rounded-xl border border-2  border-black border-b-4 border-r-4 border-black ">
+        <div className="inline-block bg-green-200 p-4 rounded-xl border border-2  border-black border-b-4 border-r-4 border-black ">
           Frequently Asked Questions
           </div>
         </h1>
 
         <div className='grid grid-cols-1 gap-8 mt-8 lg:mt-16 md:grid-cols-2 xl:grid-cols-3'>
         <div className="bg-indigo-300 p-3 rounded-lg border border-2 border-black border-b-4 border-r-4">
-        <div className='inline-block p-3 text-white bg-indigo-500 rounded-lg border border-2 border-black'>
+        <div className='inline-block p-3 text-black bg-green-200 rounded-lg border border-2 border-black'>
               <RiQuestionLine className='w-6 h-6' />
             </div>
 
@@ -31,7 +31,7 @@ const Faq = () => {
           </div>
 
           <div className="bg-indigo-300 p-3 rounded-lg border border-2 border-black border-b-4 border-r-4">
-        <div className='inline-block p-3 text-white bg-indigo-500 rounded-lg border border-2 border-black'>
+        <div className='inline-block p-3 text-black bg-green-200 rounded-lg border border-2 border-black'>
               <RiQuestionLine className='w-6 h-6' />
             </div>
 
@@ -54,7 +54,7 @@ const Faq = () => {
           </div>
 
           <div className="bg-indigo-300 p-3 rounded-lg border border-2 border-black border-b-4 border-r-4">
-        <div className='inline-block p-3 text-white bg-indigo-500 rounded-lg border border-2 border-black'>
+        <div className='inline-block p-3 text-black bg-green-200 rounded-lg border border-2 border-black'>
               <RiQuestionLine className='w-6 h-6' />
             </div>
 
@@ -81,7 +81,7 @@ const Faq = () => {
           </div>
 
           <div className="bg-indigo-300 p-3 rounded-lg border border-2 border-black border-b-4 border-r-4">
-        <div className='inline-block p-3 text-white bg-indigo-500 rounded-lg border border-2 border-black'>
+        <div className='inline-block p-3 text-black bg-green-200 rounded-lg border border-2 border-black'>
               <RiQuestionLine className='w-6 h-6' />
             </div>
 
@@ -111,8 +111,8 @@ const Faq = () => {
             </div>
           </div>
 
-          <div className="bg-indigo-300 p-3 rounded-lg border border-2 border-black border-b-4 border-r-4">
-        <div className='inline-block p-3 text-white bg-indigo-500 rounded-lg border border-2 border-black'>
+          <div className="bg-indigo-300  p-3 rounded-lg border border-2 border-black border-b-4 border-r-4">
+        <div className='inline-block p-3 text-black bg-green-200 rounded-lg border border-2 border-black'>
               <RiQuestionLine className='w-6 h-6' />
             </div>
 
@@ -136,7 +136,7 @@ const Faq = () => {
           </div>
 
           <div className="bg-indigo-300 p-3 rounded-lg border border-2 border-black border-b-4 border-r-4">
-        <div className='inline-block p-3 text-white bg-indigo-500 rounded-lg border border-2 border-black'>
+        <div className='inline-block p-3 text-black bg-green-200 rounded-lg border border-2 border-black'>
               <RiQuestionLine className='w-6 h-6' />
             </div>
 

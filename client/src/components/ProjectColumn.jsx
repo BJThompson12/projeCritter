@@ -72,8 +72,8 @@ const ProjectColumn = ({ title, colNum }) => {
   const task = data.returnTasks.filter((t) => t.taskstate === colNum);
 
   return (
-    <div className="flex flex-col md:w-[276px] md:min-w-[276px] border-4 border-indigo-500 rounded-xl md:overflow-hidden">
-      <h3 className="px-1 pb-0.5 text-2xl font-semibold text-indigo-500 border-b-4 border-indigo-500">
+    <div className="flex flex-col md:w-[276px] md:min-w-[276px] border-4 border-black rounded-xl md:overflow-hidden">
+      <h3 className="px-1 pb-0.5 text-2xl font-semibold text-indigo-500 border-b-4 border-black">
         {title}
       </h3>
       <div className="overflow-y-auto">
