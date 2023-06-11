@@ -103,7 +103,7 @@ const Navbar = () => {
           className={
             !nav
               ? "hidden"
-              : "absolute bg-indigo-500 text-slate-100 w-full px-8 pb-4 md:hidden space-y-2 text-right"
+              : "absolute bg-indigo-500 text-slate-100 w-full px-8 pb-4 md:hidden space-y-2 text-right border-b-4 border-black"
           }
         >
           <li>
