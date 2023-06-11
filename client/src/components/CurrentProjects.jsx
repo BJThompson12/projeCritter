@@ -37,7 +37,7 @@ const CurrentProjects = () => {
   return (
     <div className="flex flex-col items-center justify-center">
       {projects.length ? (
-        <div className="w-full overflow-hidden border-4 border-black rounded-lg">
+        <div className="w-full overflow-hidden border-4 border-black rounded-lg shadow-[0.4rem_0.4rem_#a7f3d0]">
           <table className="w-full bg-white rounded-xl">
             <thead className="text-center text-white bg-indigo-500 border-b-4 border-black">
               <tr>
@@ -50,7 +50,7 @@ const CurrentProjects = () => {
               {projects.map((project) => (
                 <tr
                   key={project._id}
-                  className="m-2 border-b-2 border-black even:bg-emerald-50 last:border-b-0"
+                  className="m-2 border-b-2 border-black even:bg-indigo-50 last:border-b-0"
                 >
                   <td className="p-2 md:p-4">
                     <div className="flex items-center justify-center">
