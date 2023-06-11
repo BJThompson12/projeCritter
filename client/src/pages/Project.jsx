@@ -69,9 +69,9 @@ const Project = () => {
       {/* project container */}
       <div className="flex flex-col items-stretch w-full h-full min-h-0 space-y-4 md:space-y-0 md:flex-row md:space-x-4">
         {/* critter column */}
-        <div className="flex flex-col space-y-4">
+        <div className="flex flex-col">
           <div
-            className={`flex flex-col justify-between w-full min-h-0 p-2 space-y-4 bg-indigo-100 grow shrink-0 basis-full rounded-xl ${
+            className={`flex flex-col justify-between w-full min-h-0 mb-4 p-2 bg-indigo-100 grow shrink-0 basis-full rounded-xl ${
               open
                 ? `md:min-w-[277px] md:basis-1/4`
                 : `border-indigo-100 md:min-w-fit md:basis-0`
