@@ -1,14 +1,20 @@
 @tailwind base;
 
 :root {
-  --scrollthumb: #6366f1;
-  --scrolltrack: #c7d2fe;
+  --scrollthumb: #86efac;
+  --scrolltrack: #ecfdf5;
+  --scrollthumbalt: #6366f1;
+  --scrolltrackalt: #c7d2fe;
 }
 
 /* Scrollbar - Firefox */
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--scrollthumb) var(--scrolltrack);
+}
+
+.custom-scroll {
+  scrollbar-color: var(--scrollthumbalt) var(--scrolltrackalt);
 }
 
 /* Scrollbar - Chrome, Edge, and Safari */
@@ -21,8 +27,18 @@
   background: var(--scrolltrack);
 }
 
+.custom-scroll::-webkit-scrollbar-track {
+  background: var(--scrolltrackalt);
+  border-radius: 10px;
+}
+
 *::-webkit-scrollbar-thumb {
   background-color: var(--scrollthumb);
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background-color: var(--scrollthumbalt);
+  border-radius: 10px;
 }
 
 @tailwind components;

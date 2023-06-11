@@ -4,12 +4,12 @@ import Button from "../components/Button";
 import Modal from "../components/Modal";
 import { useQuery } from "@apollo/client";
 import { useState } from "react";
-import { RiAddLine } from "react-icons/ri";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
   ChevronUpIcon,
   ChevronDownIcon,
+  PlusIcon,
 } from "@heroicons/react/24/solid";
 import { RETURN_PROJECT, RETURN_TASKS } from "../utils/query";
 import TaskForm from "../components/AddTaskForm";
@@ -60,7 +60,7 @@ const Project = () => {
   }
 
   return (
-    <section className="flex flex-wrap md:flex-nowrap flex-col items-center justify-start w-full h-full md:h-[80vh] 3xl:h-[70vh]">
+    <section className="flex flex-wrap md:flex-nowrap flex-col items-center justify-start w-full h-full md:h-[75vh] 3xl:h-[70vh]">
       {/* page heading */}
       <h2 className="self-start mb-4 text-3xl font-semibold text-indigo-500">
         {data.returnProject.title}
@@ -71,8 +71,10 @@ const Project = () => {
         {/* critter column */}
         <div className="flex flex-col space-y-4">
           <div
-            className={`flex flex-col justify-between w-full min-h-0 p-2 space-y-4 bg-indigo-100 border-black border-4 grow shrink-0 basis-full rounded-xl ${
-              open ? `md:min-w-[277px] md:basis-1/4` : `border-indigo-100 md:min-w-fit md:basis-0`
+            className={`flex flex-col justify-between w-full min-h-0 p-2 space-y-4 bg-indigo-100 grow shrink-0 basis-full rounded-xl ${
+              open
+                ? `md:min-w-[277px] md:basis-1/4`
+                : `border-indigo-100 md:min-w-fit md:basis-0`
             }`}
           >
             <Button
@@ -83,15 +85,15 @@ const Project = () => {
             >
               {/* up/down for mobile */}
               {open ? (
-                <ChevronUpIcon className="block w-6 mx-auto md:hidden" />
+                <ChevronUpIcon className="block w-6 mx-auto stroke-1 md:hidden stroke-black" />
               ) : (
-                <ChevronDownIcon className="block w-6 mx-auto md:hidden" />
+                <ChevronDownIcon className="block w-6 mx-auto stroke-1 md:hidden stroke-black" />
               )}
               {/* left/right for desktop */}
               {open ? (
-                <ChevronLeftIcon className="hidden w-6 mx-auto md:block" />
+                <ChevronLeftIcon className="hidden w-6 mx-auto stroke-1 md:block stroke-black" />
               ) : (
-                <ChevronRightIcon className="hidden w-6 mx-auto md:block" />
+                <ChevronRightIcon className="hidden w-6 mx-auto stroke-1 md:block stroke-black" />
               )}
             </Button>
             {open ? (
@@ -104,16 +106,16 @@ const Project = () => {
               ""
             )}
           </div>
-          <div className="pt-2">
-          <Button onClick={() => setDisplayModal(true)}>
-            <RiAddLine className="inline-block text-black" />
-            <span className="inline md:hidden"> Add Task</span>
-            <span className="hidden md:inline">{open && " Add Task"}</span>
-          </Button>
-          </div>
+            <Button onClick={() => setDisplayModal(true)}>
+              <PlusIcon
+                className={`inline-block w-4 h-4 mb-1 ${open && "mr-1"}`}
+              />
+              <span className="inline md:hidden"> Add Task</span>
+              <span className="hidden md:inline">{open && " Add Task"}</span>
+            </Button>
         </div>
         {/* project columns container*/}
-        <div className="flex flex-col items-stretch w-full h-full space-y-4 md:pb-1 2xl:pb-0 md:space-y-0 md:space-x-4 md:overflow-x-auto md:flex-row">
+        <div className="flex flex-col items-stretch w-full h-full space-y-4 md:pb-1.5 md:space-y-0 md:space-x-4 md:overflow-x-auto md:flex-row custom-scroll">
           <ProjectColumn title="Backlog" colNum={1} />
           <ProjectColumn title="Ready" colNum={2} />
           <ProjectColumn title="In Progress" colNum={3} />

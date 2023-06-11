@@ -58,8 +58,8 @@ const ProjectColumn = ({ title, colNum }) => {
 
   if (loading) {
     return (
-      <div className="flex flex-col md:w-[276px] md:min-w-[276px] border-4 border-indigo-500 rounded-xl md:overflow-hidden">
-        <h3 className="px-1 pb-0.5 text-2xl font-semibold text-indigo-500 border-b-4 border-indigo-500">
+      <div className="flex flex-col md:w-[276px] md:min-w-[276px] border-4 border-black rounded-xl md:overflow-hidden shadow-[0.4rem_0.4rem_#a7f3d0]">
+        <h3 className="px-1 pb-0.5 text-2xl font-semibold text-white border-b-4 border-black bg-indigo-500">
           {title}
         </h3>
         <div className="overflow-y-auto">
@@ -72,18 +72,18 @@ const ProjectColumn = ({ title, colNum }) => {
   const task = data.returnTasks.filter((t) => t.taskstate === colNum);
 
   return (
-    <div className="flex flex-col md:w-[276px] md:min-w-[276px] border-4 border-black rounded-xl md:overflow-hidden">
-      <h3 className="px-1 pb-0.5 text-2xl font-semibold text-indigo-500 border-b-4 border-black">
+    <div className="flex flex-col md:w-[276px] md:min-w-[276px] border-4 border-black rounded-xl overflow-hidden shadow-[0.4rem_0.4rem_#a7f3d0]">
+      <h3 className="px-2 pb-1 text-2xl font-semibold text-white bg-indigo-500 border-b-4 border-black">
         {title}
       </h3>
       <div className="overflow-y-auto">
-        <ul className="text-lg md:text-base">
+        <ul className="text-xl md:text-base">
           {task.length ? (
             <>
               {task.map((task) => (
                 <li className="p-2" key={task._id}>
-                  <div className="flex items-center justify-between p-1 bg-indigo-200 text-md min-h-[42px] rounded">
-                    <p>{task.taskbody}</p>
+                  <div className="flex items-center justify-between p-1 bg-indigo-100 text-md min-h-[42px] rounded">
+                    <p className="mx-2">{task.taskbody}</p>
                     <div className="flex items-center ml-2">
                       <button>
                         <TrashIcon
