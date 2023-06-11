@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import Auth from "../utils/auth";
 
+import Button from "../components/Button";
+import Modal from "../components/Modal";
 import Login from "./Login";
 import SignUp from "./SignUp";
 
@@ -13,19 +16,17 @@ const Navbar = () => {
 
   const handleClick = () => setNav((prevNav) => !prevNav);
 
-  // styles
-
-  const navButton =
-    "bg-indigo-400 text-white mt-4 rounded px-5 py-2 font-medium border border-b-4 border-r-4 border-black rounded-lg shadow-lg hover:translate-y-1 hover:shadow-md";
-
+  const navLink = "text-xl text-white hover:text-emerald-200";
+  const navLinkActive = "text-xl text-emerald-200 hover:text-white";
+  
   return (
-    <div className="sticky top-0 z-10 w-full border border-black border-4 ">
+    <div className="sticky top-0 z-10 w-full border-b-4 border-black ">
       <header className="w-full h-20 bg-indigo-500 drop-shadow-md">
-        <div className="flex items-center justify-between w-full h-full px-2">
+        <div className="flex items-center justify-between w-full h-full px-4">
           {/* site name container */}
           <a
             href="/"
-            className="px-4 text-slate-100 hover:text-indigo-200"
+            className="text-white"
             style={{
               fontFamily: "Sniglet, cursive",
               fontWeight: 800,
@@ -37,37 +38,51 @@ const Navbar = () => {
 
           {/* desktop navigation */}
           <nav>
-            <ul className="hidden space-x-4 md:flex md:items-center">
+            <ul className="hidden space-x-6 md:flex md:items-center">
               <li>
-              <button className={navButton}>
-                <a href="/faq" >
+                <NavLink
+                  to="/faq"
+                  className={({ isActive, isPending }) =>
+                    isPending
+                      ? navLinkActive
+                      : isActive
+                      ? navLinkActive
+                      : navLink
+                  }
+                >
                   FAQ
-                </a>
-                </button>
+                </NavLink>
               </li>
               {loggedIn ? (
                 <>
                   <li>
-                    <button className={navButton}>
-                    <a href="/dashboard">
+                    <NavLink
+                      to="/dashboard"
+                      className={({ isActive, isPending }) =>
+                        isPending
+                          ? navLinkActive
+                          : isActive
+                          ? navLinkActive
+                          : navLink
+                      }
+                    >
                       Dashboard
-                    </a>
-                    </button>
+                    </NavLink>
                   </li>
                   <li>
-                    <button className={navButton} onClick={() => Auth.logout()}>
+                    <Button width="w-fit" onClick={() => Auth.logout()}>
                       Log Out
-                    </button>
+                    </Button>
                   </li>
                 </>
               ) : (
                 <li>
-                  <button
-                    className={navButton}
+                  <Button
+                    width="w-fit"
                     onClick={() => setDisplayModal(displayModal ? false : true)}
                   >
-                    Sign Up / Log In
-                  </button>
+                    Log In or Sign Up
+                  </Button>
                 </li>
               )}
             </ul>
@@ -76,9 +91,9 @@ const Navbar = () => {
           {/* mobile menu button */}
           <div className="md:hidden" onClick={handleClick}>
             {!nav ? (
-              <Bars3Icon className="w-8 text-white" />
+              <Bars3Icon className="w-8 text-white stroke-1 stroke-white min-h-[42px] min-w-[42px]" />
             ) : (
-              <XMarkIcon className="w-8 text-white" />
+              <XMarkIcon className="w-8 text-white stroke-1 stroke-white min-h-[42px] min-w-[42px]" />
             )}
           </div>
         </div>
@@ -88,75 +103,60 @@ const Navbar = () => {
           className={
             !nav
               ? "hidden"
-              : "absolute bg-indigo-500 text-slate-100 w-full px-8 pb-4 md:hidden space-y-2 text-right"
+              : "absolute bg-indigo-500 text-slate-100 w-full px-8 pb-4 md:hidden space-y-2 text-right border-b-4 border-black"
           }
         >
           <li>
-              <button className={navButton}>
-                <a href="/faq" >
-                  FAQ
-                </a>
-                </button>
+            <NavLink
+              to="/faq"
+              className={({ isActive, isPending }) =>
+                isPending ? navLinkActive : isActive ? navLinkActive : navLink
+              }
+            >
+              FAQ
+            </NavLink>
           </li>
           {loggedIn ? (
             <>
               <li>
-                    <button className={navButton}>
-                    <a href="/dashboard">
-                      Dashboard
-                    </a>
-                    </button>
-                  </li>
-                  <li>
-                    <button className={navButton} onClick={() => Auth.logout()}>
-                      Log Out
-                    </button>
-                  </li>
+                <NavLink
+                  to="/dashboard"
+                  className={({ isActive, isPending }) =>
+                    isPending
+                      ? navLinkActive
+                      : isActive
+                      ? navLinkActive
+                      : navLink
+                  }
+                >
+                  Dashboard
+                </NavLink>
+              </li>
+              <li>
+                <Button width="w-fit" onClick={() => Auth.logout()}>
+                  Log Out
+                </Button>
+              </li>
             </>
           ) : (
-            <button
+            <Button
+              width="w-fit"
               onClick={() => setDisplayModal(displayModal ? false : true)}
-              className={navButton}
             >
-              Sign Up / Log In
-            </button>
+              Log In or Sign Up
+            </Button>
           )}
         </ul>
       </header>
 
       {/* login modal */}
-      {displayModal ? (
-        <modal>
-          <div className=" flex items-center justify-center md:fixed inset-0">
-              <div className="relative mx-auto ">
-                {/*content*/}
-                <div className="flex justify-center items-center flex-col bg-indigo-300 rounded-2xl border-4 border-b-8 border-r-8 border-black shadow-md">
-                  {/*body*/}
-
-                  <div className="p-10 ">
-                    <div>
-                      <div className="flex flex-wrap justify-center gap-1 px-2 display">
-                        {" "}
-                        <SignUp /> <Login />{" "}
-                      </div>
-                    </div>
-                  </div>
-                  {/*footer*/}
-                  <div className="flex items-center justify-center p-2 border-t border-solid rounded-b border-slate-200">
-                    <button
-                      className={navButton}
-                      type="button"
-                      onClick={() => setDisplayModal(false)}
-                    >
-                      Close
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className=" z-40 bg-black opacity-25"></div>
-        </modal>
-      ) : null}
+      <Modal displayModal={displayModal} setDisplayModal={setDisplayModal}>
+        <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16 md:flex-nowrap md:min-w-[32vw]">
+          <Login />
+          <hr class="w-full h-0.5 border-0 rounded md:my-10 bg-indigo-500 md:hidden" />
+          <SignUp />
+        </div>
+      </Modal>
     </div>
   );
 };

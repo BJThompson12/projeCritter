@@ -1,13 +1,15 @@
-import { useMutation } from '@apollo/client';
-import { LOG_IN } from '../utils/mutation';
-import Auth from '../utils/auth';
+import { useMutation } from "@apollo/client";
+import { LOG_IN } from "../utils/mutation";
+import Auth from "../utils/auth";
+import Button from "./Button";
+import FormInput from "./FormInput";
 
-import { useState } from 'react';
+import { useState } from "react";
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   const [showAlert, setShowAlert] = useState(false);
@@ -30,7 +32,7 @@ const Login = () => {
       console.log(data);
 
       if (!data) {
-        throw new Error('something went wrong!');
+        throw new Error("something went wrong!");
       }
 
       Auth.login(data.login.token);
@@ -39,72 +41,50 @@ const Login = () => {
       setShowAlert(true);
     } finally {
       setFormData({
-        email: '',
-        password: '',
+        email: "",
+        password: "",
       });
     }
   };
-  const logInButton =
-  "w-full bg-indigo-400 text-white mt-4 rounded px-5 py-2 font-medium border border-b-4 border-r-4 border-black rounded-lg shadow-lg hover:translate-y-1 hover:shadow-md";
 
   return (
-    <>
-         <div className='relative flex flex-col overflow-hidden'>
-          <div className='w-full p-6 m-auto bg-indigo-300 rounded-md lg:max-w-xl mt-0'>
-            <h1 className='text-3xl font-semibold text-center text-black'>
-              Log in
-            </h1>
-          <form onSubmit={handleSubmit} className='mt-6'>
-            <div className='mb-2'>
-              <label
-                for='email'
-                className='block text-sm font-semibold text-black text-center'
-              >
-                Email
-              </label>
-              <input
-                type='email'
-                placeholder='Your email address'
-                name='email'
-                onChange={handleInputChange}
-                value={formData.email}
-                required
-                className='block w-full px-4 py-2 mt-2 text-purple-700 bg-white border border-2 border-black rounded-xl focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40'
-              />
-            </div>
-            <div className='mb-2'>
-              <label
-                for='password'
-                className='block text-sm font-semibold text-black text-center'
-              >
-                Password
-              </label>
-              <input
-                placeholder='Your password'
-                name='password'
-                onChange={handleInputChange}
-                value={formData.password}
-                required
-                type='password'
-                className='block w-full px-4 py-2 mt-2 text-purple-700 bg-white border border-2 border-black rounded-xl focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40'
-              />
-            </div>
-            <div className='mt-6'>
-              <button
-                className={logInButton}
-                disabled={
-                  !(formData.email && formData.password)
-                }
-                type='submit'
-                variant='success'
-              >
-                Login
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </>
+    <div className="flex flex-col items-center w-full space-y-4">
+      <h3
+        id="modal-title"
+        className="text-2xl font-semibold text-center text-black"
+      >
+        Log In
+      </h3>
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col items-center w-full space-y-4"
+      >
+        <FormInput
+          label="Email"
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleInputChange}
+          required
+        />
+        <FormInput
+          label="Password"
+          type="password"
+          name="password"
+          value={formData.password}
+          onChange={handleInputChange}
+          required
+        />
+        <Button
+          disabled={!(formData.email && formData.password)}
+          type="submit"
+          variant="success"
+          width="w-fit"
+        >
+          Log In
+        </Button>
+      </form>
+    </div>
   );
 };
 

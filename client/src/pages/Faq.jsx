@@ -1,166 +1,67 @@
-import { RiQuestionLine } from 'react-icons/ri';
+import FaqCard from "../components/FaqCard";
 
 const Faq = () => {
   return (
-    <section className=''>
-        <div className='px-6 py-12 mx-auto'>
-        <h1 className='text-2xl font-semibold text-gray-800 lg:text-3xl text-center '>
-        <div className="inline-block bg-indigo-300 p-4 rounded-xl border border-2  border-black border-b-4 border-r-4 border-black ">
-          Frequently Asked Questions
-          </div>
-        </h1>
-
-        <div className='grid grid-cols-1 gap-8 mt-8 lg:mt-16 md:grid-cols-2 xl:grid-cols-3'>
-        <div className="bg-indigo-300 p-3 rounded-lg border border-2 border-black border-b-4 border-r-4">
-        <div className='inline-block p-3 text-white bg-indigo-500 rounded-lg border border-2 border-black'>
-              <RiQuestionLine className='w-6 h-6' />
-            </div>
-
-            <div>
-              <h1 className='text-xl font-semibold text-gray-800'>
-                Do I need an account to use the application?
-              </h1>
-
-              <p className='mt-2 text-sm text-gray-800'>
-                Oh, absolutely! To tap into the full awesomeness of this page,
-                you'll need a secret key—a.k.a., an account. Think of it as your
-                VIP pass to an extraordinary experience. With an account, you'll
-                unlock accesss to creating your own personalized Projects.
-              </p>
-            </div>
-          </div>
-
-          <div className="bg-indigo-300 p-3 rounded-lg border border-2 border-black border-b-4 border-r-4">
-        <div className='inline-block p-3 text-white bg-indigo-500 rounded-lg border border-2 border-black'>
-              <RiQuestionLine className='w-6 h-6' />
-            </div>
-
-            <div>
-              <h1 className='text-xl font-semibold text-gray-800'>
-                How many Projects can I create?
-              </h1>
-
-              <p className='mt-2 text-sm text-gray-800'>
-                Ah, the question of project limits. Prepare to have your socks
-                knocked off! When it comes to how many projects you can create,
-                the answer is a resounding "Yes!" We believe in your boundless
-                creativity and encourage you to go wild with as many projects as
-                your imagination can conjure. So, let loose, unleash your inner
-                genius, and create to your heart's content. The sky's the limit
-                (and maybe even beyond!). Get ready to embark on a
-                project-creating spree like no other!
-              </p>
-            </div>
-          </div>
-
-          <div className="bg-indigo-300 p-3 rounded-lg border border-2 border-black border-b-4 border-r-4">
-        <div className='inline-block p-3 text-white bg-indigo-500 rounded-lg border border-2 border-black'>
-              <RiQuestionLine className='w-6 h-6' />
-            </div>
-
-            <div>
-              <h1 className='text-xl font-semibold text-gray-800'>
-                What are the key features of this project tracking tool?
-              </h1>
-
-              <p className='mt-2 text-sm text-gray-800'>
-                Where do we begin? Take charge of your tasks like a fearless
-                superhero! Create, edit, and delete tasks with ease.
-              </p>
-              <p className='mt-2 text-sm text-gray-800'>
-                Our app adds a touch of whimsy and humor to your daily routine.
-                Animated characters and visual elements will keep you engaged
-                and smiling throughout your task journey.
-              </p>
-              <p className='mt-2 text-sm text-gray-800'>
-                Your data is a fortress protected by the strongest encryption
-                spells. We've implemented top-notch security measures to ensure
-                your information stays safe and sound.
-              </p>
-            </div>
-          </div>
-
-          <div className="bg-indigo-300 p-3 rounded-lg border border-2 border-black border-b-4 border-r-4">
-        <div className='inline-block p-3 text-white bg-indigo-500 rounded-lg border border-2 border-black'>
-              <RiQuestionLine className='w-6 h-6' />
-            </div>
-
-            <div>
-              <h1 className='text-xl font-semibold text-gray-800'>
-                How do I create and delete tasks?
-              </h1>
-
-              <p className='mt-2 text-sm text-gray-800'>
-                Creating Tasks: With a clcik of a button on your project page.
-                Just click the Add Task button and give it all the details you
-                need. you can summon tasks into existence. Just imagine the
-                task, sprinkle in some details, and assign it to a Task
-                Category. Voila! Your task is ready to rock and roll!
-              </p>
-              <p className='mt-2 text-sm text-gray-800'>
-                Deleting Tasks: The time has come to bid farewell to a task.
-                Fearlessly wield your deletion hammer and watch as the task
-                disappears into the digital abyss. With one mighty click of the
-                trash can and you can banish unwanted tasks to task Valhalla.
-              </p>
-              <p className='mt-2 text-sm text-gray-800'>
-                Remember, with great task-creating and deleting powers comes
-                great responsibility! So use them wisely and conquer your task
-                list with a smile on your face!
-              </p>
-            </div>
-          </div>
-
-          <div className="bg-indigo-300 p-3 rounded-lg border border-2 border-black border-b-4 border-r-4">
-        <div className='inline-block p-3 text-white bg-indigo-500 rounded-lg border border-2 border-black'>
-              <RiQuestionLine className='w-6 h-6' />
-            </div>
-
-            <div>
-              <h1 className='text-xl font-semibold text-gray-800'>
-                How does the app incorporate humor into the interface?
-              </h1>
-
-              <p className='mt-2 text-sm text-gray-800'>
-                Humor is our secret ingredient to making your task interface a
-                delightful experience! Prepare for a giggle-filled journey as we
-                sprinkle humor throughout the app.
-              </p>
-              <p className='mt-2 text-sm text-gray-800'>
-                When you feel like your task are keeping you down, just check
-                out your Critter!! They are pretty bummed too, but we know you
-                dont want that. Knock out those tasks and bring joy back to your
-                little buddy.
-              </p>
-            </div>
-          </div>
-
-          <div className="bg-indigo-300 p-3 rounded-lg border border-2 border-black border-b-4 border-r-4">
-        <div className='inline-block p-3 text-white bg-indigo-500 rounded-lg border border-2 border-black'>
-              <RiQuestionLine className='w-6 h-6' />
-            </div>
-
-            <div>
-              <h1 className='text-xl font-semibold text-gray-800'>
-                Is the app compatible with different platforms and devices?
-              </h1>
-
-              <p className='mt-2 text-sm text-gray-800'>
-                Absolutely! Our app is a master of compatibility, ready to be
-                your trusty sidekick on any device you choose. Whether you're
-                wielding a powerful desktop computer, brandishing an iPhone like
-                a tech-savvy wizard, or harnessing the energy of an Android
-                device like a digital superhero, our app is there to assist you.
-              </p>
-              <p className='mt-2 text-sm text-gray-800'>
-                Web Browsers: Fire up your favorite web browser on your computer
-                or laptop, and our app will be at your service. Chrome, Firefox,
-                Safari—pick your weapon of choice, and let the productivity
-                adventure begin.
-              </p>
-            </div>
-          </div>
-        </div>
+    <section class="w-full">
+      <h2 className="mb-4 text-3xl font-semibold text-left text-indigo-500">
+        Frequently Asked Questions
+      </h2>
+      <div className="flex flex-col flex-wrap justify-center gap-4 md:flex-row">
+        <FaqCard question="How do I create a Critter?">
+          <p className="mb-2">
+            First, you'll want to create an account so that you have access to
+            the dashboard. From there, use <em>+ Add Project</em> to create a
+            new project, then click the name of the project to view the project
+            page. Every new project comes with a newborn Critter that is happy
+            to see you! (Right now, the Critter will always be a panda, but more
+            options are on the way.) Underneath the Critter, click the pencil
+            icon to give them a name. Now, just start adding tasks, and watch
+            how your Critter responds!
+          </p>
+          <p>
+            If you delete a project using the trashcan icon, your Critter will
+            leave the nest to go explore the world, and you won't be seeing them
+            again. Please keep that in mind when deleting!
+          </p>
+        </FaqCard>
+        <FaqCard question="How do I keep my Critter happy?">
+          <p>
+            Your Critter is happiest when you have no work left on your plate.
+            Every time you add a task using <em>+ Add Task</em>, they will start
+            to feel a little more pressure. To keep your Critter in a positive
+            mood, you'll want to complete as many open tasks as possible and
+            move them into the <em>Done</em> column using the arrows. The
+            trashcan can be used to delete tasks that have been cancelled or
+            were added by mistake. Either one will improve your Critter's mood.
+            Moving <em>In Progress</em> tasks back to <em>Ready</em> or{" "}
+            <em>Backlog</em> if you're not actively working on them can also
+            help.
+          </p>
+        </FaqCard>
+        <FaqCard question="Why is my Critter upset?">
+          <p>
+            You critter's mood is dependent on the amount of tasks currently
+            listed in the <em>Backlog</em>, <em>Ready</em>, and{" "}
+            <em>In Progress</em> columns on the project page.{" "}
+            <em>In Progress</em> is the scariest column for your Critter—they
+            can really feel your stress when you're working on way too many
+            things at once! <em>Ready</em> isn't as frightening, but they will
+            start to get concerned if they see you're about to have a lot on
+            your plate. <em>Backlog</em> is similar to <em>Ready</em>, but the
+            Critter won't be quite as bothered, since those tasks aren't
+            immediate concerns.
+          </p>
+        </FaqCard>
+        <FaqCard question="Help!! My Critter is dead!">
+          <p>
+            No, they're just taking a little nap! No Critter is every
+            permanently <em>Wiped Out</em>. They'll wake up again once you've completed
+            more of your tasks. However, if your Critter is in such a dire
+            state, you should probably check in with yourself and think about
+            whether you're taking on a reasonable amount of work. Please take
+            care of yourself!
+          </p>
+        </FaqCard>
       </div>
     </section>
   );
