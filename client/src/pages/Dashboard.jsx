@@ -2,7 +2,7 @@ import React from "react";
 import CurrentProjects from "../components/CurrentProjects";
 import Button from "../components/Button";
 import Modal from "../components/Modal";
-import { RiAddLine } from "react-icons/ri";
+import { PlusIcon } from "@heroicons/react/24/solid";
 
 import ProjectForm from "../components/AddProjectForm";
 
@@ -15,8 +15,8 @@ import { useQuery } from "@apollo/client";
 const loggedIn = Auth.getToken();
 
 const Dashboard = () => {
-  const token = localStorage.getItem('id_token');
-  Auth.isTokenExpired(token)
+  const token = localStorage.getItem("id_token");
+  Auth.isTokenExpired(token);
   const [displayModal, setDisplayModal] = useState(false);
 
   const url = window.location.href;
@@ -27,47 +27,41 @@ const Dashboard = () => {
   });
 
   if (loading) {
-    return <p>Loading...</p>; // Return a loading indicator while data is being fetched
+    return <p className="italic">Loading...</p>;
   }
 
   if (!data) {
-    return <p>No data found.</p>; // Handle the case when no data is returned
+    return <p className="italic">No data found.</p>;
   }
+
   return (
-    <>
-   {loggedIn ? (
-  <div className="w-full h-full">
-    <h1 className="mb-2 text-4xl font-semibold text-center text-black">
-      <div className="inline-block p-4 bg-indigo-500 border border-2 border-black rounded-xl">
-        Welcome, {data.returnUser.username}!
-      </div>
-    </h1>
-    <div className="">
+    <div className="w-full max-w-[960px] text-center md:text-left">
+      {loggedIn ? (
+        <>
+          <div className="flex flex-col items-center justify-between md:flex-row">
+            <h2 className="mb-4 text-3xl font-semibold text-indigo-600">
+              Welcome, {data.returnUser.username}!
+            </h2>
+            <Button onClick={() => setDisplayModal(true)} width="w-fit">
+              <PlusIcon className="inline-block w-4 h-4 mb-1 mr-1" />
+              Add Project
+            </Button>
+          </div>
+          <div className="w-full max-w-3xl mx-auto">
+            <h3 className="mt-4 mb-2 text-xl font-semibold text-left text-black">
+              Current Projects:
+            </h3>
+            <CurrentProjects />
+          </div>
 
-      <div className="flex justify-center items-center pb-2">
-        <h2 className="mt-2 text-xl bg-green-200 w-5/6 md:w-1/6 rounded-lg font-semibold text-center text-black p-2 border border-2 border-black">
-          Current Projects:
-        </h2>
-        
-      </div>
-      <div className="flex justify-center p-2">
-        <Button onClick={() => setDisplayModal(true)} width="w-fit">
-          <RiAddLine className="inline-block mr-2" />
-          Add Project
-        </Button>
-      </div>
-      <CurrentProjects />
+          <Modal displayModal={displayModal} setDisplayModal={setDisplayModal}>
+            <ProjectForm setDisplayModal={setDisplayModal} />
+          </Modal>
+        </>
+      ) : (
+        <p className="italic">Please log in to access this page.</p>
+      )}
     </div>
-
-
-    <Modal displayModal={displayModal} setDisplayModal={setDisplayModal}>
-      <ProjectForm setDisplayModal={setDisplayModal} />
-    </Modal>
-  </div>
-) : (
-  <div>You Must Log In First to Access This Page!</div>
-)}
-    </>
   );
 };
 
