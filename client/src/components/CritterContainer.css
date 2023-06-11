@@ -3,6 +3,21 @@
     transform-origin: center;
 }
 
+/* -------- HOMEPAGE -------- */
+
+.homepage {
+    animation: rock 1s infinite;
+}
+
+@keyframes rock {
+    25% {
+        transform: rotate(5deg);
+    }
+    75% {
+        transform: rotate(-5deg);
+    }
+}
+
 /* -------- WAVE --------*/
 
 .wave {
