@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import Auth from "../utils/auth";
 
@@ -15,16 +16,17 @@ const Navbar = () => {
 
   const handleClick = () => setNav((prevNav) => !prevNav);
 
-  const navLink = "text-xl text-black hover:text-indigo-200";
+  const navLink = "text-xl text-white hover:text-emerald-200";
+  const navLinkActive = "text-xl text-emerald-200 hover:text-white";
   
   return (
-    <div className="sticky top-0 z-10 w-full border-4 border-black ">
+    <div className="sticky top-0 z-10 w-full border-b-4 border-black ">
       <header className="w-full h-20 bg-indigo-500 drop-shadow-md">
-        <div className="flex items-center justify-between w-full h-full px-2">
+        <div className="flex items-center justify-between w-full h-full px-4">
           {/* site name container */}
           <a
             href="/"
-            className="px-4 text-black hover:text-indigo-200"
+            className="text-white"
             style={{
               fontFamily: "Sniglet, cursive",
               fontWeight: 800,
@@ -36,18 +38,36 @@ const Navbar = () => {
 
           {/* desktop navigation */}
           <nav>
-            <ul className="hidden space-x-4 md:flex md:items-center">
+            <ul className="hidden space-x-6 md:flex md:items-center">
               <li>
-                <a href="/faq" className={navLink}>
+                <NavLink
+                  to="/faq"
+                  className={({ isActive, isPending }) =>
+                    isPending
+                      ? navLinkActive
+                      : isActive
+                      ? navLinkActive
+                      : navLink
+                  }
+                >
                   FAQ
-                </a>
+                </NavLink>
               </li>
               {loggedIn ? (
                 <>
                   <li>
-                    <a href="/dashboard" className={navLink}>
+                    <NavLink
+                      to="/dashboard"
+                      className={({ isActive, isPending }) =>
+                        isPending
+                          ? navLinkActive
+                          : isActive
+                          ? navLinkActive
+                          : navLink
+                      }
+                    >
                       Dashboard
-                    </a>
+                    </NavLink>
                   </li>
                   <li>
                     <Button width="w-fit" onClick={() => Auth.logout()}>
@@ -71,9 +91,9 @@ const Navbar = () => {
           {/* mobile menu button */}
           <div className="md:hidden" onClick={handleClick}>
             {!nav ? (
-              <Bars3Icon className="w-8 text-white" />
+              <Bars3Icon className="w-8 text-white stroke-1 stroke-white min-h-[42px] min-w-[42px]" />
             ) : (
-              <XMarkIcon className="w-8 text-white" />
+              <XMarkIcon className="w-8 text-white stroke-1 stroke-white min-h-[42px] min-w-[42px]" />
             )}
           </div>
         </div>
@@ -87,16 +107,30 @@ const Navbar = () => {
           }
         >
           <li>
-            <a href="/faq" className={navLink}>
+            <NavLink
+              to="/faq"
+              className={({ isActive, isPending }) =>
+                isPending ? navLinkActive : isActive ? navLinkActive : navLink
+              }
+            >
               FAQ
-            </a>
+            </NavLink>
           </li>
           {loggedIn ? (
             <>
               <li>
-                <a href="/dashboard" className={navLink}>
+                <NavLink
+                  to="/dashboard"
+                  className={({ isActive, isPending }) =>
+                    isPending
+                      ? navLinkActive
+                      : isActive
+                      ? navLinkActive
+                      : navLink
+                  }
+                >
                   Dashboard
-                </a>
+                </NavLink>
               </li>
               <li>
                 <Button width="w-fit" onClick={() => Auth.logout()}>
