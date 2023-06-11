@@ -35,33 +35,38 @@ const Dashboard = () => {
   }
   return (
     <>
-      {loggedIn ? (
-        <div className="w-full h-full">
-          <h1 className="mb-4 text-4xl font-semibold text-center text-indigo-500">
-            <div className="inline-block p-4 bg-indigo-300 border border-b-4 border-r-4 border-black rounded-xl ">
-              Welcome, {data.returnUser.username}!
-            </div>
-          </h1>
-          <div className="flex justify-center">
-            <Button onClick={() => setDisplayModal(true)} width="w-fit">
-              <RiAddLine className="inline-block mr-2" />
-              Add Project
-            </Button>
-          </div>
-          <div className="pt-2">
-            <h2 className="mt-4 text-xl font-semibold text-center text-indigo-400">
-              Current Projects:
-            </h2>
-            <CurrentProjects />
-          </div>
+   {loggedIn ? (
+  <div className="w-full h-full">
+    <h1 className="mb-2 text-4xl font-semibold text-center text-black">
+      <div className="inline-block p-4 bg-indigo-500 border border-2 border-black rounded-xl">
+        Welcome, {data.returnUser.username}!
+      </div>
+    </h1>
+    <div className="">
 
-          <Modal displayModal={displayModal} setDisplayModal={setDisplayModal}>
-            <ProjectForm setDisplayModal={setDisplayModal} />
-          </Modal>
-        </div>
-      ) : (
-        <div> You Must Log First In to Acess This Page! </div>
-      )}
+      <div className="flex justify-center items-center pb-2">
+        <h2 className="mt-2 text-xl bg-green-200 w-5/6 md:w-1/6 rounded-lg font-semibold text-center text-black p-2 border border-2 border-black">
+          Current Projects:
+        </h2>
+        
+      </div>
+      <div className="flex justify-center p-2">
+        <Button onClick={() => setDisplayModal(true)} width="w-fit">
+          <RiAddLine className="inline-block mr-2" />
+          Add Project
+        </Button>
+      </div>
+      <CurrentProjects />
+    </div>
+
+
+    <Modal displayModal={displayModal} setDisplayModal={setDisplayModal}>
+      <ProjectForm setDisplayModal={setDisplayModal} />
+    </Modal>
+  </div>
+) : (
+  <div>You Must Log In First to Access This Page!</div>
+)}
     </>
   );
 };

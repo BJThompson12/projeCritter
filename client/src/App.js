@@ -25,7 +25,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="bg-indigo-200 flex flex-col items-center w-full min-h-screen App">
+        <div className="bg-white flex flex-col items-center w-full min-h-screen App">
           <Navbar />
           <main className=" flex flex-col items-center w-full max-w-[1536px] p-8">
             <Routes>
