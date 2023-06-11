@@ -130,7 +130,7 @@ const Home = () => {
       </figure>
       <div className="w-full max-w-lg min-w-0 text-left">
         <div className="flex-1 bg-emerald-200 text-black p-4 mb-2 relative border-4 border-black w-fit mx-auto md:mx-0 shadow-[0.4rem_0.4rem_#c7d2fe]">
-          <h3 className="text-3xl font-semibold text-center md:text-left">Let's work together!</h3>
+          <h2 className="text-3xl font-semibold text-center md:text-left">Let's work together!</h2>
 
           <div className="absolute top-0 left-[47.5%] md:top-[55%] md:left-0 transform -translate-y-[68%] md:-translate-x-[68%] rotate-45 w-4 h-4 bg-emerald-200 border-t-4 md:border-t-0 border-l-4 md:border-b-4 border-black"></div>
         </div>

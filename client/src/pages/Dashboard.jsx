@@ -39,7 +39,7 @@ const Dashboard = () => {
       {loggedIn ? (
         <>
           <div className="flex flex-col items-center justify-between md:flex-row">
-            <h2 className="mb-4 text-3xl font-semibold text-indigo-600">
+            <h2 className="mb-4 text-3xl font-semibold text-indigo-500">
               Welcome, {data.returnUser.username}!
             </h2>
             <Button onClick={() => setDisplayModal(true)} width="w-fit">
