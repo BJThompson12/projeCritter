@@ -3,10 +3,10 @@ import FaqCard from "../components/FaqCard";
 const Faq = () => {
   return (
     <section class="w-full">
-      <h2 className="mb-4 text-3xl font-semibold text-left text-indigo-500">
+      <h2 className="mb-4 text-3xl font-extrabold text-left text-indigo-500">
         Frequently Asked Questions
       </h2>
-      <div className="flex flex-col flex-wrap justify-center gap-4 md:flex-row">
+      <div className="flex flex-col flex-wrap justify-center gap-6 md:flex-row">
         <FaqCard question="How do I create a Critter?">
           <p className="mb-2">
             First, you'll want to create an account so that you have access to
@@ -55,11 +55,11 @@ const Faq = () => {
         <FaqCard question="Help!! My Critter is dead!">
           <p>
             No, they're just taking a little nap! No Critter is every
-            permanently <em>Wiped Out</em>. They'll wake up again once you've completed
-            more of your tasks. However, if your Critter is in such a dire
-            state, you should probably check in with yourself and think about
-            whether you're taking on a reasonable amount of work. Please take
-            care of yourself!
+            permanently <em>Wiped Out</em>. They'll wake up again once you've
+            completed more of your tasks. However, if your Critter is in such a
+            dire state, you should probably check in with yourself and think
+            about whether you're taking on a reasonable amount of work. Please
+            take care of yourself!
           </p>
         </FaqCard>
       </div>

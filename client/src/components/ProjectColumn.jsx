@@ -73,11 +73,11 @@ const ProjectColumn = ({ title, colNum }) => {
 
   return (
     <div className="flex flex-col md:w-[276px] md:min-w-[276px] border-4 border-black rounded-xl overflow-hidden shadow-[0.4rem_0.4rem_#a7f3d0]">
-      <h3 className="px-2 pb-1 text-2xl font-semibold text-white bg-indigo-500 border-b-4 border-black">
+      <h3 className="px-2 py-1 text-2xl font-semibold text-white bg-indigo-500 border-b-4 border-black">
         {title}
       </h3>
       <div className="overflow-y-auto">
-        <ul className="text-xl md:text-base">
+        <ul className="text-xl font-medium md:text-base">
           {task.length ? (
             <>
               {task.map((task) => (

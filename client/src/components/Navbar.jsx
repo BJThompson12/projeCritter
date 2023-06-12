@@ -16,22 +16,17 @@ const Navbar = () => {
 
   const handleClick = () => setNav((prevNav) => !prevNav);
 
-  const navLink = "text-xl text-white hover:text-emerald-200";
-  const navLinkActive = "text-xl text-emerald-200 hover:text-white";
+  const navLink = "text-xl font-medium text-white hover:text-emerald-200";
+  const navLinkActive = "text-xl font-medium text-emerald-200 hover:text-white";
   
   return (
     <div className="sticky top-0 z-10 w-full border-b-4 border-black ">
       <header className="w-full h-20 bg-indigo-500 drop-shadow-md">
-        <div className="flex items-center justify-between w-full h-full px-4">
+        <div className="flex items-center justify-between w-full h-full px-5">
           {/* site name container */}
           <a
             href="/"
-            className="text-white"
-            style={{
-              fontFamily: "Sniglet, cursive",
-              fontWeight: 800,
-              fontSize: "40px",
-            }}
+            className="mb-1 text-4xl tracking-wide text-white align-middle font-display md:text-5xl"
           >
             projeCritter
           </a>
