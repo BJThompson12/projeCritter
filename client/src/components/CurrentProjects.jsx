@@ -39,7 +39,7 @@ const CurrentProjects = () => {
       {projects.length ? (
         <div className="w-full overflow-hidden border-4 border-black rounded-lg shadow-[0.4rem_0.4rem_#a7f3d0]">
           <table className="w-full bg-white rounded-xl">
-            <thead className="text-center text-white bg-indigo-500 border-b-4 border-black">
+            <thead className="text-center text-white bg-indigo-500 border-b-4 border-black md:text-lg">
               <tr>
                 <th className="p-2 md:p-4">Critter</th>
                 <th className="p-2 md:p-4">Project Name</th>
@@ -71,18 +71,17 @@ const CurrentProjects = () => {
                     </div>
                   </td>
                   <td className="p-2 md:p-4">
-                    <div className="font-semibold text-center text-gray-800">
+                    <div className="font-semibold text-center text-black">
                       <a href={`/project?=${project._id}`}>{project.title}</a>
                     </div>
                   </td>
                   <td className="p-2 md:p-4">
-                    <div className="flex items-center justify-center">
-                      <TrashIcon
-                        id={project._id}
-                        onClick={() => handleDeleteProject(project._id)}
-                        className="w-6 h-6 ml-4 text-indigo-600 cursor-pointer"
-                      />
-                    </div>
+                    <button
+                      className="flex items-center justify-center mx-auto"
+                      onClick={() => handleDeleteProject(project._id)}
+                    >
+                      <TrashIcon className="w-8 h-8 text-indigo-600 min-h-[42px] min-w-[42px] md:min-h-fit md:min-w-fit hover:text-indigo-400 active:text-indigo-800" />
+                    </button>
                   </td>
                 </tr>
               ))}

@@ -62,7 +62,7 @@ const Project = () => {
   return (
     <section className="flex flex-wrap md:flex-nowrap flex-col items-center justify-start w-full h-full md:h-[75vh] 3xl:h-[70vh]">
       {/* page heading */}
-      <h2 className="self-start mb-4 text-3xl font-semibold text-indigo-500">
+      <h2 className="self-start mb-4 text-3xl font-extrabold text-indigo-500">
         {data.returnProject.title}
       </h2>
 
@@ -108,7 +108,7 @@ const Project = () => {
           </div>
             <Button onClick={() => setDisplayModal(true)}>
               <PlusIcon
-                className={`inline-block w-4 h-4 mb-1 ${open && "mr-1"}`}
+                className={`inline-block w-4 h-4 mb-1 stroke-1 stroke-black ${open && "mr-1"}`}
               />
               <span className="inline md:hidden"> Add Task</span>
               <span className="hidden md:inline">{open && " Add Task"}</span>
