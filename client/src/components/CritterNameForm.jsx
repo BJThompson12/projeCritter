@@ -23,7 +23,8 @@ const CritterNameForm = ({ setDisplayModal }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    try {
+    if (formData.critterName) {
+      try {
       const { data } = await updateCritterName({
         variables: { input: formData },
       });
@@ -32,7 +33,6 @@ const CritterNameForm = ({ setDisplayModal }) => {
       }
     } catch (err) {
       console.error(err);
-      //setShowAlert(true);
     } finally {
       setFormData({
         critterName: "",
@@ -40,6 +40,7 @@ const CritterNameForm = ({ setDisplayModal }) => {
       });
       setDisplayModal(false);
     }
+  }
   };
 
   return (
@@ -59,7 +60,6 @@ const CritterNameForm = ({ setDisplayModal }) => {
           name="critterName"
           value={formData.name}
           onChange={handleInputChange}
-          required
         />
         <Button
           disabled={!formData.critterName}

@@ -27,25 +27,26 @@ const TaskForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    try {
-      const { data } = await createTask({
-        variables: { input: formData },
-      });
+    if (formData.taskbody) {
+      try {
+        const { data } = await createTask({
+          variables: { input: formData },
+        });
 
-      if (!data) {
-        throw new Error("something went wrong!");
+        if (!data) {
+          throw new Error("something went wrong!");
+        }
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setFormData({
+          projectId: id,
+          taskbody: "",
+          taskstate: 1,
+        });
+
+        window.location.href = `/project/?=${id}`;
       }
-    } catch (err) {
-      console.error(err);
-      //setShowAlert(true);
-    } finally {
-      setFormData({
-        projectId: id,
-        taskbody: "",
-        taskstate: 1,
-      });
-
-      window.location.href = `/project/?=${id}`;
     }
   };
 
@@ -66,7 +67,6 @@ const TaskForm = () => {
           name="taskbody"
           value={formData.taskbody}
           onChange={handleInputChange}
-          required
         />
         <div className="w-full">
           <label
