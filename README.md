@@ -31,9 +31,8 @@ Our target audience are creative professionals,tech professionals,startup profes
   ## Usage 🖥️ 
   projeCritter is a Web Application designed to assist a user with tracking tasks with a splash of humor.
 Go to the following link and enjoy
- <a href="[https://user-images.githubusercontent.com/98428608/245215334-87648959-4d25-4688-9cd3-facc2491a6b0.png](https://projecritter.herokuapp.com/)">projeCritter</a> 
+ <a href="https://projecritter.herokuapp.com/">projeCritter</a> 
 
-  Once connected to the server and database, you can use Postman or Insomnia to test the API routes.
   ## License 🔐  
   N/A
   ## Contributing 📝 
