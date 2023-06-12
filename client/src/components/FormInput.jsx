@@ -1,4 +1,4 @@
-const FormInput = ({ label, type = "text", name, value, onChange, required, placeholder = "" }) => {
+const FormInput = ({ label, type = "text", name, value, onChange, onBlur, invalidMsg = "", ...rest }) => {
   return (
     <div className="w-full">
       <label
@@ -12,10 +12,11 @@ const FormInput = ({ label, type = "text", name, value, onChange, required, plac
         name={name}
         value={value}
         onChange={onChange}
-        required={required ? true : false}
-        placeholder={placeholder}
+        onBlur={onBlur}
+        {...rest}
         className="w-full px-4 py-2 mt-2 text-black bg-white border-2 border-black rounded-lg focus:ring-emerald-300 focus:outline-none focus:ring"
       />
+      <p className="text-sm font-medium text-pink-500">{invalidMsg}</p>
     </div>
   );
 };
