@@ -148,7 +148,7 @@ const Navbar = () => {
       <Modal displayModal={displayModal} setDisplayModal={setDisplayModal}>
         <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16 md:flex-nowrap md:min-w-[32vw]">
           <Login />
-          <hr class="w-full h-0.5 border-0 rounded md:my-10 bg-indigo-500 md:hidden" />
+          <hr className="w-full h-0.5 border-0 rounded md:my-10 bg-indigo-500 md:hidden" />
           <SignUp />
         </div>
       </Modal>

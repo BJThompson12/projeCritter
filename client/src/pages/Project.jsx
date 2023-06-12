@@ -37,16 +37,24 @@ const Project = () => {
   });
 
   if (loading) {
-    return <p className="italic">Loading...</p>;
+    return (
+      <p className="px-2 py-1 italic bg-indigo-100 rounded-lg">Loading...</p>
+    );
   }
 
   if (!data) {
-    return <p className="italic">No data found.</p>;
+    return (
+      <p className="px-2 py-1 italic bg-indigo-100 rounded-lg">
+        No data found.
+      </p>
+    );
   }
 
   let moodVal = 0;
   if (tasksLoading) {
-    return <p className="p-2 italic">Loading...</p>;
+    return (
+      <p className="px-2 py-1 italic bg-indigo-100 rounded-lg">Loading...</p>
+    );
   } else {
     const tasks = tasksData?.returnTasks || {};
 
@@ -125,7 +133,7 @@ const Project = () => {
 
       {/* add task modal */}
       <Modal displayModal={displayModal} setDisplayModal={setDisplayModal}>
-        <TaskForm setDisplayModal={setDisplayModal} />
+        <TaskForm />
       </Modal>
     </section>
   );

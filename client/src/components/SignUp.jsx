@@ -30,10 +30,8 @@ const SignUp = () => {
         variables: { ...formData },
       });
 
-      console.log(data);
-
       if (!data) {
-        throw new Error('something went wrong!');
+        throw new Error('Something went wrong!');
       }
 
       Auth.login(data.createUser.token);
