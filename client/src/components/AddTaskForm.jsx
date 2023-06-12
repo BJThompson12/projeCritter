@@ -4,7 +4,7 @@ import { CREATE_TASK } from "../utils/mutation";
 import Button from "./Button";
 import FormInput from "./FormInput";
 
-const TaskForm = ({ setDisplayModal }) => {
+const TaskForm = () => {
   const [createTask] = useMutation(CREATE_TASK);
 
   const url = window.location.href;
@@ -22,18 +22,16 @@ const TaskForm = ({ setDisplayModal }) => {
       ...formData,
       [name]: name === "taskstate" ? parseInt(value) : value,
     });
-    console.log(formData);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(formData);
 
     try {
       const { data } = await createTask({
         variables: { input: formData },
       });
-      console.log(data);
+
       if (!data) {
         throw new Error("something went wrong!");
       }
@@ -46,7 +44,7 @@ const TaskForm = ({ setDisplayModal }) => {
         taskbody: "",
         taskstate: 1,
       });
-      setDisplayModal(false);
+
       window.location.href = `/project/?=${id}`;
     }
   };
@@ -72,7 +70,7 @@ const TaskForm = ({ setDisplayModal }) => {
         />
         <div className="w-full">
           <label
-            for="taskstate"
+            htmlFor="taskstate"
             className="text-base font-semibold text-left text-indigo-500"
           >
             Task Category

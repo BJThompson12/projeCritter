@@ -24,9 +24,9 @@ const ProjectForm = ({ setDisplayModal }) => {
       const { data } = await createProject({
         variables: { input: formData },
       });
-      console.log(data);
+
       if (!data) {
-        throw new Error("something went wrong!");
+        throw new Error("Something went wrong!");
       }
     } catch (err) {
       console.error(err);
@@ -36,7 +36,6 @@ const ProjectForm = ({ setDisplayModal }) => {
         title: "",
         projectstatus: "",
       });
-      // window.location.href ='/dashboard'
       setDisplayModal(false);
     }
   };

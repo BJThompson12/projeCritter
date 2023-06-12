@@ -9,11 +9,17 @@ const CurrentProjects = () => {
   const [delProject] = useMutation(DEL_PROJECT);
 
   if (loading) {
-    return <p className="italic">Loading...</p>;
+    return (
+      <p className="px-2 py-1 italic bg-indigo-100 rounded-lg">Loading...</p>
+    );
   }
 
   if (!data) {
-    return <p className="italic">No data found.</p>;
+    return (
+      <p className="px-2 py-1 italic bg-indigo-100 rounded-lg">
+        No data found.
+      </p>
+    );
   }
 
   const handleDeleteProject = async (id) => {
@@ -21,18 +27,15 @@ const CurrentProjects = () => {
       const { data } = await delProject({
         variables: { input: id },
       });
-
-      if (data) {
-        console.log(`deleted project!`);
-      }
     } catch (err) {
       console.log(err);
+      //setShowAlert(true);
     } finally {
       window.location.href = "/dashboard";
     }
   };
 
-  const projects = data?.returnUser.projects || { title: "No projects yet." };
+  const projects = data?.returnUser.projects || undefined;
 
   return (
     <div className="flex flex-col items-center justify-center">
@@ -89,7 +92,7 @@ const CurrentProjects = () => {
           </table>
         </div>
       ) : (
-        <p className="italic">You haven't created any projects yet.</p>
+        <p className="px-2 py-1 italic bg-indigo-100 rounded-lg">You haven't created any projects yet.</p>
       )}
     </div>
   );

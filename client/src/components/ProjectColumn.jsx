@@ -24,7 +24,6 @@ const ProjectColumn = ({ title, colNum }) => {
       const { data } = await updateTask({
         variables: { input: inputObj },
       });
-      console.log(data);
     } catch (err) {
       console.log(err);
     } finally {
@@ -33,22 +32,15 @@ const ProjectColumn = ({ title, colNum }) => {
   };
 
   const handleDelTask = async (taskId) => {
-    const confirm = window.confirm("Are you sure you want to delete the task?");
-
-    if (confirm) {
-      const multiInput = { taskId: taskId, projectId: id };
-      try {
-        const { data } = await delTask({
-          variables: { input: multiInput },
-        });
-        console.log(data);
-      } catch (err) {
-        console.log(err);
-      } finally {
-        window.location.href = `/project/?=${id}`;
-      }
-    } else {
-      console.log("Task not deleted.");
+    const multiInput = { taskId: taskId, projectId: id };
+    try {
+      const { data } = await delTask({
+        variables: { input: multiInput },
+      });
+    } catch (err) {
+      console.log(err);
+    } finally {
+      window.location.href = `/project/?=${id}`;
     }
   };
 

@@ -27,11 +27,17 @@ const Dashboard = () => {
   });
 
   if (loading) {
-    return <p className="italic">Loading...</p>;
+    return (
+      <p className="px-2 py-1 italic bg-indigo-100 rounded-lg">Loading...</p>
+    );
   }
 
   if (!data) {
-    return <p className="italic">No data found.</p>;
+    return (
+      <p className="px-2 py-1 italic bg-indigo-100 rounded-lg">
+        No data found.
+      </p>
+    );
   }
 
   return (
