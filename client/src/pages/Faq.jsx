@@ -2,7 +2,7 @@ import FaqCard from "../components/FaqCard";
 
 const Faq = () => {
   return (
-    <section class="w-full">
+    <section className="w-full">
       <h2 className="mb-4 text-3xl font-extrabold text-left text-indigo-500">
         Frequently Asked Questions
       </h2>
