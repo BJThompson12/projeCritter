@@ -24,7 +24,6 @@ const ProjectColumn = ({ title, colNum }) => {
       const { data } = await updateTask({
         variables: { input: inputObj },
       });
-      console.log(data);
     } catch (err) {
       console.log(err);
     } finally {
@@ -33,22 +32,15 @@ const ProjectColumn = ({ title, colNum }) => {
   };
 
   const handleDelTask = async (taskId) => {
-    const confirm = window.confirm("Are you sure you want to delete the task?");
-
-    if (confirm) {
-      const multiInput = { taskId: taskId, projectId: id };
-      try {
-        const { data } = await delTask({
-          variables: { input: multiInput },
-        });
-        console.log(data);
-      } catch (err) {
-        console.log(err);
-      } finally {
-        window.location.href = `/project/?=${id}`;
-      }
-    } else {
-      console.log("Task not deleted.");
+    const multiInput = { taskId: taskId, projectId: id };
+    try {
+      const { data } = await delTask({
+        variables: { input: multiInput },
+      });
+    } catch (err) {
+      console.log(err);
+    } finally {
+      window.location.href = `/project/?=${id}`;
     }
   };
 
@@ -73,11 +65,11 @@ const ProjectColumn = ({ title, colNum }) => {
 
   return (
     <div className="flex flex-col md:w-[276px] md:min-w-[276px] border-4 border-black rounded-xl overflow-hidden shadow-[0.4rem_0.4rem_#a7f3d0]">
-      <h3 className="px-2 pb-1 text-2xl font-semibold text-white bg-indigo-500 border-b-4 border-black">
+      <h3 className="px-2 py-1 text-2xl font-semibold text-white bg-indigo-500 border-b-4 border-black">
         {title}
       </h3>
       <div className="overflow-y-auto">
-        <ul className="text-xl md:text-base">
+        <ul className="text-xl font-medium md:text-base">
           {task.length ? (
             <>
               {task.map((task) => (

@@ -27,28 +27,34 @@ const Dashboard = () => {
   });
 
   if (loading) {
-    return <p className="italic">Loading...</p>;
+    return (
+      <p className="px-2 py-1 italic bg-indigo-100 rounded-lg">Loading...</p>
+    );
   }
 
   if (!data) {
-    return <p className="italic">No data found.</p>;
+    return (
+      <p className="px-2 py-1 italic bg-indigo-100 rounded-lg">
+        No data found.
+      </p>
+    );
   }
 
   return (
-    <div className="w-full max-w-[960px] text-center md:text-left">
+    <div className="w-full max-w-[1280px] text-center md:text-left">
       {loggedIn ? (
         <>
           <div className="flex flex-col items-center justify-between md:flex-row">
-            <h2 className="mb-4 text-3xl font-semibold text-indigo-500">
+            <h2 className="mb-4 text-3xl font-extrabold text-indigo-500">
               Welcome, {data.returnUser.username}!
             </h2>
             <Button onClick={() => setDisplayModal(true)} width="w-fit">
-              <PlusIcon className="inline-block w-4 h-4 mb-1 mr-1" />
+              <PlusIcon className="inline-block w-4 h-4 mb-1 mr-1 stroke-1 stroke-black" />
               Add Project
             </Button>
           </div>
           <div className="w-full max-w-3xl mx-auto">
-            <h3 className="mt-4 mb-2 text-xl font-semibold text-left text-black">
+            <h3 className="mt-4 mb-2 text-xl font-bold text-left text-black">
               Current Projects:
             </h3>
             <CurrentProjects />

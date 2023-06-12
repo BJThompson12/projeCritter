@@ -346,7 +346,7 @@ const CritterContainer = ({ name, born, moodVal }) => {
             </g>
           </svg>
         </figure>
-        <ul className="text-xl leading-loose md:text-base md:leading-normal">
+        <ul className="text-xl font-medium leading-loose md:text-base md:leading-normal">
           <li>
             <strong className="text-indigo-600">Name:</strong> {name}{" "}
             <PencilIcon

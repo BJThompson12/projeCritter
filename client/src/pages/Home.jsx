@@ -2,19 +2,18 @@ import { XMarkIcon } from "@heroicons/react/24/solid";
 import "../components/CritterContainer.css";
 
 const Home = () => {
-
-  const critterStyles= {
+  const critterStyles = {
     mouthline: {
       stroke: "#000",
       strokeLinecap: "round",
       strokeLinejoin: "round",
       strokeWidth: "12px",
-    }
-  }
+    },
+  };
 
   return (
     <section className="flex flex-col gap-10 md:flex-row items-center justify-center w-full h-full min-h-[78vh] md:min-h-[70vh] xl:min-h-[75vh]">
-      <figure className="border-4 border-black rounded-lg w-64 h-64 min-w-[16rem] sm:w-80 sm:h-80 sm:min-w-[20rem] shadow-[0.4rem_0.4rem_#a7f3d0] bg-indigo-100 flex flex-col items-center overflow-hidden">
+      <figure className="border-4 border-black rounded-lg w-64 h-64 min-w-[16rem] sm:w-80 sm:h-80 xl:w-96 xl:h-96 sm:min-w-[20rem] shadow-[0.4rem_0.4rem_#a7f3d0] bg-indigo-100 flex flex-col items-center overflow-hidden">
         <div className="flex items-center justify-between w-full bg-indigo-500 border-b-4 border-black">
           <div className="flex gap-3 pl-2">
             <div className="w-6 h-6 border-4 border-black rounded-full"></div>
@@ -130,14 +129,18 @@ const Home = () => {
       </figure>
       <div className="w-full max-w-lg min-w-0 text-left">
         <div className="flex-1 bg-emerald-200 text-black p-4 mb-2 relative border-4 border-black w-fit mx-auto md:mx-0 shadow-[0.4rem_0.4rem_#c7d2fe]">
-          <h2 className="text-3xl font-semibold text-center md:text-left">Let's work together!</h2>
+          <h2 className="text-3xl font-extrabold text-center xl:text-4xl md:text-left">
+            Let's work together!
+          </h2>
 
           <div className="absolute top-0 left-[47.5%] md:top-[55%] md:left-0 transform -translate-y-[68%] md:-translate-x-[68%] rotate-45 w-4 h-4 bg-emerald-200 border-t-4 md:border-t-0 border-l-4 md:border-b-4 border-black"></div>
         </div>
-        <p className="inline-block p-2 mt-4 text-lg leading-relaxed">
-          Tired of feeling overwhelmed with your tasks? Let our project task
+        <p className="inline-block p-2 mt-4 text-lg font-medium leading-relaxed text-center md:text-left">
+          {/* Tired of feeling overwhelmed with your tasks? Let our project task
           tracker tool be your personal assistant and help you conquer your
-          to-do list!
+          to-do list! */}
+          Feeling overwhelmed with your workload? What if you had a friendly little buddy rooting for your success and sharing your stress? Let your
+          Critter's happiness be a new source of motivation!
         </p>
       </div>
     </section>

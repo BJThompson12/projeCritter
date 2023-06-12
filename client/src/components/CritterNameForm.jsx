@@ -27,9 +27,8 @@ const CritterNameForm = ({ setDisplayModal }) => {
       const { data } = await updateCritterName({
         variables: { input: formData },
       });
-      console.log(data);
       if (!data) {
-        throw new Error("something went wrong!");
+        throw new Error("Something went wrong!");
       }
     } catch (err) {
       console.error(err);
@@ -51,7 +50,10 @@ const CritterNameForm = ({ setDisplayModal }) => {
       >
         Name Project Critter
       </h3>
-      <form onSubmit={handleSubmit} className="flex flex-col items-center space-y-4">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col items-center space-y-4"
+      >
         <FormInput
           label="Name"
           name="critterName"

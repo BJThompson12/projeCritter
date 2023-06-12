@@ -29,8 +29,6 @@ const Login = () => {
         variables: { ...formData },
       });
 
-      console.log(data);
-
       if (!data) {
         throw new Error("something went wrong!");
       }

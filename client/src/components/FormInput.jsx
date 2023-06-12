@@ -2,7 +2,7 @@ const FormInput = ({ label, type = "text", name, value, onChange, required, plac
   return (
     <div className="w-full">
       <label
-        for={name}
+        htmlFor={name}
         className="text-base font-semibold text-left text-indigo-500"
       >
         {label}
