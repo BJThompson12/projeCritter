@@ -20,23 +20,24 @@ const ProjectForm = ({ setDisplayModal }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    try {
-      const { data } = await createProject({
-        variables: { input: formData },
-      });
+    if (formData.title) {
+      try {
+        const { data } = await createProject({
+          variables: { input: formData },
+        });
 
-      if (!data) {
-        throw new Error("Something went wrong!");
+        if (!data) {
+          throw new Error("Something went wrong!");
+        }
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setFormData({
+          title: "",
+          projectstatus: "",
+        });
+        setDisplayModal(false);
       }
-    } catch (err) {
-      console.error(err);
-      //setShowAlert(true);
-    } finally {
-      setFormData({
-        title: "",
-        projectstatus: "",
-      });
-      setDisplayModal(false);
     }
   };
 
@@ -57,7 +58,6 @@ const ProjectForm = ({ setDisplayModal }) => {
           name="title"
           value={formData.title}
           onChange={handleInputChange}
-          required
         />
         <Button
           disabled={!formData.title}

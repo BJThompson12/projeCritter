@@ -13,6 +13,7 @@ const Login = () => {
   });
 
   const [showAlert, setShowAlert] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const [login] = useMutation(LOG_IN);
 
@@ -23,26 +24,29 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    let exception = false;
 
-    try {
+    if (formData.email && formData.password && !success) {
+      try {
       const { data } = await login({
         variables: { ...formData },
       });
 
       if (!data) {
-        throw new Error("something went wrong!");
+        throw new Error("Something went wrong!");
       }
 
       Auth.login(data.login.token);
     } catch (err) {
       console.error(err);
       setShowAlert(true);
+      exception = true;
     } finally {
-      setFormData({
-        email: "",
-        password: "",
-      });
+      if (!exception) {
+        setSuccess(true);
+      }
     }
+  }
   };
 
   return (
@@ -59,11 +63,10 @@ const Login = () => {
       >
         <FormInput
           label="Email"
-          type="email"
+          type="text"
           name="email"
           value={formData.email}
           onChange={handleInputChange}
-          required
         />
         <FormInput
           label="Password"
@@ -71,10 +74,16 @@ const Login = () => {
           name="password"
           value={formData.password}
           onChange={handleInputChange}
-          required
         />
+        <p
+          className={`${
+            showAlert ? "block" : "hidden"
+          } text-sm text-center font-medium text-pink-500 max-w-xs`}
+        >
+          User not found. Please check email and password and try again.
+        </p>
         <Button
-          disabled={!(formData.email && formData.password)}
+          disabled={!(formData.email && formData.password) || success}
           type="submit"
           variant="success"
           width="w-fit"
